@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "8.1.1"
+}
+
+group = 'cn.xor7'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        url "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven {
+        url "https://repo.leavesmc.top/releases"
+    }
+    maven {
+        url "https://repo.leavesmc.top/snapshots"
+    }
+}
+
+dependencies {
+    implementation "cn.xor7.tomlex:toml4j-extra:1.0.0-SNAPSHOT"
+    implementation 'org.projectlombok:lombok:1.18.22'
+    implementation "top.leavesmc.leaves:leaves-api:1.20.1-R0.1-SNAPSHOT"
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+}
+
+def targetJavaVersion = 17
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        options.release = targetJavaVersion
+    }
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('paper-plugin.yml') {
+        expand props
+    }
+}
