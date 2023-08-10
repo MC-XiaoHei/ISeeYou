@@ -36,6 +36,9 @@ public class EventListener implements Listener {
         if (prefix.length() > 10) {
             prefix = prefix.substring(0, 10);
         }
+        if (prefix.startsWith(".")) { // fix Floodgate
+            prefix = prefix.replace(".", "_");
+        }
         Photographer photographer = Bukkit
                 .getPhotographerManager()
                 .createPhotographer(
@@ -50,7 +53,7 @@ public class EventListener implements Listener {
         String recordPath = "replay/player/" + player.getName() + "@" + playerUniqueId;
         new File(recordPath).mkdirs();
         File recordFile = new File(recordPath + "/" + currentTime.format(DATE_FORMATTER) + ".mcpr");
-        if(recordFile.exists()){
+        if (recordFile.exists()) {
             recordFile.delete();
         }
         recordFile.createNewFile();
