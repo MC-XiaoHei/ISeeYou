@@ -42,6 +42,5 @@ public final class ISeeYou extends JavaPlugin {
         for (Photographer photographer : photographers.values()){
             photographer.stopRecording();
         }
-        toml.save();
     }
 }

@@ -29,7 +29,9 @@ public class EventListener implements Listener {
             return;
         }
         if (ISeeYou.getToml().data.pauseInsteadOfStopRecordingOnPlayerQuit && ISeeYou.getPhotographers().containsKey(playerUniqueId)) {
-            ISeeYou.getPhotographers().get(playerUniqueId).resumeRecording();
+            Photographer photographer = ISeeYou.getPhotographers().get(playerUniqueId);
+            photographer.resumeRecording();
+            photographer.setFollowPlayer(player);
             return;
         }
         String prefix = player.getName();
