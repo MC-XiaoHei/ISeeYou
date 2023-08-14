@@ -7,8 +7,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 import top.leavesmc.leaves.entity.Photographer;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
-import java.util.UUID;
+import java.util.Set;
 
 /**
  * @author MC_XiaoHei
@@ -18,12 +19,16 @@ public final class ISeeYou extends JavaPlugin {
     private static TomlEx<ConfigData> toml;
     @Getter
     private static Map<String, Photographer> photographers;
+    @Getter
+    private static Set<Photographer> highSpeedPausedPhotographers;
 
     @Override
 
     public void onEnable() {
         setupConfig();
         photographers = new HashMap<>();
+        highSpeedPausedPhotographers = new HashSet<>();
+        EventListener.setPauseRecordingOnHighSpeedThresholdPerTickSquared(Math.pow(ISeeYou.getToml().data.pauseRecordingOnHighSpeed.threshold / 20, 2));
         Bukkit.getPluginManager().registerEvents(new EventListener(), this);
     }
 
@@ -39,7 +44,7 @@ public final class ISeeYou extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        for (Photographer photographer : photographers.values()){
+        for (Photographer photographer : photographers.values()) {
             photographer.stopRecording();
         }
     }

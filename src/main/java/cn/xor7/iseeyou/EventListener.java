@@ -1,11 +1,15 @@
 package cn.xor7.iseeyou;
 
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerVelocityEvent;
+import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 import top.leavesmc.leaves.entity.Photographer;
 
@@ -20,6 +24,8 @@ import java.util.UUID;
  */
 public class EventListener implements Listener {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH-mm-ss");
+    @Setter
+    private static Double pauseRecordingOnHighSpeedThresholdPerTickSquared;
 
     @EventHandler
     public void onPlayerJoin(@NotNull PlayerJoinEvent event) throws IOException {
@@ -66,8 +72,24 @@ public class EventListener implements Listener {
     }
 
     @EventHandler
+    public void onPlayerMove(@NotNull PlayerMoveEvent event) {
+        Photographer photographer = ISeeYou.getPhotographers().get(event.getPlayer().getUniqueId().toString());
+        Vector velocity = event.getPlayer().getVelocity();
+        if (ISeeYou.getToml().data.pauseRecordingOnHighSpeed.enable &&
+                Math.pow(velocity.getX(), 2) + Math.pow(velocity.getZ(), 2) > pauseRecordingOnHighSpeedThresholdPerTickSquared &&
+                !ISeeYou.getHighSpeedPausedPhotographers().contains(photographer)) {
+            photographer.pauseRecording();
+            ISeeYou.getHighSpeedPausedPhotographers().add(photographer);
+        }
+        photographer.resumeRecording();
+        photographer.setFollowPlayer(event.getPlayer());
+        ISeeYou.getHighSpeedPausedPhotographers().remove(photographer);
+    }
+
+    @EventHandler
     public void onPlayerQuit(@NotNull PlayerQuitEvent event) {
         Photographer photographer = ISeeYou.getPhotographers().get(event.getPlayer().getUniqueId().toString());
+        ISeeYou.getHighSpeedPausedPhotographers().remove(photographer);
         if (photographer == null) {
             return;
         }
@@ -75,6 +97,7 @@ public class EventListener implements Listener {
             photographer.resumeRecording();
         } else {
             photographer.stopRecording();
+            ISeeYou.getPhotographers().remove(event.getPlayer().getUniqueId().toString());
         }
     }
 }

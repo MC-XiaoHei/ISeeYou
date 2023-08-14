@@ -47,9 +47,15 @@ public class ConfigData {
         }
     }
 
-    Boolean pauseInsteadOfStopRecordingOnPlayerQuit = false;
-    String recordMode = "blacklist";
-    String checkBy = "name";
-    Set<String> blacklist;
-    Set<String> whitelist;
+    public static final class HighSpeedPauseConfig {
+        public Boolean enable = false;
+        public Double threshold = 20.00;
+    }
+
+    public HighSpeedPauseConfig pauseRecordingOnHighSpeed = new HighSpeedPauseConfig();
+    public Boolean pauseInsteadOfStopRecordingOnPlayerQuit = false;
+    public String recordMode = "blacklist";
+    public String checkBy = "name";
+    public Set<String> blacklist;
+    public Set<String> whitelist;
 }
