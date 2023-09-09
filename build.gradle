@@ -21,8 +21,8 @@ repositories {
 }
 
 dependencies {
-    implementation "cn.xor7.tomlex:toml4j-extra:1.0.0-SNAPSHOT"
     implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'com.moandjiezana.toml:toml4j:0.7.2'
     compileOnly "top.leavesmc.leaves:leaves-api:1.20.1-R0.1-SNAPSHOT"
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 }

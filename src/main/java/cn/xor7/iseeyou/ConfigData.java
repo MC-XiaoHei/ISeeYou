@@ -53,6 +53,7 @@ public class ConfigData {
     }
 
     public HighSpeedPauseConfig pauseRecordingOnHighSpeed = new HighSpeedPauseConfig();
+    public Boolean deleteTmpFileOnLoad = true;
     public Boolean pauseInsteadOfStopRecordingOnPlayerQuit = false;
     public String recordMode = "blacklist";
     public String checkBy = "name";
