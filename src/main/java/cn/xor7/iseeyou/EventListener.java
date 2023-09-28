@@ -58,7 +58,9 @@ public class EventListener implements Listener {
         }
 
         LocalDateTime currentTime = LocalDateTime.now();
-        String recordPath = "replay/player/" + player.getName() + "@" + playerUniqueId;
+        String recordPath = ISeeYou.getToml().data.recordPath
+                .replace("${name}", player.getName())
+                .replace("${uuid}", playerUniqueId);
         new File(recordPath).mkdirs();
         File recordFile = new File(recordPath + "/" + currentTime.format(DATE_FORMATTER) + ".mcpr");
         if (recordFile.exists()) {

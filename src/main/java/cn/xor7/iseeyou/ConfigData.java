@@ -57,6 +57,7 @@ public class ConfigData {
     public Boolean pauseInsteadOfStopRecordingOnPlayerQuit = false;
     public String recordMode = "blacklist";
     public String checkBy = "name";
+    public String recordPath = "replay/player/${name}@${uuid}";
     public Set<String> blacklist;
     public Set<String> whitelist;
 }
