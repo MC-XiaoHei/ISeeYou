@@ -1,79 +1,75 @@
-package cn.xor7.iseeyou;
+package cn.xor7.iseeyou
 
-import lombok.Getter;
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.java.JavaPlugin;
-import top.leavesmc.leaves.entity.Photographer;
+import org.bukkit.Bukkit
+import org.bukkit.plugin.java.JavaPlugin
+import top.leavesmc.leaves.entity.Photographer
+import java.io.IOException
+import java.nio.file.*
+import java.nio.file.attribute.BasicFileAttributes
+import java.util.*
+import kotlin.io.path.isDirectory
+import kotlin.math.pow
 
-import java.io.IOException;
-import java.nio.file.*;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.*;
-import java.util.stream.Stream;
+var toml: TomlEx<ConfigData>? = null
+var photographers = mutableMapOf<String, Photographer>()
+var highSpeedPausedPhotographers = mutableSetOf<Photographer>()
 
-/**
- * @author MC_XiaoHei
- */
-public final class ISeeYou extends JavaPlugin {
-    @Getter
-    private static TomlEx<ConfigData> toml;
-    @Getter
-    private static Map<String, Photographer> photographers;
-    @Getter
-    private static Set<Photographer> highSpeedPausedPhotographers;
-
-    @Override
-    public void onEnable() {
-        setupConfig();
-        if (toml.data.deleteTmpFileOnLoad) {
-            try (Stream<Path> walk = Files.walk(Paths.get("replay/"), Integer.MAX_VALUE, FileVisitOption.FOLLOW_LINKS)) {
-                walk.filter(Files::isDirectory)
-                        .filter(path -> path.getFileName().toString().endsWith(".tmp"))
-                        .forEach(ISeeYou::deleteTmpFolder);
-            } catch (IOException e) {
-                e.printStackTrace();
+@Suppress("unused")
+class ISeeYou : JavaPlugin() {
+    override fun onEnable() {
+        setupConfig()
+        if (toml!!.data.deleteTmpFileOnLoad) {
+            try {
+                Files.walk(Paths.get("replay/"), Int.MAX_VALUE, FileVisitOption.FOLLOW_LINKS).use { paths ->
+                    paths.filter { it.isDirectory() && it.fileName.toString().endsWith(".tmp") }
+                        .forEach { deleteTmpFolder(it) }
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
             }
         }
-        photographers = new HashMap<>();
-        highSpeedPausedPhotographers = new HashSet<>();
-        EventListener.setPauseRecordingOnHighSpeedThresholdPerTickSquared(Math.pow(ISeeYou.getToml().data.pauseRecordingOnHighSpeed.threshold / 20, 2));
-        Bukkit.getPluginManager().registerEvents(new EventListener(), this);
+        EventListener.pauseRecordingOnHighSpeedThresholdPerTickSquared =
+            (toml!!.data.pauseRecordingOnHighSpeed.threshold / 20).pow(2.0)
+        Bukkit.getPluginManager().registerEvents(EventListener, this)
     }
 
-    private static void deleteTmpFolder(Path folderPath) {
-        try {
-            Files.walkFileTree(folderPath, EnumSet.noneOf(FileVisitOption.class), Integer.MAX_VALUE, new SimpleFileVisitor<>() {
-                @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-                    Files.delete(file);
-                    return FileVisitResult.CONTINUE;
-                }
-
-                @Override
-                public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
-                    Files.delete(dir);
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void setupConfig() {
-        toml = new TomlEx<>("plugins/ISeeYou/config.toml", ConfigData.class);
-        String errMsg = toml.data.isConfigValid();
+    private fun setupConfig() {
+        toml = TomlEx("plugins/ISeeYou/config.toml", ConfigData::class.java)
+        val errMsg = toml!!.data.isConfigValid()
         if (errMsg != null) {
-            throw new Error(errMsg);
+            throw Error(errMsg)
         }
-        toml.data.setConfig();
-        toml.save();
+        toml!!.data.setConfig()
+        toml!!.save()
     }
 
-    @Override
-    public void onDisable() {
-        for (Photographer photographer : photographers.values()) {
-            photographer.stopRecording();
+    override fun onDisable() {
+        for (photographer in photographers.values) {
+            photographer.stopRecording()
+        }
+    }
+
+    private fun deleteTmpFolder(folderPath: Path) {
+        try {
+            Files.walkFileTree(
+                folderPath,
+                EnumSet.noneOf(FileVisitOption::class.java),
+                Int.MAX_VALUE,
+                object : SimpleFileVisitor<Path>() {
+                    @Throws(IOException::class)
+                    override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
+                        Files.delete(file)
+                        return FileVisitResult.CONTINUE
+                    }
+
+                    @Throws(IOException::class)
+                    override fun postVisitDirectory(dir: Path, exc: IOException): FileVisitResult {
+                        Files.delete(dir)
+                        return FileVisitResult.CONTINUE
+                    }
+                })
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
     }
 }

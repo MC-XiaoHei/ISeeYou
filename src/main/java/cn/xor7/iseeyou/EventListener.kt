@@ -1,105 +1,97 @@
-package cn.xor7.iseeyou;
+package cn.xor7.iseeyou
 
-import lombok.Setter;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerVelocityEvent;
-import org.bukkit.util.Vector;
-import org.jetbrains.annotations.NotNull;
-import top.leavesmc.leaves.entity.Photographer;
+import org.bukkit.Bukkit
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerJoinEvent
+import org.bukkit.event.player.PlayerMoveEvent
+import org.bukkit.event.player.PlayerQuitEvent
+import top.leavesmc.leaves.entity.Photographer
+import java.io.File
+import java.io.IOException
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.math.pow
 
-import java.io.File;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
-
-/**
- * @author MC_XiaoHei
- */
-public class EventListener implements Listener {
-    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH-mm-ss");
-    @Setter
-    private static Double pauseRecordingOnHighSpeedThresholdPerTickSquared;
+object EventListener : Listener {
+    private val DATE_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH-mm-ss")
+    var pauseRecordingOnHighSpeedThresholdPerTickSquared = 0.00
 
     @EventHandler
-    public void onPlayerJoin(@NotNull PlayerJoinEvent event) throws IOException {
-        Player player = event.getPlayer();
-        String playerUniqueId = player.getUniqueId().toString();
-        if (!ISeeYou.getToml().data.shouldRecordPlayer(player)) {
-            return;
+    @Throws(IOException::class)
+    fun onPlayerJoin(event: PlayerJoinEvent) {
+        val player = event.player
+        val playerUniqueId = player.uniqueId.toString()
+        if (!toml!!.data.shouldRecordPlayer(player)) {
+            return
         }
-        if (ISeeYou.getToml().data.pauseInsteadOfStopRecordingOnPlayerQuit && ISeeYou.getPhotographers().containsKey(playerUniqueId)) {
-            Photographer photographer = ISeeYou.getPhotographers().get(playerUniqueId);
-            photographer.resumeRecording();
-            photographer.setFollowPlayer(player);
-            return;
+        if (toml!!.data.pauseInsteadOfStopRecordingOnPlayerQuit && photographers.containsKey(playerUniqueId)) {
+            val photographer: Photographer = photographers[playerUniqueId]!!
+            photographer.resumeRecording()
+            photographer.setFollowPlayer(player)
+            return
         }
-        String prefix = player.getName();
-        if (prefix.length() > 10) {
-            prefix = prefix.substring(0, 10);
+        var prefix = player.name
+        if (prefix.length > 10) {
+            prefix = prefix.substring(0, 10)
         }
         if (prefix.startsWith(".")) { // fix Floodgate
-            prefix = prefix.replace(".", "_");
+            prefix = prefix.replace(".", "_")
         }
-        Photographer photographer = Bukkit
-                .getPhotographerManager()
-                .createPhotographer(
-                        (prefix + "_" + UUID.randomUUID().toString().replaceAll("-", "")).substring(0, 16),
-                        player.getLocation());
+        val photographer = Bukkit
+            .getPhotographerManager()
+            .createPhotographer(
+                (prefix + "_" + UUID.randomUUID().toString().replace("-".toRegex(), "")).substring(0, 16),
+                player.location
+            )
         if (photographer == null) {
-            throw new RuntimeException(
-                    "Error on create photographer for player: {name: " + player.getName() + " , UUID:" + playerUniqueId + "}");
+            throw RuntimeException(
+                "Error on create photographer for player: {name: " + player.name + " , UUID:" + playerUniqueId + "}"
+            )
         }
 
-        LocalDateTime currentTime = LocalDateTime.now();
-        String recordPath = ISeeYou.getToml().data.recordPath
-                .replace("${name}", player.getName())
-                .replace("${uuid}", playerUniqueId);
-        new File(recordPath).mkdirs();
-        File recordFile = new File(recordPath + "/" + currentTime.format(DATE_FORMATTER) + ".mcpr");
+        val currentTime = LocalDateTime.now()
+        val recordPath: String = toml!!.data.recordPath
+            .replace("\${name}", player.name)
+            .replace("\${uuid}", playerUniqueId)
+        File(recordPath).mkdirs()
+        val recordFile = File(recordPath + "/" + currentTime.format(DATE_FORMATTER) + ".mcpr")
         if (recordFile.exists()) {
-            recordFile.delete();
+            recordFile.delete()
         }
-        recordFile.createNewFile();
-        photographer.setRecordFile(recordFile);
+        recordFile.createNewFile()
+        photographer.setRecordFile(recordFile)
 
-        ISeeYou.getPhotographers().put(playerUniqueId, photographer);
-        photographer.setFollowPlayer(player);
+        photographers[playerUniqueId] = photographer
+        photographer.setFollowPlayer(player)
     }
 
     @EventHandler
-    public void onPlayerMove(@NotNull PlayerMoveEvent event) {
-        Photographer photographer = ISeeYou.getPhotographers().get(event.getPlayer().getUniqueId().toString());
-        Vector velocity = event.getPlayer().getVelocity();
-        if (ISeeYou.getToml().data.pauseRecordingOnHighSpeed.enable &&
-                Math.pow(velocity.getX(), 2) + Math.pow(velocity.getZ(), 2) > pauseRecordingOnHighSpeedThresholdPerTickSquared &&
-                !ISeeYou.getHighSpeedPausedPhotographers().contains(photographer)) {
-            photographer.pauseRecording();
-            ISeeYou.getHighSpeedPausedPhotographers().add(photographer);
+    fun onPlayerMove(event: PlayerMoveEvent) {
+        val photographer: Photographer = photographers[event.player.uniqueId.toString()]!!
+        val velocity = event.player.velocity
+        if (toml!!.data.pauseRecordingOnHighSpeed.enabled &&
+            velocity.x.pow(2.0) + velocity.z.pow(2.0) > pauseRecordingOnHighSpeedThresholdPerTickSquared &&
+            !highSpeedPausedPhotographers.contains(photographer)
+        ) {
+            photographer.pauseRecording()
+            highSpeedPausedPhotographers.add(photographer)
         }
-        photographer.resumeRecording();
-        photographer.setFollowPlayer(event.getPlayer());
-        ISeeYou.getHighSpeedPausedPhotographers().remove(photographer);
+        photographer.resumeRecording()
+        photographer.setFollowPlayer(event.player)
+        highSpeedPausedPhotographers.remove(photographer)
     }
 
     @EventHandler
-    public void onPlayerQuit(@NotNull PlayerQuitEvent event) {
-        Photographer photographer = ISeeYou.getPhotographers().get(event.getPlayer().getUniqueId().toString());
-        ISeeYou.getHighSpeedPausedPhotographers().remove(photographer);
-        if (photographer == null) {
-            return;
-        }
-        if (ISeeYou.getToml().data.pauseInsteadOfStopRecordingOnPlayerQuit) {
-            photographer.resumeRecording();
+    fun onPlayerQuit(event: PlayerQuitEvent) {
+        val photographer: Photographer = photographers[event.player.uniqueId.toString()]!!
+        highSpeedPausedPhotographers.remove(photographer)
+        if (toml!!.data.pauseInsteadOfStopRecordingOnPlayerQuit) {
+            photographer.resumeRecording()
         } else {
-            photographer.stopRecording();
-            ISeeYou.getPhotographers().remove(event.getPlayer().getUniqueId().toString());
+            photographer.stopRecording()
+            photographers.remove(event.player.uniqueId.toString())
         }
     }
 }
