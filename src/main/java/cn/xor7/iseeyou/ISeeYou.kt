@@ -24,9 +24,7 @@ class ISeeYou : JavaPlugin() {
                     paths.filter { it.isDirectory() && it.fileName.toString().endsWith(".tmp") }
                         .forEach { deleteTmpFolder(it) }
                 }
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
+            } catch (_: IOException) {}
         }
         EventListener.pauseRecordingOnHighSpeedThresholdPerTickSquared =
             (toml!!.data.pauseRecordingOnHighSpeed.threshold / 20).pow(2.0)

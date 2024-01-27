@@ -90,7 +90,7 @@ object EventListener : Listener {
         if (toml!!.data.pauseInsteadOfStopRecordingOnPlayerQuit) {
             photographer.resumeRecording()
         } else {
-            photographer.stopRecording()
+            photographer.stopRecording(toml!!.data.asyncSave)
             photographers.remove(event.player.uniqueId.toString())
         }
     }
