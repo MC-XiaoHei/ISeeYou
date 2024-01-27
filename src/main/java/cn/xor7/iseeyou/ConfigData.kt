@@ -11,7 +11,7 @@ data class ConfigData(
     var recordPath: String = "replay/player/\${name}@\${uuid}",
     var blacklist: Set<String>? = null,
     var whitelist: Set<String>? = null,
-    var asyncSave: Boolean = false,
+    // var asyncSave: Boolean = false,
 ) {
     fun isConfigValid(): String? {
         if ("name" != checkBy && "uuid" != checkBy) {
