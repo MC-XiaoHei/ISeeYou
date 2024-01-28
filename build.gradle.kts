@@ -20,7 +20,7 @@ repositories {
 dependencies {
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("top.leavesmc.leaves:leaves-api:1.20.1-R0.1-SNAPSHOT")
-    // implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 }
 
 val targetJavaVersion = 17
