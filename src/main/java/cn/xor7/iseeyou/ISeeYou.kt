@@ -45,6 +45,8 @@ class ISeeYou : JavaPlugin() {
         for (photographer in photographers.values) {
             photographer.stopRecording()
         }
+        photographers.clear()
+        highSpeedPausedPhotographers.clear()
     }
 
     private fun deleteTmpFolder(folderPath: Path) {
