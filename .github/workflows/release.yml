@@ -1,4 +1,4 @@
-name: "Build JAR"
+name: "Release"
 
 on:
   push:
@@ -33,5 +33,6 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          files: build/libs/ISeeYou-*-all.jar
+          files: |
+           *.jar
           prerelease: false
