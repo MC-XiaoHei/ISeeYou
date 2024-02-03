@@ -2,7 +2,8 @@ name: "Build JAR"
 
 on:
   push:
-    branches: [ master ]
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -27,3 +28,10 @@ jobs:
         with:
           name: Package JAR
           path: build/libs
+
+      - name: publish release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          files: build/libs/ISeeYou-*-all.jar
+          prerelease: false
