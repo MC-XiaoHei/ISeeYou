@@ -33,6 +33,5 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          files: |
-           *.jar
+          files: build/libs/ISeeYou-*-all.jar
           prerelease: false
