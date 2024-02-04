@@ -2,6 +2,7 @@ package cn.xor7.iseeyou
 
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
+import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerMoveEvent
@@ -18,7 +19,7 @@ object EventListener : Listener {
     private val DATE_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH-mm-ss")
     var pauseRecordingOnHighSpeedThresholdPerTickSquared = 0.00
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     @Throws(IOException::class)
     fun onPlayerJoin(event: PlayerJoinEvent) {
         val player = event.player
@@ -83,7 +84,7 @@ object EventListener : Listener {
         highSpeedPausedPhotographers.remove(photographer)
     }
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     fun onPlayerQuit(event: PlayerQuitEvent) {
         val photographer: Photographer = photographers[event.player.uniqueId.toString()]!!
         highSpeedPausedPhotographers.remove(photographer)
