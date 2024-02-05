@@ -86,7 +86,7 @@ object EventListener : Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     fun onPlayerQuit(event: PlayerQuitEvent) {
-        val photographer: Photographer = photographers[event.player.uniqueId.toString()]!!
+        val photographer: Photographer = photographers[event.player.uniqueId.toString()] ?: return
         highSpeedPausedPhotographers.remove(photographer)
         if (toml!!.data.pauseInsteadOfStopRecordingOnPlayerQuit) {
             photographer.resumeRecording()

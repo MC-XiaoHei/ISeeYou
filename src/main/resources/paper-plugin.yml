@@ -1,4 +1,4 @@
 name: ISeeYou
-version: '1.0.1'
+version: ${version}
 main: cn.xor7.iseeyou.ISeeYou
 api-version: '1.20'
