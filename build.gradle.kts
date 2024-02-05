@@ -42,9 +42,6 @@ tasks.processResources {
     }
 }
 
-
-
-
 tasks.withType<JavaCompile>().configureEach {
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible) {
         options.release.set(targetJavaVersion)
