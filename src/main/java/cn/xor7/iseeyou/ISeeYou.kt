@@ -24,7 +24,8 @@ class ISeeYou : JavaPlugin() {
                     paths.filter { it.isDirectory() && it.fileName.toString().endsWith(".tmp") }
                         .forEach { deleteTmpFolder(it) }
                 }
-            } catch (_: IOException) {}
+            } catch (_: IOException) {
+            }
         }
         EventListener.pauseRecordingOnHighSpeedThresholdPerTickSquared =
             (toml!!.data.pauseRecordingOnHighSpeed.threshold / 20).pow(2.0)
@@ -63,7 +64,7 @@ class ISeeYou : JavaPlugin() {
                     }
 
                     @Throws(IOException::class)
-                    override fun postVisitDirectory(dir: Path, exc: IOException): FileVisitResult {
+                    override fun postVisitDirectory(dir: Path, exc: IOException?): FileVisitResult {
                         Files.delete(dir)
                         return FileVisitResult.CONTINUE
                     }
