@@ -1,6 +1,8 @@
 package cn.xor7.iseeyou
 
 
+import cn.xor7.iseeyou.themis.ThemisListener
+import cn.xor7.iseeyou.themis.suspiciousPhotographers
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.InvalidConfigurationException
@@ -19,12 +21,14 @@ import kotlin.math.pow
 var toml: TomlEx<ConfigData>? = null
 var photographers = mutableMapOf<String, Photographer>()
 var highSpeedPausedPhotographers = mutableSetOf<Photographer>()
+var instance: JavaPlugin? = null
 
 @Suppress("unused")
 class ISeeYou : JavaPlugin(), CommandExecutor {
     private var outdatedRecordRetentionDays: Int = 0
 
     override fun onEnable() {
+        instance = this
         setupConfig()
         if (toml != null) {
             if (toml!!.data.deleteTmpFileOnLoad) {
@@ -34,14 +38,12 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                             paths.filter { it.isDirectory() && it.fileName.toString().endsWith(".tmp") }
                                 .forEach { deleteTmpFolder(it) }
                         }
-                } catch (e: IOException) {
-                    logger.severe("Error occurred while deleting tmp files: ${e.message}")
-                    e.printStackTrace()
+                } catch (_: IOException) {
                 }
             }
             EventListener.pauseRecordingOnHighSpeedThresholdPerTickSquared =
                 (toml!!.data.pauseRecordingOnHighSpeed.threshold / 20).pow(2.0)
-            if(toml!!.data.clearOutdatedRecordFile.enabled) {
+            if (toml!!.data.clearOutdatedRecordFile.enabled) {
                 cleanOutdatedRecordings()
                 object : BukkitRunnable() {
                     override fun run() {
@@ -53,6 +55,9 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         } else {
             logger.warning("Failed to initialize configuration. Plugin will not enable.")
             Bukkit.getPluginManager().disablePlugin(this)
+        }
+        if (Bukkit.getPluginManager().isPluginEnabled("Themis") || toml!!.data.recordSuspiciousPlayer.enabledThemis) {
+            Bukkit.getPluginManager().registerEvents(ThemisListener, this)
         }
     }
 
@@ -73,6 +78,8 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         }
         photographers.clear()
         highSpeedPausedPhotographers.clear()
+        suspiciousPhotographers.clear()
+        instance = null
     }
 
     private fun deleteTmpFolder(folderPath: Path) {

@@ -19,7 +19,7 @@ import kotlin.math.pow
  * 事件监听器对象，用于监听玩家加入、移动和退出事件
  */
 object EventListener : Listener {
-    private val DATE_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH-mm-ss")
+    val DATE_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH-mm-ss")
     var pauseRecordingOnHighSpeedThresholdPerTickSquared = 0.00
 
     /**

@@ -17,9 +17,13 @@ repositories {
     maven("https://maven.aliyun.com/repository/public")
     maven("https://repo.leavesmc.top/releases")
     maven("https://repo.leavesmc.top/snapshots")
+    flatDir {
+        dirs("libs")
+    }
 }
 
 dependencies {
+    compileOnly(files("libs/Themis_0.15.3.jar"))
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("top.leavesmc.leaves:leaves-api:1.20.1-R0.1-SNAPSHOT")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

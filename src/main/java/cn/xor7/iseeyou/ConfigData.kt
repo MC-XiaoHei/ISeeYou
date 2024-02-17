@@ -9,6 +9,7 @@ data class ConfigData(
     var filter: FilterConfig = FilterConfig(),
     var recordPath: String = "replay/player/\${name}@\${uuid}",
     var clearOutdatedRecordFile: OutdatedRecordRetentionConfig = OutdatedRecordRetentionConfig(),
+    var recordSuspiciousPlayer: RecordSuspiciousPlayerConfig = RecordSuspiciousPlayerConfig(),
     // var asyncSave: Boolean = false,
 ) {
     fun isConfigValid(): String? {
@@ -56,6 +57,12 @@ data class HighSpeedPauseConfig(
 data class OutdatedRecordRetentionConfig(
     var enabled: Boolean = false,
     var days: Int = 7,
+)
+
+data class RecordSuspiciousPlayerConfig(
+    var enabledThemis: Boolean = true,
+    var recordMinutes: Long = 5,
+    var recordPath: String = "replay/suspicious/\${name}@\${uuid}",
 )
 
 data class FilterConfig(
