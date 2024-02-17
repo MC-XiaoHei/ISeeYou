@@ -19,9 +19,7 @@ import kotlin.math.pow
  * 事件监听器对象，用于监听玩家加入、移动和退出事件
  */
 object EventListener : Listener {
-    // 日期格式化器，用于格式化日期时间
     private val DATE_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH-mm-ss")
-    // 高速移动暂停录制的速度阈值，每 tick 的速度阈值的平方
     var pauseRecordingOnHighSpeedThresholdPerTickSquared = 0.00
 
     /**
@@ -102,7 +100,6 @@ object EventListener : Listener {
     fun onPlayerQuit(event: PlayerQuitEvent) {
         val photographer: Photographer = photographers[event.player.uniqueId.toString()] ?: return
         highSpeedPausedPhotographers.remove(photographer)
-        // 如果配置为玩家退出时暂停录制而不是停止录制，则恢复录制
         if (toml!!.data.pauseInsteadOfStopRecordingOnPlayerQuit) {
             photographer.resumeRecording()
         } else {
