@@ -1,15 +1,16 @@
 package cn.xor7.iseeyou
 
+
 import org.bukkit.Bukkit
+import org.bukkit.command.CommandExecutor
 import org.bukkit.plugin.java.JavaPlugin
 import top.leavesmc.leaves.entity.Photographer
 import java.io.IOException
 import java.nio.file.*
-import java.util.*
 import java.nio.file.attribute.BasicFileAttributes
 import java.time.Duration
-import java.time.Instant
 import java.time.LocalDate
+import java.util.*
 import kotlin.io.path.isDirectory
 import kotlin.math.pow
 
@@ -19,7 +20,7 @@ var highSpeedPausedPhotographers = mutableSetOf<Photographer>()
 var outdatedRecordRetentionDays: Int = 0
 
 @Suppress("unused")
-class ISeeYou : JavaPlugin() {
+class ISeeYou : JavaPlugin(), CommandExecutor {
     override fun onEnable() {
         setupConfig()
         if (toml != null) {
@@ -132,4 +133,5 @@ class ISeeYou : JavaPlugin() {
         }
         return deletedCount
     }
+
 }
