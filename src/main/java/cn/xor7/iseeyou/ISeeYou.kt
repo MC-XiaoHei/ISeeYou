@@ -111,7 +111,7 @@ class ISeeYou : JavaPlugin() {
                 paths.filter { Files.isRegularFile(it) && it.toString().endsWith(".mcpr") }
                         .forEach { file ->
                             val fileName = file.fileName.toString()
-                            val creationDateStr = fileName.substringBefore('@') // 从文件名中提取创建日期部分
+                            val creationDateStr = fileName.substringBefore('@')
                             val creationDate = LocalDate.parse(creationDateStr)
                             val daysSinceCreation = Duration.between(creationDate.atStartOfDay(), currentDate.atStartOfDay()).toDays()
                             if (daysSinceCreation > outdatedRecordRetentionDays) {
