@@ -1,5 +1,4 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id("java")
@@ -8,7 +7,7 @@ plugins {
 }
 
 group = "cn.xor7"
-version = "1.0.4"
+version = "1.1.0"
 
 repositories {
     mavenLocal()

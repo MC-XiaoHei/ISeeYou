@@ -47,21 +47,21 @@ object EventListener : Listener {
             prefix = prefix.replace(".", "_")
         }
         val photographer = Bukkit
-                .getPhotographerManager()
-                .createPhotographer(
-                        (prefix + "_" + UUID.randomUUID().toString().replace("-".toRegex(), "")).substring(0, 16),
-                        player.location
-                )
+            .getPhotographerManager()
+            .createPhotographer(
+                (prefix + "_" + UUID.randomUUID().toString().replace("-".toRegex(), "")).substring(0, 16),
+                player.location
+            )
         if (photographer == null) {
             throw RuntimeException(
-                    "Error on create photographer for player: {name: " + player.name + " , UUID:" + playerUniqueId + "}"
+                "Error on create photographer for player: {name: " + player.name + " , UUID:" + playerUniqueId + "}"
             )
         }
 
         val currentTime = LocalDateTime.now()
         val recordPath: String = toml!!.data.recordPath
-                .replace("\${name}", player.name)
-                .replace("\${uuid}", playerUniqueId)
+            .replace("\${name}", player.name)
+            .replace("\${uuid}", playerUniqueId)
         File(recordPath).mkdirs()
         val recordFile = File(recordPath + "/" + currentTime.format(DATE_FORMATTER) + ".mcpr")
         if (recordFile.exists()) {
@@ -82,8 +82,8 @@ object EventListener : Listener {
         val photographer: Photographer = photographers[event.player.uniqueId.toString()]!!
         val velocity = event.player.velocity
         if (toml!!.data.pauseRecordingOnHighSpeed.enabled &&
-                velocity.x.pow(2.0) + velocity.z.pow(2.0) > pauseRecordingOnHighSpeedThresholdPerTickSquared &&
-                !highSpeedPausedPhotographers.contains(photographer)
+            velocity.x.pow(2.0) + velocity.z.pow(2.0) > pauseRecordingOnHighSpeedThresholdPerTickSquared &&
+            !highSpeedPausedPhotographers.contains(photographer)
         ) {
             photographer.pauseRecording()
             highSpeedPausedPhotographers.add(photographer)
