@@ -15,10 +15,16 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.pow
 
+/**
+ * 事件监听器对象，用于监听玩家加入、移动和退出事件
+ */
 object EventListener : Listener {
     private val DATE_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd@HH-mm-ss")
     var pauseRecordingOnHighSpeedThresholdPerTickSquared = 0.00
 
+    /**
+     * 监听玩家加入事件
+     */
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     @Throws(IOException::class)
     fun onPlayerJoin(event: PlayerJoinEvent) {
@@ -41,21 +47,21 @@ object EventListener : Listener {
             prefix = prefix.replace(".", "_")
         }
         val photographer = Bukkit
-            .getPhotographerManager()
-            .createPhotographer(
-                (prefix + "_" + UUID.randomUUID().toString().replace("-".toRegex(), "")).substring(0, 16),
-                player.location
-            )
+                .getPhotographerManager()
+                .createPhotographer(
+                        (prefix + "_" + UUID.randomUUID().toString().replace("-".toRegex(), "")).substring(0, 16),
+                        player.location
+                )
         if (photographer == null) {
             throw RuntimeException(
-                "Error on create photographer for player: {name: " + player.name + " , UUID:" + playerUniqueId + "}"
+                    "Error on create photographer for player: {name: " + player.name + " , UUID:" + playerUniqueId + "}"
             )
         }
 
         val currentTime = LocalDateTime.now()
         val recordPath: String = toml!!.data.recordPath
-            .replace("\${name}", player.name)
-            .replace("\${uuid}", playerUniqueId)
+                .replace("\${name}", player.name)
+                .replace("\${uuid}", playerUniqueId)
         File(recordPath).mkdirs()
         val recordFile = File(recordPath + "/" + currentTime.format(DATE_FORMATTER) + ".mcpr")
         if (recordFile.exists()) {
@@ -68,13 +74,16 @@ object EventListener : Listener {
         photographer.setFollowPlayer(player)
     }
 
+    /**
+     * 监听玩家移动事件
+     */
     @EventHandler
     fun onPlayerMove(event: PlayerMoveEvent) {
         val photographer: Photographer = photographers[event.player.uniqueId.toString()]!!
         val velocity = event.player.velocity
         if (toml!!.data.pauseRecordingOnHighSpeed.enabled &&
-            velocity.x.pow(2.0) + velocity.z.pow(2.0) > pauseRecordingOnHighSpeedThresholdPerTickSquared &&
-            !highSpeedPausedPhotographers.contains(photographer)
+                velocity.x.pow(2.0) + velocity.z.pow(2.0) > pauseRecordingOnHighSpeedThresholdPerTickSquared &&
+                !highSpeedPausedPhotographers.contains(photographer)
         ) {
             photographer.pauseRecording()
             highSpeedPausedPhotographers.add(photographer)
@@ -84,6 +93,9 @@ object EventListener : Listener {
         highSpeedPausedPhotographers.remove(photographer)
     }
 
+    /**
+     * 监听玩家退出事件
+     */
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     fun onPlayerQuit(event: PlayerQuitEvent) {
         val photographer: Photographer = photographers[event.player.uniqueId.toString()] ?: return
@@ -91,7 +103,6 @@ object EventListener : Listener {
         if (toml!!.data.pauseInsteadOfStopRecordingOnPlayerQuit) {
             photographer.resumeRecording()
         } else {
-            // photographer.stopRecording(toml!!.data.asyncSave)
             photographer.stopRecording()
             photographers.remove(event.player.uniqueId.toString())
         }

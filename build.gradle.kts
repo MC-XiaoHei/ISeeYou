@@ -8,12 +8,14 @@ plugins {
 }
 
 group = "cn.xor7"
-version = "1.0.3"
+version = "1.0.4"
 
 repositories {
     mavenLocal()
+    maven("https://maven.aliyun.com/repository/public")
     mavenCentral()
     maven("https://oss.sonatype.org/content/groups/public/")
+    maven("https://maven.aliyun.com/repository/public")
     maven("https://repo.leavesmc.top/releases")
     maven("https://repo.leavesmc.top/snapshots")
 }
@@ -50,6 +52,10 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.withType<ShadowJar> {
     minimize()
+    exclude("META-INF/*.SF")
+    exclude("META-INF/*.DSA")
+    exclude("META-INF/*.RSA")
+    mergeServiceFiles()
 }
 
 kotlin {

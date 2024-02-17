@@ -2,3 +2,5 @@ name: ISeeYou
 version: ${version}
 main: cn.xor7.iseeyou.ISeeYou
 api-version: '1.20'
+
+
