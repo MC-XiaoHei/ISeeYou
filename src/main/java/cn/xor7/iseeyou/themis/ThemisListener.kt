@@ -3,6 +3,7 @@ package cn.xor7.iseeyou.themis
 import cn.xor7.iseeyou.EventListener
 import cn.xor7.iseeyou.instance
 import cn.xor7.iseeyou.toml
+import com.gmail.olexorus.themis.api.ActionEvent
 import com.gmail.olexorus.themis.api.ViolationEvent
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
@@ -34,7 +35,7 @@ object ThemisListener : Listener {
     }
 
     @EventHandler
-    fun onViolation(e: ViolationEvent) {
+    fun onAction(e: ActionEvent) {
         val suspiciousPhotographer = suspiciousPhotographers[e.player.name]
         if (suspiciousPhotographer != null) {
             suspiciousPhotographers[e.player.name] =
