@@ -23,7 +23,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(files("libs/Themis_0.15.3.jar"))
+    compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
     compileOnly(files("libs/Matrix_7.7.15A.jar"))
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("top.leavesmc.leaves:leaves-api:1.20.1-R0.1-SNAPSHOT")
