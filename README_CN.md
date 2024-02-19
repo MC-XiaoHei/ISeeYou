@@ -51,10 +51,10 @@ pauseInsteadOfStopRecordingOnPlayerQuit = false
 # 描述: 录像存储路径模板，支持 ${name} 和 ${uuid} 变量。
 recordPath = "replay/player/${name}@${uuid}"
 
-# enabled: 是否启用高速录制暂停功能，此功能在玩家高速运动时暂停录制，默认为 false。
-# threshold: 触发高速录制暂停的速度阈值，默认为 20.00。
 [pauseRecordingOnHighSpeed]
+# enabled: 是否启用高速录制暂停功能，此功能在玩家高速运动时暂停录制，默认为 false。
 enabled = false
+# threshold: 触发高速录制暂停的速度阈值，默认为 20.00。
 threshold = 20.0
 
 [filter]

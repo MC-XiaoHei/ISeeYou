@@ -1,11 +1,12 @@
-package cn.xor7.iseeyou.themis
+package cn.xor7.iseeyou.anticheat
 
 import cn.xor7.iseeyou.EventListener
 import cn.xor7.iseeyou.instance
 import cn.xor7.iseeyou.toml
 import com.gmail.olexorus.themis.api.ActionEvent
-import com.gmail.olexorus.themis.api.ViolationEvent
+import me.rerere.matrix.api.events.PlayerViolationEvent
 import org.bukkit.Bukkit
+import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerQuitEvent
@@ -17,47 +18,46 @@ import java.util.*
 
 val suspiciousPhotographers: MutableMap<String, SuspiciousPhotographer> = mutableMapOf()
 
-object ThemisListener : Listener {
+object AntiCheatListener : Listener {
     init {
         object : BukkitRunnable() {
             override fun run() {
                 val currentTime = System.currentTimeMillis()
-                suspiciousPhotographers.forEach { (_, susPhotographer) ->
-                    if (currentTime - susPhotographer.lastTagged >
+                suspiciousPhotographers.entries.removeIf {
+                    if (currentTime - it.value.lastTagged >
                         Duration.ofMinutes(toml!!.data.recordSuspiciousPlayer.recordMinutes).toMillis()
                     ) {
-                        susPhotographer.photographer.stopRecording()
-                        suspiciousPhotographers.remove(susPhotographer.name)
-                    }
+                        it.value.photographer.stopRecording()
+                        return@removeIf true
+                    } else false
                 }
             }
         }.runTaskTimer(instance!!, 0, 20 * 60 * 5)
     }
 
-    @EventHandler
-    fun onAction(e: ActionEvent) {
-        val suspiciousPhotographer = suspiciousPhotographers[e.player.name]
+    fun onAntiCheatAction(player: Player) {
+        val suspiciousPhotographer = suspiciousPhotographers[player.name]
         if (suspiciousPhotographer != null) {
-            suspiciousPhotographers[e.player.name] =
+            suspiciousPhotographers[player.name] =
                 suspiciousPhotographer.copy(lastTagged = System.currentTimeMillis())
         } else {
             val photographer = Bukkit
                 .getPhotographerManager()
                 .createPhotographer(
-                    (e.player.name + "_sus_" + UUID.randomUUID().toString().replace("-".toRegex(), ""))
+                    (player.name + "_sus_" + UUID.randomUUID().toString().replace("-".toRegex(), ""))
                         .substring(0, 16),
-                    e.player.location
+                    player.location
                 )
             if (photographer == null) {
                 throw RuntimeException(
-                    "Error on create photographer for player: {name: " + e.player.name + " , UUID:" + e.player.uniqueId + "}"
+                    "Error on create suspicious photographer for player: {name: " + player.name + " , UUID:" + player.uniqueId + "}"
                 )
             }
-            photographer.setFollowPlayer(e.player)
+            photographer.setFollowPlayer(player)
             val currentTime = LocalDateTime.now()
             val recordPath: String = toml!!.data.recordSuspiciousPlayer.recordPath
-                .replace("\${name}", e.player.name)
-                .replace("\${uuid}", e.player.uniqueId.toString())
+                .replace("\${name}", player.name)
+                .replace("\${uuid}", player.uniqueId.toString())
             File(recordPath).mkdirs()
             val recordFile =
                 File(recordPath + "/" + currentTime.format(EventListener.DATE_FORMATTER) + ".mcpr")
@@ -66,9 +66,9 @@ object ThemisListener : Listener {
             }
             recordFile.createNewFile()
             photographer.setRecordFile(recordFile)
-            suspiciousPhotographers[e.player.name] = SuspiciousPhotographer(
+            suspiciousPhotographers[player.name] = SuspiciousPhotographer(
                 photographer = photographer,
-                name = e.player.name,
+                name = player.name,
                 lastTagged = System.currentTimeMillis()
             )
         }

@@ -10,7 +10,6 @@ data class ConfigData(
     var recordPath: String = "replay/player/\${name}@\${uuid}",
     var clearOutdatedRecordFile: OutdatedRecordRetentionConfig = OutdatedRecordRetentionConfig(),
     var recordSuspiciousPlayer: RecordSuspiciousPlayerConfig = RecordSuspiciousPlayerConfig(),
-    var recordMatrixSuspiciousPlayer: RecordMatrixSuspiciousPlayerConfig = RecordMatrixSuspiciousPlayerConfig()
     // var asyncSave: Boolean = false,
 ) {
     fun isConfigValid(): String? {
@@ -61,15 +60,10 @@ data class OutdatedRecordRetentionConfig(
 )
 
 data class RecordSuspiciousPlayerConfig(
-    var enabledThemis: Boolean = true,
+    var enableThemisIntegration: Boolean = false,
+    var enableMatrixIntegration: Boolean = false,
     var recordMinutes: Long = 5,
     var recordPath: String = "replay/suspicious/Themis/\${name}@\${uuid}",
-)
-
-data class RecordMatrixSuspiciousPlayerConfig(
-    var enabledMatrix: Boolean = true,
-    var recordMinutes: Long = 5,
-    var recordPath: String = "replay/suspicious/Matrix/\${name}@\${uuid}",
 )
 
 data class FilterConfig(

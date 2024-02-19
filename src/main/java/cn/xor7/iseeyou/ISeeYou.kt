@@ -1,10 +1,9 @@
 package cn.xor7.iseeyou
 
-
-import cn.xor7.iseeyou.matrix.MatrixListener
-import cn.xor7.iseeyou.matrix.matrixSuspiciousPhotographers
-import cn.xor7.iseeyou.themis.ThemisListener
-import cn.xor7.iseeyou.themis.suspiciousPhotographers
+import cn.xor7.iseeyou.anticheat.AntiCheatListener
+import cn.xor7.iseeyou.anticheat.listeners.MatrixListener
+import cn.xor7.iseeyou.anticheat.listeners.ThemisListener
+import cn.xor7.iseeyou.anticheat.suspiciousPhotographers
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.InvalidConfigurationException
@@ -58,12 +57,16 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
             logger.warning("Failed to initialize configuration. Plugin will not enable.")
             Bukkit.getPluginManager().disablePlugin(this)
         }
-        if (Bukkit.getPluginManager().isPluginEnabled("Themis") || toml!!.data.recordSuspiciousPlayer.enabledThemis) {
-            Bukkit.getPluginManager().registerEvents(ThemisListener, this)
-        }
-        if (Bukkit.getPluginManager().isPluginEnabled("Matrix") || toml!!.data.recordMatrixSuspiciousPlayer.enabledMatrix) {
-            Bukkit.getServer().pluginManager.registerEvents(MatrixListener, this)
-        }
+
+        Bukkit.getPluginManager().registerEvents(AntiCheatListener, this)
+
+        if (Bukkit.getPluginManager().isPluginEnabled("Themis") ||
+            toml!!.data.recordSuspiciousPlayer.enableThemisIntegration
+        ) Bukkit.getPluginManager().registerEvents(ThemisListener(), this)
+
+        if (Bukkit.getPluginManager().isPluginEnabled("Matrix") ||
+            toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration
+        ) Bukkit.getPluginManager().registerEvents(MatrixListener(), this)
     }
 
     private fun setupConfig() {
@@ -84,7 +87,6 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         photographers.clear()
         highSpeedPausedPhotographers.clear()
         suspiciousPhotographers.clear()
-        matrixSuspiciousPhotographers.clear()
         instance = null
     }
 

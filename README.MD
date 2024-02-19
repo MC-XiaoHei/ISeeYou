@@ -51,10 +51,10 @@ pauseInsteadOfStopRecordingOnPlayerQuit = false
 # Description: Template for the recording storage path, supports ${name} and ${uuid} variables.
 recordPath = "replay/player/${name}@${uuid}"
 
-# enabled: Whether to enable the high-speed recording pause function, this function pauses recording when the player moves at high speed, default is false.
-# threshold: Speed threshold for triggering high-speed recording pause, default is 20.00.
 [pauseRecordingOnHighSpeed]
+# enabled: Whether to enable the high-speed recording pause function, this function pauses recording when the player moves at high speed, default is false.
 enabled = false
+# threshold: Speed threshold for triggering high-speed recording pause, default is 20.00.
 threshold = 20.0
 
 [filter]

@@ -1,4 +1,4 @@
-package cn.xor7.iseeyou.themis
+package cn.xor7.iseeyou.anticheat
 
 import top.leavesmc.leaves.entity.Photographer
 
