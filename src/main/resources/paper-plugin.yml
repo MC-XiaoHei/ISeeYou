@@ -7,3 +7,6 @@ dependencies:
     Themis:
       load: BEFORE
       required: false
+    Matrix:
+      load: BEFORE
+      required: false

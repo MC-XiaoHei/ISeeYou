@@ -1,6 +1,8 @@
 package cn.xor7.iseeyou
 
 
+import cn.xor7.iseeyou.matrix.MatrixListener
+import cn.xor7.iseeyou.matrix.matrixSuspiciousPhotographers
 import cn.xor7.iseeyou.themis.ThemisListener
 import cn.xor7.iseeyou.themis.suspiciousPhotographers
 import org.bukkit.Bukkit
@@ -59,6 +61,9 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         if (Bukkit.getPluginManager().isPluginEnabled("Themis") || toml!!.data.recordSuspiciousPlayer.enabledThemis) {
             Bukkit.getPluginManager().registerEvents(ThemisListener, this)
         }
+        if (Bukkit.getPluginManager().isPluginEnabled("Matrix") || toml!!.data.recordMatrixSuspiciousPlayer.enabledMatrix) {
+            Bukkit.getServer().pluginManager.registerEvents(MatrixListener, this)
+        }
     }
 
     private fun setupConfig() {
@@ -79,6 +84,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         photographers.clear()
         highSpeedPausedPhotographers.clear()
         suspiciousPhotographers.clear()
+        matrixSuspiciousPhotographers.clear()
         instance = null
     }
 
