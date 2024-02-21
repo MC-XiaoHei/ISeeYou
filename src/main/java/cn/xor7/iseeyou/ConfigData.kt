@@ -63,7 +63,7 @@ data class RecordSuspiciousPlayerConfig(
     var enableThemisIntegration: Boolean = false,
     var enableMatrixIntegration: Boolean = false,
     var recordMinutes: Long = 5,
-    var recordPath: String = "replay/suspicious/Themis/\${name}@\${uuid}",
+    var recordPath: String = "replay/suspicious/\${name}@\${uuid}",
 )
 
 data class FilterConfig(
