@@ -50,24 +50,20 @@ pauseInsteadOfStopRecordingOnPlayerQuit = false
 # 录像存储路径模板，支持 ${name} 和 ${uuid} 变量。
 recordPath = "replay/player/${name}@${uuid}"
 
-# 在高速运动时暂停录制
 [pauseRecordingOnHighSpeed]
 enabled = false  # 是否启用高速录制暂停功能，此功能在玩家高速运动时暂停录制。
 threshold = 20.0  # 触发高速录制暂停的速度阈值
 
-# 筛选器设置
 [filter]
 checkBy = "name"  # 黑白名单检查依据，可选值为 "name" 或 "uuid"，默认为 "name"，即下方的黑白名单中填写的是玩家名。
 recordMode = "blacklist"  # 录制模式为黑名单或白名单(whitelist)
 blacklist = []  # 黑名单列表，为空表示不屏蔽任何玩家
 whitelist = []  # 白名单列表，为空表示不录制任何玩家
 
-# 清理过时录制文件设置
 [clearOutdatedRecordFile]
 enabled = false  # 是否启用清理功能
 days = 7  # 过时录制文件的保留天数
 
-# 记录可疑玩家行为设置
 [recordSuspiciousPlayer]
 enableThemisIntegration = false  # 是否启用监视Themis报告的可疑玩家录制功能
 enableMatrixIntegration = false  # 是否启用监视Matrix报告的可疑玩家录制功能
@@ -79,7 +75,7 @@ recordPath = "replay/suspicious/${name}@${uuid}"  # 可疑玩家录制文件路�
 ## 作者信息
 
 - 主要开发者：[MC-XiaoHei](https://github.com/MC-XiaoHei)，编写了大部分的的代码
-- 贡献者：[CerealAxis](https://github.com/CerealAxis)，帮助我制作了自动清理过期录像功能、Matrix适配功能，并且编写了 README
+- 主要开发者：[CerealAxis](https://github.com/CerealAxis)，帮助我制作了自动清理过期录像功能、Matrix适配功能，并且编写了 README
 - 贡献者：[Cranyozen](https://github.com/Cranyozen)，帮助我完成了自动构建 CI
 
 ## 注意事项

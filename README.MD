@@ -50,24 +50,20 @@ pauseInsteadOfStopRecordingOnPlayerQuit = false
 # Recording storage path template, supports ${name} and ${uuid} variables.
 recordPath = "replay/player/${name}@${uuid}"
 
-# Pause recording on high speed.
 [pauseRecordingOnHighSpeed]
 enabled = false  # Whether to enable pausing recording on high speed, which pauses recording when the player moves at high speeds.
 threshold = 20.0  # Speed threshold to trigger pausing recording on high speed.
 
-# Filter settings.
 [filter]
 checkBy = "name"  # Basis for blacklist/whitelist check, can be "name" or "uuid", default is "name", indicating player name.
 recordMode = "blacklist"  # Recording mode, either blacklist or whitelist.
 blacklist = []  # Blacklist, empty means no players are blocked.
 whitelist = []  # Whitelist, empty means no players are recorded.
 
-# Clear outdated recording file settings.
 [clearOutdatedRecordFile]
 enabled = false  # Whether to enable cleaning function.
 days = 7  # Number of days to retain outdated recording files.
 
-# Record suspicious player behavior settings.
 [recordSuspiciousPlayer]
 enableThemisIntegration = false  # Whether to enable recording of suspicious players monitored by Themis reports.
 enableMatrixIntegration = false  # Whether to enable recording of suspicious players monitored by Matrix reports.
@@ -79,7 +75,7 @@ recordPath = "replay/suspicious/${name}@${uuid}"  # Suspicious player recording 
 ## Author Information
 
 - Core Dev: [MC-XiaoHei](https://github.com/MC-XiaoHei), wrote most of the code
-- Contributor: [CerealAxis](https://github.com/CerealAxis), helped me implement automatic cleaning of expired recordings, Matrix adaptation functionality, and wrote the README
+- Core Dev: [CerealAxis](https://github.com/CerealAxis), helped me implement automatic cleaning of expired recordings, Matrix adaptation functionality, and wrote the README
 - Contributor: [Cranyozen](https://github.com/Cranyozen), helped me complete the automatic build CI
 
 ## Precautions
