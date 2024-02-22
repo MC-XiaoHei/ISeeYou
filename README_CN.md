@@ -20,9 +20,9 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 
 - **自动录制**：无需手动操作，默认情况下插件会自动记录所有玩家。
 - **灵活配置**：可以通过配置文件设置黑白名单，以及录制路径等。
-- **反作弊支持**：适配 [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/)，在发现可疑玩家时自动进行录制 (Beta)
+- **反作弊支持**：适配 [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/)和[Matrix](https://matrix.rip/)，在发现可疑玩家时自动进行录制 (Beta)
 
-目前仅适配 [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/)，需要适配更多反作弊插件请开 Issue 提出！
+目前仅适配 [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/)和[Matrix](https://matrix.rip/)，需要适配更多反作弊插件请开 Issue 提出！
 
 ## 使用说明
 
@@ -30,6 +30,7 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 
 - 服务端：**Leaves**
 - Themis 及其依赖 ProtocolLib（可选）
+- Matrix 及其依赖 ProtocolLib（可选）
 
 ### 使用教程
 
@@ -39,54 +40,46 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 ## 配置项说明
 
 ```toml
-# 默认值: true
-# 描述: 加载插件时是否删除临时文件，默认为 true。
+
+# 在加载时删除临时文件
 deleteTmpFileOnLoad = true
 
-# 默认值: false
-# 描述: 玩家退出游戏时是否暂停录制而不是停止录制，默认为 false。
+# 玩家退出时暂停录制而不是停止录制
 pauseInsteadOfStopRecordingOnPlayerQuit = false
 
-# 默认值: "replay/player/${name}@${uuid}"
-# 描述: 录像存储路径模板，支持 ${name} 和 ${uuid} 变量。
+# 录像存储路径模板，支持 ${name} 和 ${uuid} 变量。
 recordPath = "replay/player/${name}@${uuid}"
 
+# 在高速运动时暂停录制
 [pauseRecordingOnHighSpeed]
-# enabled: 是否启用高速录制暂停功能，此功能在玩家高速运动时暂停录制，默认为 false。
-enabled = false
-# threshold: 触发高速录制暂停的速度阈值，默认为 20.00。
-threshold = 20.0
+enabled = false  # 是否启用高速录制暂停功能，此功能在玩家高速运动时暂停录制。
+threshold = 20.0  # 触发高速录制暂停的速度阈值
 
+# 筛选器设置
 [filter]
-# checkBy: 黑白名单检查依据，可选值为 "name" 或 "uuid"，默认为 "name"，即下方的黑白名单中填写的是玩家名。
-checkBy = "name"
-# recordMode: 录制模式，可选值为 "blacklist" 或 "whitelist"，默认为 "blacklist"。
-recordMode = "blacklist"
-# blacklist: 黑名单，仅在录制模式为 "blacklist" 时有效。
-blacklist = []
-# whitelist: 白名单，仅在录制模式为 "whitelist" 时有效。
-whitelist = []
+checkBy = "name"  # 黑白名单检查依据，可选值为 "name" 或 "uuid"，默认为 "name"，即下方的黑白名单中填写的是玩家名。
+recordMode = "blacklist"  # 录制模式为黑名单或白名单(whitelist)
+blacklist = []  # 黑名单列表，为空表示不屏蔽任何玩家
+whitelist = []  # 白名单列表，为空表示不录制任何玩家
 
+# 清理过时录制文件设置
 [clearOutdatedRecordFile]
-# enabled: 是否启用清理过期录像文件功能，默认为 false。
-enabled = false
-# days: 过期录像文件保留天数，默认为 7 天。
-days = 7
+enabled = false  # 是否启用清理功能
+days = 7  # 过时录制文件的保留天数
 
+# 记录可疑玩家行为设置
 [recordSuspiciousPlayer]
-# enabledThemis: 是否启用监视可疑玩家录制功能（Themis），默认为 true（不安装Themis启用此项也无效）。
-enabledThemis = true
-# recordMinutes: 记录可疑玩家录像的分钟数，默认为 5 分钟。
-recordMinutes = 5
-# recordPath: 可疑玩家录像存储路径模板，支持 ${name} 和 ${uuid} 变量，默认为 "replay/suspicious/${name}@${uuid}"。
-recordPath = "replay/suspicious/${name}@${uuid}"
+enableThemisIntegration = false  # 是否启用监视Themis报告的可疑玩家录制功能
+enableMatrixIntegration = false  # 是否启用监视Matrix报告的可疑玩家录制功能
+recordMinutes = 5  # 记录时间（分钟）
+recordPath = "replay/suspicious/${name}@${uuid}"  # 可疑玩家录制文件路径模板，支持 ${name} 和 ${uuid} 变量。
 
 ```
 
 ## 作者信息
 
 - 主要开发者：[MC-XiaoHei](https://github.com/MC-XiaoHei)，编写了大部分的的代码
-- 贡献者：[CerealAxis](https://github.com/CerealAxis)，帮助我制作了自动清理过期录像功能，并且编写了 README
+- 贡献者：[CerealAxis](https://github.com/CerealAxis)，帮助我制作了自动清理过期录像功能、Matrix适配功能，并且编写了 README
 - 贡献者：[Cranyozen](https://github.com/Cranyozen)，帮助我完成了自动构建 CI
 
 ## 注意事项

@@ -20,9 +20,9 @@ ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) c
 
 - **Automatic recording**: No manual operation is required, the plugin will automatically record all players by default.
 - **Flexible configuration**: You can set a whitelist and blacklist, as well as the recording path, etc., through the configuration file.
-- **Anti-cheat support**: Adapted to [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/), it automatically records when suspicious players are found (Beta)
+- **Anti-cheat support**: Adapted to [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) and [Matrix](https://matrix.rip/), it automatically records when suspicious players are found (Beta)
 
-Currently, it only adapts to [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/). If you need to adapt more anti-cheat plugins, please open an issue to propose!
+Currently, it only adapts to [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) and [Matrix](https://matrix.rip/). If you need to adapt more anti-cheat plugins, please open an issue to propose!
 
 ## Instructions for use
 
@@ -30,6 +30,7 @@ Currently, it only adapts to [Themis Anti Cheat](https://www.spigotmc.org/resour
 
 - Server: **Leaves**
 - Themis and its dependency ProtocolLib (optional)
+- Matrix and its dependency ProtocolLib (optional)
 
 ### Tutorial
 
@@ -39,54 +40,46 @@ Currently, it only adapts to [Themis Anti Cheat](https://www.spigotmc.org/resour
 ## Explanation of configuration items
 
 ```toml
-# Default: true
-# Description: Whether to delete temporary files when loading the plugin, default is true.
+
+# Delete temporary files on load.
 deleteTmpFileOnLoad = true
 
-# Default: false
-# Description: Whether to pause recording instead of stopping recording when the player quits the game, default is false.
+# Pause recording instead of stopping when player quits.
 pauseInsteadOfStopRecordingOnPlayerQuit = false
 
-# Default: "replay/player/${name}@${uuid}"
-# Description: Template for the recording storage path, supports ${name} and ${uuid} variables.
+# Recording storage path template, supports ${name} and ${uuid} variables.
 recordPath = "replay/player/${name}@${uuid}"
 
+# Pause recording on high speed.
 [pauseRecordingOnHighSpeed]
-# enabled: Whether to enable the high-speed recording pause function, this function pauses recording when the player moves at high speed, default is false.
-enabled = false
-# threshold: Speed threshold for triggering high-speed recording pause, default is 20.00.
-threshold = 20.0
+enabled = false  # Whether to enable pausing recording on high speed, which pauses recording when the player moves at high speeds.
+threshold = 20.0  # Speed threshold to trigger pausing recording on high speed.
 
+# Filter settings.
 [filter]
-# checkBy: The basis for checking the blacklist and whitelist, the optional values are "name" or "uuid", the default is "name", which means the player's names are filled in the blacklist and whitelist below.
-checkBy = "name"
-# recordMode: Recording mode, optional values are "blacklist" or "whitelist", default is "blacklist".
-recordMode = "blacklist"
-# blacklist: Blacklist, only effective when the recording mode is "blacklist".
-blacklist = []
-# whitelist: Whitelist, only effective when the recording mode is "whitelist".
-whitelist = []
+checkBy = "name"  # Basis for blacklist/whitelist check, can be "name" or "uuid", default is "name", indicating player name.
+recordMode = "blacklist"  # Recording mode, either blacklist or whitelist.
+blacklist = []  # Blacklist, empty means no players are blocked.
+whitelist = []  # Whitelist, empty means no players are recorded.
 
+# Clear outdated recording file settings.
 [clearOutdatedRecordFile]
-# enabled: Whether to enable the function of cleaning up expired recording files, default is false.
-enabled = false
-# days: The number of days to keep expired recording files, default is 7 days.
-days = 7
+enabled = false  # Whether to enable cleaning function.
+days = 7  # Number of days to retain outdated recording files.
 
+# Record suspicious player behavior settings.
 [recordSuspiciousPlayer]
-# enabledThemis: Whether to enable the function of recording suspicious players (Themis), default is true (it's ineffective if Themis isn't installed).
-enabledThemis = true
-# recordMinutes: The number of minutes to record suspicious players, default is 5 minutes.
-recordMinutes = 5
-# recordPath: Template for the suspicious player recording storage path, supports ${name} and ${uuid} variables, default is "replay/suspicious/${name}@${uuid}".
-recordPath = "replay/suspicious/${name}@${uuid}"
+enableThemisIntegration = false  # Whether to enable recording of suspicious players monitored by Themis reports.
+enableMatrixIntegration = false  # Whether to enable recording of suspicious players monitored by Matrix reports.
+recordMinutes = 5  # Recording time (minutes).
+recordPath = "replay/suspicious/${name}@${uuid}"  # Suspicious player recording file path template, supports ${name} and ${uuid} variables.
 
 ```
 
 ## Author Information
 
 - Core Dev: [MC-XiaoHei](https://github.com/MC-XiaoHei), wrote most of the code
-- Contributor: [CerealAxis](https://github.com/CerealAxis), helped me create the automatic cleanup of outdated recordings function, and wrote the README
+- Contributor: [CerealAxis](https://github.com/CerealAxis), helped me implement automatic cleaning of expired recordings, Matrix adaptation functionality, and wrote the README
 - Contributor: [Cranyozen](https://github.com/Cranyozen), helped me complete the automatic build CI
 
 ## Precautions
