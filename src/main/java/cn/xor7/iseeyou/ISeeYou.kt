@@ -141,6 +141,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         if (photographer == null) throw RuntimeException("Error on create photographer $name")
         val uuid = UUID.randomUUID().toString()
 
+        photographer.teleport(location)
         photographers[uuid] = photographer
         commandPhotographersNameUUIDMap[name] = uuid
         val currentTime = LocalDateTime.now()
