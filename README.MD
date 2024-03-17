@@ -4,13 +4,9 @@ _Also known as ICU_
 
 [中文](README_CN.md) | [English](README.MD)
 
----
-
 ## Warning
 
 This plugin can only run on servers using the [Leaves](https://leavesmc.org/) core, it does not support other cores!
-
----
 
 ## Introduction
 

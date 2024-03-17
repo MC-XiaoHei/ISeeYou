@@ -4,13 +4,9 @@ _也可以叫ICU_
 
 [中文](README_CN.md) | [English](README.MD)
 
----
-
 ## 警告
 
 本插件只能在使用 [Leaves](https://leavesmc.org/) 核心的服务器中运行，不支持其他核心！
-
----
 
 ## 简介
 
