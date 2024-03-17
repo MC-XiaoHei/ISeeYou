@@ -79,7 +79,7 @@ object EventListener : Listener {
      */
     @EventHandler
     fun onPlayerMove(event: PlayerMoveEvent) {
-        val photographer: Photographer = photographers[event.player.uniqueId.toString()]!!
+        val photographer: Photographer = photographers[event.player.uniqueId.toString()] ?: return
         val velocity = event.player.velocity
         if (toml!!.data.pauseRecordingOnHighSpeed.enabled &&
             velocity.x.pow(2.0) + velocity.z.pow(2.0) > pauseRecordingOnHighSpeedThresholdPerTickSquared &&

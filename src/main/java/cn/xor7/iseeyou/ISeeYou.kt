@@ -4,17 +4,24 @@ import cn.xor7.iseeyou.anticheat.AntiCheatListener
 import cn.xor7.iseeyou.anticheat.listeners.MatrixListener
 import cn.xor7.iseeyou.anticheat.listeners.ThemisListener
 import cn.xor7.iseeyou.anticheat.suspiciousPhotographers
+import dev.jorel.commandapi.CommandAPI
+import dev.jorel.commandapi.CommandAPIBukkitConfig
+import dev.jorel.commandapi.arguments.ArgumentSuggestions
+import dev.jorel.commandapi.kotlindsl.*
 import org.bukkit.Bukkit
+import org.bukkit.Location
 import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.InvalidConfigurationException
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import top.leavesmc.leaves.entity.Photographer
+import java.io.File
 import java.io.IOException
 import java.nio.file.*
 import java.nio.file.attribute.BasicFileAttributes
 import java.time.Duration
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 import kotlin.io.path.isDirectory
 import kotlin.math.pow
@@ -27,9 +34,18 @@ var instance: JavaPlugin? = null
 @Suppress("unused")
 class ISeeYou : JavaPlugin(), CommandExecutor {
     private var outdatedRecordRetentionDays: Int = 0
+    private val commandPhotographersNameUUIDMap = mutableMapOf<String, String>() // Name => UUID
+
+    override fun onLoad() = CommandAPI.onLoad(
+        CommandAPIBukkitConfig(this)
+            .verboseOutput(false)
+            .silentLogs(true)
+    )
 
     override fun onEnable() {
         instance = this
+        CommandAPI.onEnable()
+        registerCommand()
         setupConfig()
         if (toml != null) {
             if (toml!!.data.deleteTmpFileOnLoad) {
@@ -47,9 +63,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
             if (toml!!.data.clearOutdatedRecordFile.enabled) {
                 cleanOutdatedRecordings()
                 object : BukkitRunnable() {
-                    override fun run() {
-                        cleanOutdatedRecordings()
-                    }
+                    override fun run() = cleanOutdatedRecordings()
                 }.runTaskTimer(this, 0, 20 * 60 * 60 * 24) // Every day
             }
             Bukkit.getPluginManager().registerEvents(EventListener, this)
@@ -69,6 +83,69 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         ) Bukkit.getPluginManager().registerEvents(MatrixListener(), this)
     }
 
+    private fun registerCommand() {
+        commandTree("photographer") {
+            literalArgument("create") {
+                stringArgument("name") {
+                    playerExecutor { player, args ->
+                        val location = player.location
+                        val name = args["name"] as String
+                        createPhotographer(name, location)
+                        player.sendMessage("§a成功创建摄像机：$name")
+                    }
+                    locationArgument("location") {
+                        anyExecutor { sender, args ->
+                            val location = args["location"] as Location
+                            val name = args["name"] as String
+                            createPhotographer(name, location)
+                            sender.sendMessage("§a成功创建摄像机：$name")
+                        }
+                    }
+                }
+            }
+            literalArgument("remove") {
+                stringArgument("name") {
+                    replaceSuggestions(ArgumentSuggestions.strings(commandPhotographersNameUUIDMap.keys.toList())) // 这不会工作
+                    anyExecutor { sender, args ->
+                        val name = args["name"] as String
+                        val uuid = commandPhotographersNameUUIDMap[name] ?: run {
+                            sender.sendMessage("§4不存在该摄像机！")
+                            return@anyExecutor
+                        }
+                        photographers[uuid]?.stopRecording()
+                        sender.sendMessage("§a成功移除摄像机：$name")
+                    }
+                }
+            }
+            literalArgument("list") {
+                anyExecutor { sender, _ ->
+                    val photographerNames = commandPhotographersNameUUIDMap.keys.joinToString(", ")
+                    sender.sendMessage("§a摄像机列表：$photographerNames")
+                }
+            }
+        }
+    }
+
+    private fun createPhotographer(name: String, location: Location) {
+        val photographer = Bukkit
+            .getPhotographerManager()
+            .createPhotographer(name, location)
+        if (photographer == null) throw RuntimeException("Error on create photographer $name")
+        val uuid = UUID.randomUUID().toString()
+
+        photographers[uuid] = photographer
+        commandPhotographersNameUUIDMap[name] = uuid
+        val currentTime = LocalDateTime.now()
+        val recordPath: String = toml!!.data.recordPath
+            .replace("\${name}", "$name@Command")
+            .replace("\${uuid}", uuid)
+        File(recordPath).mkdirs()
+        val recordFile = File(recordPath + "/" + currentTime.format(EventListener.DATE_FORMATTER) + ".mcpr")
+        if (recordFile.exists()) recordFile.delete()
+        recordFile.createNewFile()
+        photographer.setRecordFile(recordFile)
+    }
+
     private fun setupConfig() {
         toml = TomlEx("plugins/ISeeYou/config.toml", ConfigData::class.java)
         val errMsg = toml!!.data.isConfigValid()
@@ -81,6 +158,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
     }
 
     override fun onDisable() {
+        CommandAPI.onDisable()
         for (photographer in photographers.values) {
             photographer.stopRecording()
         }
