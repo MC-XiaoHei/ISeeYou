@@ -90,6 +90,10 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                     playerExecutor { player, args ->
                         val location = player.location
                         val name = args["name"] as String
+                        if (name.length !in 4..16) {
+                            player.sendMessage("§4摄像机名称长度必须在4-16之间！")
+                            return@playerExecutor
+                        }
                         createPhotographer(name, location)
                         player.sendMessage("§a成功创建摄像机：$name")
                     }
@@ -97,6 +101,10 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                         anyExecutor { sender, args ->
                             val location = args["location"] as Location
                             val name = args["name"] as String
+                            if (name.length !in 4..16) {
+                                sender.sendMessage("§4摄像机名称长度必须在4-16之间！")
+                                return@anyExecutor
+                            }
                             createPhotographer(name, location)
                             sender.sendMessage("§a成功创建摄像机：$name")
                         }
