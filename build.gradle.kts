@@ -25,7 +25,7 @@ repositories {
 
 dependencies {
     compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
-    compileOnly(files("libs/Matrix_7.7.15A.jar"))
+    compileOnly(files("libs/Matrix_7.7.31A.jar"))
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("top.leavesmc.leaves:leaves-api:1.20.4-R0.1-SNAPSHOT")
     implementation("dev.jorel:commandapi-bukkit-shade:9.3.0")

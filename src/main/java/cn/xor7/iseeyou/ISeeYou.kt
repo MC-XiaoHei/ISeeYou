@@ -23,6 +23,10 @@ import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
+import java.util.concurrent.Callable
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.TimeoutException
 import kotlin.io.path.isDirectory
 import kotlin.math.pow
 
@@ -62,9 +66,14 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                 (toml!!.data.pauseRecordingOnHighSpeed.threshold / 20).pow(2.0)
             if (toml!!.data.clearOutdatedRecordFile.enabled) {
                 cleanOutdatedRecordings()
+                var interval = toml!!.data.clearOutdatedRecordFile.interval
+                if (interval !in 1..24 ) {
+                    interval = 24
+                    logger.warning("Failed to load the interval parameter, reset to the default value of 24.")
+                }
                 object : BukkitRunnable() {
                     override fun run() = cleanOutdatedRecordings()
-                }.runTaskTimer(this, 0, 20 * 60 * 60 * 24) // Every day
+                }.runTaskTimer(this, 0, 20 * 60 * 60 * (interval.toLong()))
             }
             Bukkit.getPluginManager().registerEvents(EventListener, this)
         } else {
@@ -203,16 +212,29 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
 
     private fun cleanOutdatedRecordings() {
         try {
-            val recordingsDir = Paths.get(".")
-            logger.info("Start to delete outdated recordings in $recordingsDir")
+            val recordPathA: String = toml!!.data.recordPath
+            val recordPathB: String = toml!!.data.recordSuspiciousPlayer.recordPath
+            val recordingsDirA = Paths.get(recordPathA).parent
+            val recordingsDirB = Paths.get(recordPathB).parent
+
+            logger.info("Start to delete outdated recordings in $recordingsDirA and $recordingsDirB")
             var deletedCount = 0
-            Files.walk(recordingsDir).use { paths ->
-                paths.filter { Files.isDirectory(it) && it.parent == recordingsDir }
+
+            Files.walk(recordingsDirA).use { paths ->
+                paths.filter { Files.isDirectory(it) && it.parent == recordingsDirA }
                     .forEach { folder ->
                         deletedCount += deleteRecordingFiles(folder)
                     }
             }
-            logger.info("Finished deleting outdated recordings in $recordingsDir, deleted $deletedCount files")
+
+            Files.walk(recordingsDirB).use { paths ->
+                paths.filter { Files.isDirectory(it) && it.parent == recordingsDirB }
+                    .forEach { folder ->
+                        deletedCount += deleteRecordingFiles(folder)
+                    }
+            }
+
+            logger.info("Finished deleting outdated recordings, deleted $deletedCount files")
         } catch (e: IOException) {
             logger.severe("Error occurred while cleaning outdated recordings: ${e.message}")
             e.printStackTrace()
@@ -221,27 +243,47 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
 
     private fun deleteRecordingFiles(folderPath: Path): Int {
         var deletedCount = 0
+        var fileCount = 0
         try {
             val currentDate = LocalDate.now()
             Files.walk(folderPath).use { paths ->
                 paths.filter { Files.isRegularFile(it) && it.toString().endsWith(".mcpr") }
                     .forEach { file ->
+                        fileCount++
                         val fileName = file.fileName.toString()
                         val creationDateStr = fileName.substringBefore('@')
                         val creationDate = LocalDate.parse(creationDateStr)
                         val daysSinceCreation =
                             Duration.between(creationDate.atStartOfDay(), currentDate.atStartOfDay()).toDays()
                         if (daysSinceCreation > outdatedRecordRetentionDays) {
+                            val executor = Executors.newSingleThreadExecutor()
+                            val future = executor.submit(Callable {
+                                try {
+                                    Files.delete(file)
+                                    logger.info("Deleted recording file: $fileName")
+                                    true
+                                } catch (e: IOException) {
+                                    logger.severe("Error occurred while deleting recording file: $fileName, Error: ${e.message}")
+                                    e.printStackTrace()
+                                    false
+                                }
+                            })
+
                             try {
-                                Files.delete(file)
-                                logger.info("Deleted recording file: $fileName")
-                                deletedCount++
-                            } catch (e: IOException) {
-                                logger.severe("Error occurred while deleting recording file: $fileName, Error: ${e.message}")
-                                e.printStackTrace()
+                                if (future.get(2, TimeUnit.SECONDS)) {
+                                    deletedCount++
+                                }
+                            } catch (e: TimeoutException) {
+                                logger.warning("Timeout deleting file: $fileName. Skipping...")
+                                future.cancel(true)
+                            } finally {
+                                executor.shutdown()
                             }
                         }
                     }
+            }
+            if (fileCount == 0 || deletedCount == 0) {
+                logger.info("No outdated recording files found to delete.")
             }
         } catch (e: IOException) {
             logger.severe("Error occurred while processing recording files in folder: $folderPath, Error: ${e.message}")

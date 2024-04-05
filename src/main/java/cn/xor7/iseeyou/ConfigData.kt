@@ -56,6 +56,7 @@ data class HighSpeedPauseConfig(
 
 data class OutdatedRecordRetentionConfig(
     var enabled: Boolean = false,
+    var interval: Int = 24,
     var days: Int = 7,
 )
 
