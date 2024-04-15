@@ -213,25 +213,19 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
     private fun cleanOutdatedRecordings() {
         try {
             val recordPathA: String = toml!!.data.recordPath
-            val recordPathB: String = toml!!.data.recordSuspiciousPlayer.recordPath
             val recordingsDirA = Paths.get(recordPathA).parent
-            val recordingsDirB = Paths.get(recordPathB).parent
+            val recordingsDirB: Path? = if (toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration || toml!!.data.recordSuspiciousPlayer.enableThemisIntegration) {
+                Paths.get(toml!!.data.recordSuspiciousPlayer.recordPath).parent
+            } else {
+                null
+            }
 
             logger.info("Start to delete outdated recordings in $recordingsDirA and $recordingsDirB")
             var deletedCount = 0
 
-            Files.walk(recordingsDirA).use { paths ->
-                paths.filter { Files.isDirectory(it) && it.parent == recordingsDirA }
-                    .forEach { folder ->
-                        deletedCount += deleteRecordingFiles(folder)
-                    }
-            }
-
-            Files.walk(recordingsDirB).use { paths ->
-                paths.filter { Files.isDirectory(it) && it.parent == recordingsDirB }
-                    .forEach { folder ->
-                        deletedCount += deleteRecordingFiles(folder)
-                    }
+            deletedCount += deleteFilesInDirectory(recordingsDirA)
+            recordingsDirB?.let {
+                deletedCount += deleteFilesInDirectory(it)
             }
 
             logger.info("Finished deleting outdated recordings, deleted $deletedCount files")
@@ -240,6 +234,18 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
             e.printStackTrace()
         }
     }
+
+    private fun deleteFilesInDirectory(directory: Path): Int {
+        var count = 0
+        Files.walk(directory).use { paths ->
+            paths.filter { Files.isDirectory(it) && it.parent == directory }
+                .forEach { folder ->
+                    count += deleteRecordingFiles(folder)
+                }
+        }
+        return count
+    }
+
 
     private fun deleteRecordingFiles(folderPath: Path): Int {
         var deletedCount = 0
