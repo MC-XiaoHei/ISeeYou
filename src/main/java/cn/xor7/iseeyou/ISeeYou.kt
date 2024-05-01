@@ -3,6 +3,7 @@ package cn.xor7.iseeyou
 import cn.xor7.iseeyou.anticheat.AntiCheatListener
 import cn.xor7.iseeyou.anticheat.listeners.MatrixListener
 import cn.xor7.iseeyou.anticheat.listeners.ThemisListener
+import cn.xor7.iseeyou.anticheat.listeners.VulcanListener
 import cn.xor7.iseeyou.anticheat.suspiciousPhotographers
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
@@ -90,6 +91,10 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         if (Bukkit.getPluginManager().isPluginEnabled("Matrix") ||
             toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration
         ) Bukkit.getPluginManager().registerEvents(MatrixListener(), this)
+
+        if (Bukkit.getPluginManager().isPluginEnabled("Vulcan") ||
+            toml!!.data.recordSuspiciousPlayer.enableVulcanIntegration
+        ) Bukkit.getPluginManager().registerEvents(VulcanListener(), this)
     }
 
     private fun registerCommand() {

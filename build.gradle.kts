@@ -11,6 +11,7 @@ version = "1.1.5"
 
 repositories {
     mavenLocal()
+    maven("https://jitpack.io/")
     maven("https://maven.aliyun.com/repository/public")
     mavenCentral()
     maven("https://oss.sonatype.org/content/groups/public/")
@@ -24,8 +25,13 @@ repositories {
 }
 
 dependencies {
+    //anticheat dependencies
     compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
     compileOnly(files("libs/Matrix_7.7.32A.jar"))
+    compileOnly(files("libs/VulcanAPI.jar"))
+    compileOnly("com.github.MWHunter:GrimAPI:2.3.62")
+    compileOnly("com.github.Elikill58:Negativity:v2-SNAPSHOT")
+    //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("top.leavesmc.leaves:leaves-api:1.20.4-R0.1-SNAPSHOT")
     implementation("dev.jorel:commandapi-bukkit-shade:9.3.0")
