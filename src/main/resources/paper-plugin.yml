@@ -13,3 +13,6 @@ dependencies:
     Vulcan:
       load: BEFORE
       required: false
+    Negativity:
+      load: BEFORE
+      required: false
