@@ -38,17 +38,13 @@ object InstantReplayManager {
                     }
                 val photographer = Bukkit
                     .getPhotographerManager()
-                    .createPhotographer(UUID.randomUUID().toString(), player.location)?.apply {
-                        val currentTime = LocalDateTime.now()
+                    .createPhotographer(uuid.replace("-", "").substring(0, 16), player.location)
+                    ?.apply {
                         val recordPath: String = toml!!.data.instantReplay.recordPath
                             .replace("\${name}", player.name)
                             .replace("\${uuid}", player.uniqueId.toString())
                         File(recordPath).mkdirs()
-                        val recordFile = File(recordPath + "/" + currentTime.format(DATE_FORMATTER) + ".mcpr")
-                        if (recordFile.exists()) {
-                            recordFile.delete()
-                        }
-                        recordFile.createNewFile()
+                        val recordFile = File(recordPath + "/" + LocalDateTime.now().format(DATE_FORMATTER) + ".mcpr")
                         recordFileMap[uuid] = recordFile
                         setRecordFile(recordFile)
                         setFollowPlayer(player)
@@ -58,7 +54,7 @@ object InstantReplayManager {
         }.runTaskTimer(
             instance ?: return,
             0,
-            (toml!!.data.instantReplay.createPerMinutes * 60 * 1000).toLong()
+            (toml!!.data.instantReplay.createMinutes * 60 * 20).toLong()
         ).also { task ->
             taskMap[player.uniqueId.toString()] = task
         }
@@ -74,7 +70,17 @@ object InstantReplayManager {
                 firstSubmitTime = expectedExpiration
             }
         }
+        val recordPath: String = toml!!.data.instantReplay.recordPath
+            .replace("\${name}", player.name)
+            .replace("\${uuid}", player.uniqueId.toString())
+        File(recordPath).mkdirs()
+        val recordFile = File(recordPath + "/" + LocalDateTime.now().format(DATE_FORMATTER) + ".mcpr")
+        if (recordFile.exists()) {
+            recordFile.delete()
+        }
+        recordFile.createNewFile()
         photographerMap[firstSubmitUUID]?.stopRecording(toml!!.data.asyncSave) ?: return false
+        photographerMap.remove(firstSubmitUUID)
         return true
     }
 }

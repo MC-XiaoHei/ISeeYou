@@ -81,6 +81,6 @@ data class FilterConfig(
 data class InstantReplayConfig(
     var enabled: Boolean = false,
     var replayMinutes: Int = 5,
-    var createPerMinutes: Int = 1,
+    var createMinutes: Int = 1,
     var recordPath: String = "replay/instant/\${name}@\${uuid}",
 )
