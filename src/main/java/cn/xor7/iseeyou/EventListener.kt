@@ -39,7 +39,7 @@ object EventListener : Listener {
             photographer.setFollowPlayer(player)
             return
         }
-        if (toml!!.data.instantReplayConfig.enabled) {
+        if (toml!!.data.instantReplay.enabled) {
             InstantReplayManager.watch(player)
         }
         var prefix = player.name
@@ -102,7 +102,7 @@ object EventListener : Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     fun onPlayerQuit(event: PlayerQuitEvent) {
         val player = event.player
-        if (toml!!.data.instantReplayConfig.enabled) {
+        if (toml!!.data.instantReplay.enabled) {
             InstantReplayManager.taskMap[player.uniqueId.toString()]?.cancel()
         }
         val photographer: Photographer = photographers[player.uniqueId.toString()] ?: return

@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 object InstantReplayManager {
     val photographerMap: ExpiringMap<String, Photographer> = ExpiringMap.builder()
-        .expiration(toml!!.data.instantReplayConfig.replayMinutes.toLong(), TimeUnit.MINUTES)
+        .expiration(toml!!.data.instantReplay.replayMinutes.toLong(), TimeUnit.MINUTES)
         .expirationPolicy(ExpirationPolicy.CREATED)
         .expirationListener { playerUUID: String, photographer: Photographer ->
             recordFileMap[photographer.name]?.delete()
@@ -40,7 +40,7 @@ object InstantReplayManager {
                     .getPhotographerManager()
                     .createPhotographer(UUID.randomUUID().toString(), player.location)?.apply {
                         val currentTime = LocalDateTime.now()
-                        val recordPath: String = toml!!.data.instantReplayConfig.recordPath
+                        val recordPath: String = toml!!.data.instantReplay.recordPath
                             .replace("\${name}", player.name)
                             .replace("\${uuid}", player.uniqueId.toString())
                         File(recordPath).mkdirs()
@@ -58,7 +58,7 @@ object InstantReplayManager {
         }.runTaskTimer(
             instance ?: return,
             0,
-            (toml!!.data.instantReplayConfig.createPerMinutes * 60 * 1000).toLong()
+            (toml!!.data.instantReplay.createPerMinutes * 60 * 1000).toLong()
         ).also { task ->
             taskMap[player.uniqueId.toString()] = task
         }
