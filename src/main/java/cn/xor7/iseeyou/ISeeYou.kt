@@ -66,7 +66,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
             if (toml!!.data.clearOutdatedRecordFile.enabled) {
                 cleanOutdatedRecordings()
                 var interval = toml!!.data.clearOutdatedRecordFile.interval
-                if (interval !in 1..24 ) {
+                if (interval !in 1..24) {
                     interval = 24
                     logger.warning("Failed to load the interval parameter, reset to the default value of 24.")
                 }
@@ -140,7 +140,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                             sender.sendMessage("§4不存在该摄像机！")
                             return@anyExecutor
                         }
-                        photographers[uuid]?.stopRecording()
+                        photographers[uuid]?.stopRecording(toml!!.data.asyncSave)
                         sender.sendMessage("§a成功移除摄像机：$name")
                     }
                 }
@@ -149,6 +149,15 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                 anyExecutor { sender, _ ->
                     val photographerNames = commandPhotographersNameUUIDMap.keys.joinToString(", ")
                     sender.sendMessage("§a摄像机列表：$photographerNames")
+                }
+            }
+        }
+        commandTree("instantreplay") {
+            playerExecutor { player, _ ->
+                if (InstantReplayManager.replay(player)) {
+                    player.sendMessage("§a成功创建即时回放")
+                } else {
+                    player.sendMessage("§4操作过快，即时回放创建失败！")
                 }
             }
         }
@@ -189,7 +198,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
     override fun onDisable() {
         CommandAPI.onDisable()
         for (photographer in photographers.values) {
-            photographer.stopRecording()
+            photographer.stopRecording(toml!!.data.asyncSave)
         }
         photographers.clear()
         highSpeedPausedPhotographers.clear()
@@ -225,11 +234,12 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         try {
             val recordPathA: String = toml!!.data.recordPath
             val recordingsDirA = Paths.get(recordPathA).parent
-            val recordingsDirB: Path? = if (toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration || toml!!.data.recordSuspiciousPlayer.enableThemisIntegration) {
-                Paths.get(toml!!.data.recordSuspiciousPlayer.recordPath).parent
-            } else {
-                null
-            }
+            val recordingsDirB: Path? =
+                if (toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration || toml!!.data.recordSuspiciousPlayer.enableThemisIntegration) {
+                    Paths.get(toml!!.data.recordSuspiciousPlayer.recordPath).parent
+                } else {
+                    null
+                }
 
             logger.info("Start to delete outdated recordings in $recordingsDirA and $recordingsDirB")
             var deletedCount = 0

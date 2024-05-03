@@ -10,7 +10,8 @@ data class ConfigData(
     var recordPath: String = "replay/player/\${name}@\${uuid}",
     var clearOutdatedRecordFile: OutdatedRecordRetentionConfig = OutdatedRecordRetentionConfig(),
     var recordSuspiciousPlayer: RecordSuspiciousPlayerConfig = RecordSuspiciousPlayerConfig(),
-    // var asyncSave: Boolean = false,
+    var instantReplayConfig: InstantReplayConfig = InstantReplayConfig(),
+    var asyncSave: Boolean = false,
 ) {
     fun isConfigValid(): String? {
         if ("name" != filter.checkBy && "uuid" != filter.checkBy) {
@@ -75,4 +76,11 @@ data class FilterConfig(
     var recordMode: String = "blacklist",
     var blacklist: Set<String>? = null,
     var whitelist: Set<String>? = null,
+)
+
+data class InstantReplayConfig(
+    var enabled: Boolean = false,
+    var replayMinutes: Int = 5,
+    var createPerMinutes: Int = 1,
+    var recordPath: String = "replay/instant/\${name}@\${uuid}",
 )

@@ -3,8 +3,6 @@ package cn.xor7.iseeyou.anticheat
 import cn.xor7.iseeyou.EventListener
 import cn.xor7.iseeyou.instance
 import cn.xor7.iseeyou.toml
-import com.gmail.olexorus.themis.api.ActionEvent
-import me.rerere.matrix.api.events.PlayerViolationEvent
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -27,7 +25,7 @@ object AntiCheatListener : Listener {
                     if (currentTime - it.value.lastTagged >
                         Duration.ofMinutes(toml!!.data.recordSuspiciousPlayer.recordMinutes).toMillis()
                     ) {
-                        it.value.photographer.stopRecording()
+                        it.value.photographer.stopRecording(toml!!.data.asyncSave)
                         return@removeIf true
                     } else false
                 }
@@ -78,7 +76,7 @@ object AntiCheatListener : Listener {
     fun onPlayerQuit(e: PlayerQuitEvent) {
         val suspiciousPhotographer = suspiciousPhotographers[e.player.name]
         if (suspiciousPhotographer != null) {
-            suspiciousPhotographer.photographer.stopRecording()
+            suspiciousPhotographer.photographer.stopRecording(toml!!.data.asyncSave)
             suspiciousPhotographers.remove(e.player.name)
         }
     }

@@ -39,6 +39,9 @@ object EventListener : Listener {
             photographer.setFollowPlayer(player)
             return
         }
+        if (toml!!.data.instantReplayConfig.enabled) {
+            InstantReplayManager.watch(player)
+        }
         var prefix = player.name
         if (prefix.length > 10) {
             prefix = prefix.substring(0, 10)
@@ -98,13 +101,17 @@ object EventListener : Listener {
      */
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     fun onPlayerQuit(event: PlayerQuitEvent) {
-        val photographer: Photographer = photographers[event.player.uniqueId.toString()] ?: return
+        val player = event.player
+        if (toml!!.data.instantReplayConfig.enabled) {
+            InstantReplayManager.taskMap[player.uniqueId.toString()]?.cancel()
+        }
+        val photographer: Photographer = photographers[player.uniqueId.toString()] ?: return
         highSpeedPausedPhotographers.remove(photographer)
         if (toml!!.data.pauseInsteadOfStopRecordingOnPlayerQuit) {
             photographer.resumeRecording()
         } else {
-            photographer.stopRecording()
-            photographers.remove(event.player.uniqueId.toString())
+            photographer.stopRecording(toml!!.data.asyncSave)
+            photographers.remove(player.uniqueId.toString())
         }
     }
 }
