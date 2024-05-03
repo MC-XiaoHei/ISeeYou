@@ -10,7 +10,7 @@ data class ConfigData(
     var recordPath: String = "replay/player/\${name}@\${uuid}",
     var clearOutdatedRecordFile: OutdatedRecordRetentionConfig = OutdatedRecordRetentionConfig(),
     var recordSuspiciousPlayer: RecordSuspiciousPlayerConfig = RecordSuspiciousPlayerConfig(),
-    var instantReplayConfig: InstantReplayConfig = InstantReplayConfig(),
+    var instantReplay: InstantReplayConfig = InstantReplayConfig(),
     var asyncSave: Boolean = false,
 ) {
     fun isConfigValid(): String? {
