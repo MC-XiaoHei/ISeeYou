@@ -16,3 +16,6 @@ dependencies:
     Negativity:
       load: BEFORE
       required: false
+    GrimAC:
+      load: BEFORE
+      required: false

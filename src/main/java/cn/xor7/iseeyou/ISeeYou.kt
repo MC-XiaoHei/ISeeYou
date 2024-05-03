@@ -1,10 +1,7 @@
 package cn.xor7.iseeyou
 
 import cn.xor7.iseeyou.anticheat.AntiCheatListener
-import cn.xor7.iseeyou.anticheat.listeners.MatrixListener
-import cn.xor7.iseeyou.anticheat.listeners.NegativityListener
-import cn.xor7.iseeyou.anticheat.listeners.ThemisListener
-import cn.xor7.iseeyou.anticheat.listeners.VulcanListener
+import cn.xor7.iseeyou.anticheat.listeners.*
 import cn.xor7.iseeyou.anticheat.suspiciousPhotographers
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
@@ -100,6 +97,10 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         if (Bukkit.getPluginManager().isPluginEnabled("Negativity") ||
             toml!!.data.recordSuspiciousPlayer.enableNegativityIntegration
         ) Bukkit.getPluginManager().registerEvents(NegativityListener(), this)
+
+        if (Bukkit.getPluginManager().isPluginEnabled("GrimAC") ||
+            toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration
+        ) Bukkit.getPluginManager().registerEvents(GrimACListener(), this)
     }
 
     private fun registerCommand() {
