@@ -105,6 +105,9 @@ object EventListener : Listener {
         if (toml!!.data.instantReplay.enabled) {
             InstantReplayManager.taskMap[player.uniqueId.toString()]?.cancel()
             InstantReplayManager.taskMap.remove(player.uniqueId.toString())
+            InstantReplayManager.player2photographerUUIDMap[player.uniqueId.toString()]?.forEach { uuid ->
+                InstantReplayManager.photographerMap[uuid]?.stopRecording(false,false)
+            }
         }
         val photographer: Photographer = photographers[player.uniqueId.toString()] ?: return
         highSpeedPausedPhotographers.remove(photographer)

@@ -160,6 +160,9 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                     player.sendMessage("§4操作过快，即时回放创建失败！")
                 }
             }
+            playerArgument("player") {
+
+            }
         }
     }
 
