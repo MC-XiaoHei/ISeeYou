@@ -29,7 +29,7 @@ dependencies {
     compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
     compileOnly(files("libs/Matrix_7.7.32A.jar"))
     compileOnly(files("libs/VulcanAPI.jar"))
-    compileOnly("com.github.MWHunter:GrimAPI:9f5aaef74b")
+    implementation("com.github.MWHunter:GrimAPI:9f5aaef74b")
     compileOnly("com.github.Elikill58:Negativity:v2-SNAPSHOT")
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
