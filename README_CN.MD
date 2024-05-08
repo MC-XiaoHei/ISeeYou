@@ -9,7 +9,7 @@ _也可以叫ICU_
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](https://github.com/MC-XiaoHei/ISeeYou/blob/master/LICENSE)
 ![GitHub all releases](https://img.shields.io/github/downloads/MC-XiaoHei/ISeeYou/total?style=flat-square)
 
-[中文](README_CN.md) | [English](README.MD)
+[中文](README_CN.MD) | [English](README.MD)
 
 ## 警告
 
