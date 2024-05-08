@@ -1,5 +1,7 @@
 # ISeeYou
 
+<img src="https://img2.imgtp.com/2024/05/08/3Fj2Vdil.png" alt="Logo" width="100" height="100">
+
 _也可以叫ICU_
 
 [![GitHub release](https://img.shields.io/github/v/release/MC-XiaoHei/ISeeYou?style=flat-square)](https://github.com/MC-XiaoHei/ISeeYou/releases)
@@ -13,7 +15,7 @@ _也可以叫ICU_
 
 本插件只能在使用 [Leaves](https://leavesmc.org/) 核心的服务器中运行，不支持其他核心！
 
-> 开发者仅保证ISeeYou插件在**最新版**Leaves核心的服务器中可正常运行，对老版本兼容性不做维护。
+> 开发者仅保证**最新正式版**ISeeYou插件在**最新版**Leaves核心的服务器中可正常运行，对老版本兼容性不做维护。
 
 ## 简介
 
@@ -24,14 +26,14 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 - **自动录制**：无需手动操作，默认情况下插件会自动记录所有玩家。
 - **灵活配置**：可以通过配置文件设置黑白名单，以及录制路径等。
 - **反作弊支持**：适配多款反作弊插件，在发现可疑玩家时自动进行录制。
-- **即时回放**：通过指令，即可追溯过去 一段时间 的游戏画面以`.mcpr`格式保存到服务器硬盘上。
+- **即时回放**：通过指令，即可追溯过去一段时间的游戏画面以`.mcpr`格式保存到服务器硬盘上。
 
 ### 反作弊适配列表
 
 | 名称                                                                                                                                            | 可用状况  |
 |-----------------------------------------------------------------------------------------------------------------------------------------------|-------|
-| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅     |
-| [Matrix](https://matrix.rip/)                                                                                                                 | ✅     |
+| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅可用   |
+| [Matrix](https://matrix.rip/)                                                                                                                 | ✅可用   |
 | [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | ⚠️公测中 |
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️公测中 |
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌暂不可用 |
@@ -51,22 +53,20 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                |  💡可选   |
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    |  💡可选   |
 
-**注意**: 在安装反作弊插件之前，也请确认它们所需的前置插件是否已经安装，以避免兼容性问题。
+> 在安装反作弊插件之前，也请确认它们所需的前置插件是否已经安装，以避免兼容性问题。
 
 ### 使用教程
 
 1. **安装插件**：将插件文件放置在 Leaves 服务器的插件目录下，并重新启动服务器。
+
 2. **配置设置**：编辑 `plugins/ISeeYou/config.toml` 文件，根据需求调整录像参数和反作弊设置。
 
 ## 配置项说明
 
 ```toml
 # 配置文件注释：
-
 deleteTmpFileOnLoad = true # 加载时删除临时文件
-
 pauseInsteadOfStopRecordingOnPlayerQuit = false # 玩家退出时暂停录制而非停止录制
-
 # 录像保存路径模板，使用 ${name} 和 ${uuid} 变量来替换对应玩家名称和唯一标识符。
 recordPath = "replay/player/${name}@${uuid}"
 
@@ -102,13 +102,18 @@ recordPath = "replay/suspicious/${name}@${uuid}"  # 可疑玩家录像文件路�
 [instantReplay]
 enabled = false  # 是否启用即时回放功能
 replayMinutes = 5  # 指定能够追溯过去多少分钟的游戏画面 （单位：分钟）
-createMinutes = 1  
+createMinutes = 1  # 指定每隔多长时间创建一个摄像机（单位：分钟）
+# 本插件的即时回放的实现是通过每createMinutes创建一个摄像机进行录制，并在录制replayMinutes后移除摄像头。若玩家未使用/instantreplay指令保存，则删除缓存录像。
 recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径模板，支持 ${name} 和 ${uuid} 变量。
-
 ```
+
+> 开启即时回放、录制可疑玩家等功能可能会增加服务器性能消耗。
+
 ## 指令
 
-> **所有 `/photographer` 和 `/instantreplay` 指令** 只能由玩家在游戏内执行，不可在服务器控制台中运行。
+> **`photographer create <name>` 和 `/instantreplay` 指令** 只能由玩家在游戏内执行，不可在服务器控制台中运行。
+
+> **`photographer create <name> [location]`指令**可以在控制台中执行。
 
 > **使用 `/instantreplay` 指令前**，请确保已在插件配置文件中开启相关功能。
 
@@ -116,7 +121,7 @@ recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径�
 
 | 指令                                      | 功能描述                                                             | 示例                                                                          |
 |-----------------------------------------|------------------------------------------------------------------|-----------------------------------------------------------------------------|
-| `photographer create <name> [location]` | 创建摄像机                                                            | `/photographer create MyCamera`<br>`/photographer create MyCamera 10 10 10` |
+| `photographer create <name> [location]` | 创建摄像机                                                            | `/photographer create MyCamera`<br>`/photographer create MyCamera <x> <y> <z>` |
 |                                         | - `<name>`：摄像机名称，长度限制在5到16个字符之间                                  |                                                                             |
 |                                         | - `[location]`（可选）：摄像机位置，格式为x y z坐标值。<br>若不指定位置，则默认设置为执行命令玩家当前位置 |                                                                             |
 | `photographer remove <name>`            | 移除摄像机                                                            | `/photographer remove MyCamera`                                             |
@@ -124,25 +129,54 @@ recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径�
 | `photographer list`                     | 显示所有摄像机列表                                                        | `/photographer list`                                                        |
 | `instantreplay`                         | 创建针对执行命令玩家的即时回放记录                                                | `/instantreplay`                                                            |
 
----
-
 ## 下载
+
 * 稳定版本
-    * [GitHub 发布页](https://github.com/MC-XiaoHei/ISeeYou/releases)
-    * [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
+
+  * [GitHub 发布页](https://github.com/MC-XiaoHei/ISeeYou/releases)
+
+  * [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
+
 * 开发版本
-    * [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
+
+  * [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
+
+### 自行构建
+
+1. **克隆项目源码**
+
+   使用以下命令将项目克隆到本地环境：
+
+   ```shell
+   git clone https://github.com/MC-XiaoHei/ISeeYou.git
+   ```
+
+2. **编译打包**
+
+   进入项目根目录，执行如下命令以构建jar包：
+
+   ```shell
+   ./gradlew shadowJar
+   ```
+
+3. **获取Jar**
+
+   编译完成后，你将在`build/libs`目录下找到名为`ISeeYou.jar`的输出文件。
 
 ## 作者信息
 
-- 主要开发者：[MC-XiaoHei](https://github.com/MC-XiaoHei)，编写了大部分的的代码
+- 主要开发者：[MC-XiaoHei](https://github.com/MC-XiaoHei)，编写了大部分的代码
+
 - 主要开发者：[CerealAxis](https://github.com/CerealAxis)，制作了自动清理过期录像功能、Matrix适配功能，并且编写了 README。
+
 - 贡献者：[Cranyozen](https://github.com/Cranyozen)，制作了自动构建 CI
 
 ## 注意事项
 
 - 本插件的运行只能在 [Leaves](https://leavesmc.top/) 服务端环境下使用，不支持其他常见的 `Spigot` 及其下游核心（例如 `Paper`、`Purpur` 等）。
+
 - 请在使用插件前仔细阅读并配置好 `config.toml` 文件，以确保插件能够正常运行。
+
 - 尽管目前没有因为 reload 导致的 bug 报告，但尽量不要使用 `Plugman` 等插件热重载本插件,这可能会导致许多未知的问题！
 
 ## 感谢支持
