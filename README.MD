@@ -69,6 +69,8 @@ ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) c
 deleteTmpFileOnLoad = true # Delete temporary files on load.
 pauseInsteadOfStopRecordingOnPlayerQuit = false # Pause recording instead of stopping when player quits.
 recordPath = "replay/player/${name}@${uuid}" # Recording storage path template, supports ${name} and ${uuid} variables.
+asyncSave = false # Async save recording
+bStats = true 
 
 [pauseRecordingOnHighSpeed]
 enabled = false  # Whether to enable pausing recording on high speed, which pauses recording when the player moves at high speeds.

@@ -69,6 +69,8 @@ deleteTmpFileOnLoad = true # 加载时删除临时文件
 pauseInsteadOfStopRecordingOnPlayerQuit = false # 玩家退出时暂停录制而非停止录制
 # 录像保存路径模板，使用 ${name} 和 ${uuid} 变量来替换对应玩家名称和唯一标识符。
 recordPath = "replay/player/${name}@${uuid}"
+asyncSave = false # 是否启用异步保存
+bStats = true # 是否启用bStats统计
 
 # [pauseRecordingOnHighSpeed] 高速移动时暂停录制设置
 [pauseRecordingOnHighSpeed]
