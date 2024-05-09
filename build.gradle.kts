@@ -38,7 +38,6 @@ dependencies {
     implementation("dev.jorel:commandapi-bukkit-kotlin:9.3.0")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
     implementation("net.jodah:expiringmap:0.5.11")
-
 }
 
 val targetJavaVersion = 17
