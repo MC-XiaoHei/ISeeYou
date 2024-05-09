@@ -12,6 +12,7 @@ data class ConfigData(
     var recordSuspiciousPlayer: RecordSuspiciousPlayerConfig = RecordSuspiciousPlayerConfig(),
     var instantReplay: InstantReplayConfig = InstantReplayConfig(),
     var asyncSave: Boolean = false,
+    var bStats: Boolean = true,
 ) {
     fun isConfigValid(): String? {
         if ("name" != filter.checkBy && "uuid" != filter.checkBy) {

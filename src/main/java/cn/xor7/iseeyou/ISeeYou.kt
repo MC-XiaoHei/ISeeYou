@@ -3,6 +3,7 @@ package cn.xor7.iseeyou
 import cn.xor7.iseeyou.anticheat.AntiCheatListener
 import cn.xor7.iseeyou.anticheat.listeners.*
 import cn.xor7.iseeyou.anticheat.suspiciousPhotographers
+import cn.xor7.iseeyou.metrics.Metrics
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
 import dev.jorel.commandapi.arguments.ArgumentSuggestions
@@ -78,6 +79,12 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         } else {
             logger.warning("Failed to initialize configuration. Plugin will not enable.")
             Bukkit.getPluginManager().disablePlugin(this)
+        }
+
+        if (toml!!.data.bStats){
+            val pluginId = 21845
+            val metrics: Metrics = Metrics(this, pluginId)
+            metrics.addCustomChart(Metrics.SimplePie("chart_id") { "My value" })
         }
 
         Bukkit.getPluginManager().registerEvents(AntiCheatListener, this)
