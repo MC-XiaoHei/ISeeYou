@@ -136,7 +136,7 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
 
     * [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
-### Build Yourself
+### Building
 
 1. **Clone the project source code**
 
