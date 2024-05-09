@@ -182,3 +182,7 @@ recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径�
 ## 感谢支持
 
 感谢您使用 ISeeYou 插件！如果您在使用过程中遇到任何问题或有任何建议，请随时提交 [Issue](https://github.com/MC-XiaoHei/ISeeYou/issues) 到 GitHub 仓库。
+
+## 统计
+
+[_![](https://bstats.org/signatures/bukkit/ISeeYou.svg)](https://bstats.org/plugin/bukkit/ISeeYou/21845)
