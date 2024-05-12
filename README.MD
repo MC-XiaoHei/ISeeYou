@@ -108,9 +108,9 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
 
 ## Commands
 
-> **`photographer create <name>` and `/instantreplay` commands** can only be executed by players in the game, not in the server console.
+> **`/photographer create <name>` and `/instantreplay` commands** can only be executed by players in the game, not in the server console.
 
-> **`photographer create <name> [location]` command** can be executed in the console.
+> **`/photographer create <name> [location]` command** can be executed in the console.
 
 > **Before using the `/instantreplay` command**, make sure that the corresponding feature is enabled in the plugin configuration file.
 

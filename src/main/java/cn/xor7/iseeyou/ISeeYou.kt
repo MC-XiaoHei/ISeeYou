@@ -4,11 +4,14 @@ import cn.xor7.iseeyou.anticheat.AntiCheatListener
 import cn.xor7.iseeyou.anticheat.listeners.*
 import cn.xor7.iseeyou.anticheat.suspiciousPhotographers
 import cn.xor7.iseeyou.metrics.Metrics
+import cn.xor7.iseeyou.updatechecker.CompareVersions
+import cn.xor7.iseeyou.updatechecker.UpdateChecker
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
 import dev.jorel.commandapi.arguments.ArgumentSuggestions
 import dev.jorel.commandapi.kotlindsl.*
 import org.bukkit.Bukkit
+import org.bukkit.ChatColor
 import org.bukkit.Location
 import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.InvalidConfigurationException
@@ -29,6 +32,7 @@ import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 import kotlin.io.path.isDirectory
 import kotlin.math.pow
+
 
 var toml: TomlEx<ConfigData>? = null
 var photographers = mutableMapOf<String, Photographer>()
@@ -108,6 +112,27 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         if (Bukkit.getPluginManager().isPluginEnabled("GrimAC") ||
             toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration
         ) Bukkit.getPluginManager().registerEvents(GrimACListener(), this)
+
+        val updateChecker = UpdateChecker(this, "ISeeYou")
+
+        updateChecker.getVersion { latestVersion: String ->
+            val currentVersion = description.version
+            val comparisonResult = CompareVersions.compareVersions(currentVersion, latestVersion)
+            val temp = latestVersion.removePrefix("V")
+            val logMessage = when {
+                comparisonResult < 0 -> {
+                    "\u001B[32mA new version of your plugin is available: \u001B[0m$latestVersion"
+                }
+                comparisonResult == 0 -> {
+                    "\u001B[33mYour plugin is up to date with version \u001B[0m$temp"
+                }
+                else -> {
+                    "\u001B[31mYour plugin version is ahead of the latest version \u001B[0m(\u001B[90m$latestVersion\u001B[0m)"
+                }
+            }
+
+            logger.info(logMessage)
+        }
     }
 
     private fun registerCommand() {
