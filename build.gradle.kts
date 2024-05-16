@@ -16,8 +16,8 @@ repositories {
     mavenCentral()
     maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://maven.aliyun.com/repository/public")
-    maven("https://repo.leavesmc.top/releases")
-    maven("https://repo.leavesmc.top/snapshots")
+    maven("https://repo.leavesmc.org/releases")
+    maven("https://repo.leavesmc.org/snapshots")
     maven("https://repo.codemc.org/repository/maven-public/")
     flatDir {
         dirs("libs")
