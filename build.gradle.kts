@@ -2,8 +2,8 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     id("java")
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    kotlin("jvm") version "1.9.0"
+    id("io.github.goooler.shadow") version "8.1.7"
+    kotlin("jvm") version "1.9.20"
 }
 
 group = "cn.xor7"
@@ -16,8 +16,9 @@ repositories {
     mavenCentral()
     maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://maven.aliyun.com/repository/public")
-    maven("https://repo.leavesmc.top/releases")
-    maven("https://repo.leavesmc.top/snapshots")
+    maven("https://repo.leavesmc.org/releases")
+    maven("https://repo.leavesmc.org/snapshots")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.codemc.org/repository/maven-public/")
     flatDir {
         dirs("libs")
@@ -33,14 +34,14 @@ dependencies {
     compileOnly("com.github.Elikill58:Negativity:v2-SNAPSHOT")
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
-    compileOnly("top.leavesmc.leaves:leaves-api:1.20.4-R0.1-SNAPSHOT")
-    implementation("dev.jorel:commandapi-bukkit-shade:9.3.0")
-    implementation("dev.jorel:commandapi-bukkit-kotlin:9.3.0")
+    compileOnly("org.leavesmc.leaves:leaves-api:1.20.6-R0.1-SNAPSHOT")
+    implementation("dev.jorel:commandapi-bukkit-shade:9.4.1")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:9.4.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
     implementation("net.jodah:expiringmap:0.5.11")
 }
 
-val targetJavaVersion = 17
+val targetJavaVersion = 21
 java {
     val javaVersion = JavaVersion.toVersion(targetJavaVersion)
     if (JavaVersion.current() < javaVersion) {
@@ -66,6 +67,9 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.withType<ShadowJar> {
     relocate("dev.jorel.commandapi", "cn.xor7.iseeyou.commandapi")
+    manifest {
+        attributes["paperweight-mappings-namespace"] = "spigot"
+    }
     minimize()
     exclude("META-INF/*.SF")
     exclude("META-INF/*.DSA")
@@ -74,5 +78,5 @@ tasks.withType<ShadowJar> {
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }

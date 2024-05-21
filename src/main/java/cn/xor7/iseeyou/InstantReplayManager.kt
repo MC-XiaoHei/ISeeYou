@@ -7,7 +7,7 @@ import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.scheduler.BukkitRunnable
 import org.bukkit.scheduler.BukkitTask
-import top.leavesmc.leaves.entity.Photographer
+import org.leavesmc.leaves.entity.Photographer
 import java.io.File
 import java.time.LocalDateTime
 import java.util.*
