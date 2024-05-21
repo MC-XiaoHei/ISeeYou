@@ -17,7 +17,7 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.InvalidConfigurationException
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
-import top.leavesmc.leaves.entity.Photographer
+import org.leavesmc.leaves.entity.Photographer
 import java.io.File
 import java.io.IOException
 import java.nio.file.*
@@ -55,6 +55,14 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         CommandAPI.onEnable()
         registerCommand()
         setupConfig()
+
+        logger.info("██╗███████╗███████╗███████╗██╗   ██╗ ██████╗ ██╗   ██╗")
+        logger.info("██║██╔════╝██╔════╝██╔════╝╚██╗ ██╔╝██╔═══██╗██║   ██║")
+        logger.info("██║███████╗█████╗  █████╗   ╚████╔╝ ██║   ██║██║   ██║")
+        logger.info("██║╚════██║██╔══╝  ██╔══╝    ╚██╔╝  ██║   ██║██║   ██║")
+        logger.info("██║███████║███████╗███████╗   ██║   ╚██████╔╝╚██████╔╝")
+        logger.info("╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝    ╚═════╝  ╚═════╝")
+
         if (toml != null) {
             if (toml!!.data.deleteTmpFileOnLoad) {
                 try {
@@ -66,22 +74,25 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                 } catch (_: IOException) {
                 }
             }
+
             EventListener.pauseRecordingOnHighSpeedThresholdPerTickSquared =
                 (toml!!.data.pauseRecordingOnHighSpeed.threshold / 20).pow(2.0)
+
             if (toml!!.data.clearOutdatedRecordFile.enabled) {
                 cleanOutdatedRecordings()
                 var interval = toml!!.data.clearOutdatedRecordFile.interval
                 if (interval !in 1..24) {
                     interval = 24
-                    logger.warning("Failed to load the interval parameter, reset to the default value of 24.")
+                    logger.warning("§c[Warning] §rFailed to load the interval parameter, reset to the default value of 24.")
                 }
                 object : BukkitRunnable() {
                     override fun run() = cleanOutdatedRecordings()
                 }.runTaskTimer(this, 0, 20 * 60 * 60 * (interval.toLong()))
             }
+
             Bukkit.getPluginManager().registerEvents(EventListener, this)
         } else {
-            logger.warning("Failed to initialize configuration. Plugin will not enable.")
+            logger.warning("§c[Error] §rFailed to initialize configuration. Plugin will not enable.")
             Bukkit.getPluginManager().disablePlugin(this)
         }
 
@@ -95,43 +106,62 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
 
         if (Bukkit.getPluginManager().isPluginEnabled("Themis") ||
             toml!!.data.recordSuspiciousPlayer.enableThemisIntegration
-        ) Bukkit.getPluginManager().registerEvents(ThemisListener(), this)
+        ) {
+            Bukkit.getPluginManager().registerEvents(ThemisListener(), this)
+            logger.info("§rRegister the Themis Listener...")
+        }
 
         if (Bukkit.getPluginManager().isPluginEnabled("Matrix") ||
             toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration
-        ) Bukkit.getPluginManager().registerEvents(MatrixListener(), this)
+        ) {
+            Bukkit.getPluginManager().registerEvents(MatrixListener(), this)
+            logger.info("§rRegister the Matrix Listener...")
+        }
 
         if (Bukkit.getPluginManager().isPluginEnabled("Vulcan") ||
             toml!!.data.recordSuspiciousPlayer.enableVulcanIntegration
-        ) Bukkit.getPluginManager().registerEvents(VulcanListener(), this)
+        ){
+            Bukkit.getPluginManager().registerEvents(VulcanListener(), this)
+            logger.info("§rRegister the Vulcan Listener...")
+        }
 
         if (Bukkit.getPluginManager().isPluginEnabled("Negativity") ||
             toml!!.data.recordSuspiciousPlayer.enableNegativityIntegration
-        ) Bukkit.getPluginManager().registerEvents(NegativityListener(), this)
+        ) {
+            Bukkit.getPluginManager().registerEvents(NegativityListener(), this)
+            logger.info("§rRegister the Negativity Listener...")
+        }
 
         if (Bukkit.getPluginManager().isPluginEnabled("GrimAC") ||
             toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration
-        ) Bukkit.getPluginManager().registerEvents(GrimACListener(), this)
+        ) {
+            Bukkit.getPluginManager().registerEvents(GrimACListener(), this)
+            logger.info("§rRegister the GrimAC Listener...")
+        }
 
-        val updateChecker = UpdateChecker(this, "ISeeYou")
-
-        updateChecker.getVersion { latestVersion: String ->
-            val currentVersion = description.version
-            val comparisonResult = CompareVersions.compareVersions(currentVersion, latestVersion)
-            val temp = latestVersion.removePrefix("V")
-            val logMessage = when {
-                comparisonResult < 0 -> {
-                    "\u001B[32mA new version of your plugin is available: \u001B[0m$latestVersion"
+        if (toml!!.data.check_for_updates){
+            val updateChecker = UpdateChecker(this, "ISeeYou")
+            updateChecker.getVersion { latestVersion: String ->
+                val currentVersion = description.version
+                val comparisonResult = CompareVersions.compareVersions(currentVersion, latestVersion)
+                val temp = latestVersion.removePrefix("V")
+                val logMessage = when {
+                    comparisonResult < 0 -> {
+                        "§a[New Version] §rA new version of your plugin is available: §b$latestVersion§r\n" +
+                                "§e[Download] §rYou can download the latest plugin from the following platforms:\n" +
+                                "§9[MineBBS] §rhttps://www.minebbs.com/resources/iseeyou.7276/updates\n" +
+                                "§c[Hangar] §rhttps://hangar.papermc.io/CerealAxis/ISeeYou/versions\n" +
+                                "§6[Github] §rhttps://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1"
+                    }
+                    comparisonResult == 0 -> {
+                        "§a[Latest Version] §rYour plugin is the latest version!"
+                    }
+                    else -> {
+                        "§e[Version Info] §rYour plugin version is ahead of the latest version §b$latestVersion§r"
+                    }
                 }
-                comparisonResult == 0 -> {
-                    "\u001B[33mYour plugin is up to date with version \u001B[0m$temp"
-                }
-                else -> {
-                    "\u001B[31mYour plugin version is ahead of the latest version \u001B[0m(\u001B[90m$latestVersion\u001B[0m)"
-                }
+                logger.info(logMessage)
             }
-
-            logger.info(logMessage)
         }
     }
 
