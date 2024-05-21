@@ -20,6 +20,7 @@ repositories {
     maven("https://repo.leavesmc.org/snapshots")
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.codemc.org/repository/maven-public/")
+    maven("https://repo.codemc.io/repository/nms-local/")
     flatDir {
         dirs("libs")
     }
@@ -30,14 +31,15 @@ dependencies {
     compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
     compileOnly(files("libs/Matrix_7.7.32A.jar"))
     compileOnly(files("libs/VulcanAPI.jar"))
+    compileOnly(files("libs/leaves-1.20.6.jar"))
     implementation("com.github.MWHunter:GrimAPI:9f5aaef74b")
     compileOnly("com.github.Elikill58:Negativity:v2-SNAPSHOT")
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("org.leavesmc.leaves:leaves-api:1.20.6-R0.1-SNAPSHOT")
-    implementation("dev.jorel:commandapi-bukkit-shade:9.4.1")
-    implementation("dev.jorel:commandapi-bukkit-kotlin:9.4.1")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
+    //implementation("dev.jorel:commandapi-bukkit-shade:9.4.1")
+    //implementation("dev.jorel:commandapi-bukkit-kotlin:9.4.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.20")
     implementation("net.jodah:expiringmap:0.5.11")
 }
 

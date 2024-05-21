@@ -6,15 +6,29 @@ import cn.xor7.iseeyou.anticheat.suspiciousPhotographers
 import cn.xor7.iseeyou.metrics.Metrics
 import cn.xor7.iseeyou.updatechecker.CompareVersions
 import cn.xor7.iseeyou.updatechecker.UpdateChecker
+import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.StringReader
+import com.mojang.brigadier.arguments.ArgumentType
+import com.mojang.brigadier.arguments.StringArgumentType
+import com.mojang.brigadier.context.CommandContext
+import net.minecraft.commands.CommandSourceStack
+import net.minecraft.commands.Commands.argument
+import net.minecraft.commands.Commands.literal
+import net.minecraft.commands.SharedSuggestionProvider
+import net.minecraft.commands.arguments.coordinates.Vec3Argument
+import net.minecraft.server.MinecraftServer
+/*
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
 import dev.jorel.commandapi.arguments.ArgumentSuggestions
 import dev.jorel.commandapi.kotlindsl.*
+ */
 import org.bukkit.Bukkit
 import org.bukkit.ChatColor
 import org.bukkit.Location
 import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.InvalidConfigurationException
+import org.bukkit.entity.Player
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import org.leavesmc.leaves.entity.Photographer
@@ -44,15 +58,17 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
     private var outdatedRecordRetentionDays: Int = 0
     private val commandPhotographersNameUUIDMap = mutableMapOf<String, String>() // Name => UUID
 
+    /*
     override fun onLoad() = CommandAPI.onLoad(
         CommandAPIBukkitConfig(this)
             .verboseOutput(false)
             .silentLogs(true)
     )
+     */
 
     override fun onEnable() {
         instance = this
-        CommandAPI.onEnable()
+        //CommandAPI.onEnable()
         registerCommand()
         setupConfig()
 
@@ -166,6 +182,87 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
     }
 
     private fun registerCommand() {
+        val dispatcher = MinecraftServer.getServer().commands.dispatcher
+        dispatcher.register(
+            literal("photographer")
+                .then(literal("create")
+                    .then(argument("name", StringArgumentType.word())
+                        .executes {
+                            if (it.source.player == null) {
+                                return@executes 1
+                            }
+                            val location = it.source.location
+                            val name = StringArgumentType.getString(it, "name")
+                            if (name.length !in 4..16) {
+                                it.source.player!!.bukkitEntity.sendMessage("§4摄像机名称长度必须在4-16之间！")
+                                return@executes 1
+                            }
+                            createPhotographer(name, location)
+                            it.source.sender.sendMessage("§a成功创建摄像机：$name")
+                            return@executes 0
+                        }
+                        .then(argument("world", StringArgumentType.word())
+                            .suggests { _, builder ->
+                                SharedSuggestionProvider.suggest(Bukkit.getWorlds().map { it.name }.toList(), builder)
+                            }
+                            .then(argument("pos", Vec3Argument.vec3())
+                                .executes {
+                                    val world =
+                                        Bukkit.getWorld(StringArgumentType.getString(it, "world")) ?: return@executes 1
+                                    val vec3 = Vec3Argument.getVec3(it, "pos")
+                                    val location = Location(world, vec3.x, vec3.y, vec3.z)
+                                    val name = StringArgumentType.getString(it, "name")
+                                    if (name.length !in 4..16) {
+                                        it.source.player!!.bukkitEntity.sendMessage("§4摄像机名称长度必须在4-16之间！")
+                                        return@executes 1
+                                    }
+                                    createPhotographer(name, location)
+                                    it.source.sender.sendMessage("§a成功创建摄像机：$name")
+                                    return@executes 0
+                                }
+                            )
+                        )
+                    )
+                )
+                .then(literal("remove")
+                    .then(argument("name", StringArgumentType.word())
+                        .suggests { _, builder ->
+                            SharedSuggestionProvider.suggest(commandPhotographersNameUUIDMap.keys, builder)
+                        }
+                        .executes {
+                            val name = StringArgumentType.getString(it, "name")
+                            val uuid = commandPhotographersNameUUIDMap[name] ?: run {
+                                it.source.bukkitSender.sendMessage("§4不存在该摄像机！")
+                                return@executes 1
+                            }
+                            photographers[uuid]?.stopRecording(toml!!.data.asyncSave)
+                            commandPhotographersNameUUIDMap.remove(name)
+                            it.source.bukkitSender.sendMessage("§a成功移除摄像机：$name")
+                            return@executes 0
+                        }
+                    )
+                )
+                .then(literal("list")
+                    .executes {
+                        val photographerNames = commandPhotographersNameUUIDMap.keys.joinToString(", ")
+                        it.source.bukkitSender.sendMessage("§a摄像机列表：$photographerNames")
+                        return@executes 0
+                    }
+                )
+        )
+        dispatcher.register(
+            literal("instantreplay")
+                .executes {
+                    val player: Player = it.source.player?.bukkitEntity as Player
+                    if (InstantReplayManager.replay(player)) {
+                        player.sendMessage("§a成功创建即时回放")
+                    } else {
+                        player.sendMessage("§4操作过快，即时回放创建失败！")
+                    }
+                    return@executes 0
+                }
+        )
+        /*
         commandTree("photographer") {
             literalArgument("create") {
                 stringArgument("name") {
@@ -226,6 +323,8 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
 
             }
         }
+
+         */
     }
 
     private fun createPhotographer(name: String, location: Location) {
@@ -261,7 +360,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
     }
 
     override fun onDisable() {
-        CommandAPI.onDisable()
+        //CommandAPI.onDisable()
         for (photographer in photographers.values) {
             photographer.stopRecording(toml!!.data.asyncSave)
         }
