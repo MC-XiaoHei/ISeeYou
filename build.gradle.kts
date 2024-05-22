@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "cn.xor7"
-version = "1.2.1"
+version = "1.2.2"
 
 repositories {
     mavenLocal()
@@ -35,7 +35,7 @@ dependencies {
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("org.leavesmc.leaves:leaves-api:1.20.6-R0.1-SNAPSHOT")
-    implementation("dev.jorel:commandapi-bukkit-shade:9.4.1")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.4.1")
     implementation("dev.jorel:commandapi-bukkit-kotlin:9.4.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
     implementation("net.jodah:expiringmap:0.5.11")
@@ -67,14 +67,14 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.withType<ShadowJar> {
     relocate("dev.jorel.commandapi", "cn.xor7.iseeyou.commandapi")
-    manifest {
-        attributes["paperweight-mappings-namespace"] = "spigot"
-    }
     minimize()
     exclude("META-INF/*.SF")
     exclude("META-INF/*.DSA")
     exclude("META-INF/*.RSA")
     mergeServiceFiles()
+    manifest {
+        attributes["paperweight-mappings-namespace"] = "mojang"
+    }
 }
 
 kotlin {

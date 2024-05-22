@@ -52,8 +52,11 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
 
     override fun onEnable() {
         instance = this
-        CommandAPI.onEnable()
-        registerCommand()
+
+        // 等待修复
+        //CommandAPI.onEnable()
+        //registerCommand()
+
         setupConfig()
 
         logger.info("██╗███████╗███████╗███████╗██╗   ██╗ ██████╗ ██╗   ██╗")
