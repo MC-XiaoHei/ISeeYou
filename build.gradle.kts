@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "cn.xor7"
-version = "1.2.1"
+version = "1.2.2"
 
 repositories {
     mavenLocal()
@@ -69,14 +69,14 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.withType<ShadowJar> {
     relocate("dev.jorel.commandapi", "cn.xor7.iseeyou.commandapi")
-    manifest {
-        attributes["paperweight-mappings-namespace"] = "spigot"
-    }
     minimize()
     exclude("META-INF/*.SF")
     exclude("META-INF/*.DSA")
     exclude("META-INF/*.RSA")
     mergeServiceFiles()
+    manifest {
+        attributes["paperweight-mappings-namespace"] = "mojang"
+    }
 }
 
 kotlin {
