@@ -9,6 +9,8 @@ plugins {
 group = "cn.xor7"
 version = "1.2.2"
 
+val commandAPIVer = "9.4.1"
+
 repositories {
     mavenLocal()
     maven("https://jitpack.io/")
@@ -35,8 +37,8 @@ dependencies {
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("org.leavesmc.leaves:leaves-api:1.20.6-R0.1-SNAPSHOT")
-    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:9.4.1")
-    implementation("dev.jorel:commandapi-bukkit-kotlin:9.4.1")
+    implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:${commandAPIVer}")
+    implementation("dev.jorel:commandapi-bukkit-kotlin:${commandAPIVer}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
     implementation("net.jodah:expiringmap:0.5.11")
 }
