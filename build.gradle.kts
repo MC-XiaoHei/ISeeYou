@@ -9,7 +9,7 @@ plugins {
 group = "cn.xor7"
 version = "1.2.1"
 
-val commandAPIVer = "9.4.1"
+val commandAPIVer = "9.4.2"
 
 repositories {
     mavenLocal()
