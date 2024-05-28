@@ -14,7 +14,6 @@ val commandAPIVer = "9.4.2"
 repositories {
     mavenLocal()
     maven("https://jitpack.io/")
-    maven("https://maven.aliyun.com/repository/public")
     mavenCentral()
     maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://maven.aliyun.com/repository/public")
