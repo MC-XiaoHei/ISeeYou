@@ -40,6 +40,15 @@ ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) c
 
 > If you want us to add support for more anti-cheat plugins, please create an [Issue](https://github.com/MC-XiaoHei/ISeeYou/issues) for feedback!
 
+## Compatible Minecraft versions
+
+The list of what version of the ISeeYou you'll need to run on a specific version of [Leaves](leavesmc.org) is as follows:
+
+| Leaves version | Compatible versions | Latest compatible<br>version | Minimum Java<br>version required<br>to run latest version |
+|------------|---------------------|------------------------------|-----------------------------------------------------------|
+| **1.20.4** | v1.0.0-v1.2.1       | v1.2.1                       | 17                                                        |
+| **1.20.6** | v1.2.2              | v1.2.2                       | 21                                                        |
+
 ## Instructions for use
 
 ### Dependencies
