@@ -1,6 +1,6 @@
 # ISeeYou
 
-<img src="https://img2.imgtp.com/2024/05/08/3Fj2Vdil.png" alt="Logo" width="100" height="100">
+<img src="https://picdm.sunbangyan.cn/2024/02/20/b7ea08f832b52a6dcbc215947d849425.jpeg" alt="Logo" width="100" height="100">
 
 _Also known as ICU_
 
@@ -70,7 +70,7 @@ The list of what version of the ISeeYou you'll need to run on a specific version
 
 2. **Configure settings**: Edit the `plugins/ISeeYou/config.toml` file and adjust the recording parameters and anti-cheat settings as needed.
 
-## Explanation of configuration items
+## Config
 
 ```toml
 
@@ -123,8 +123,6 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
 
 > **Before using the `/instantreplay` command**, make sure that the corresponding feature is enabled in the plugin configuration file.
 
-### Detailed Explanation
-
 | Command                                 | Description                                                                                                                                                | Example                                                                        |
 |-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | `photographer create <name> [location]` | Create a camera                                                                                                                                            | `/photographer create MyCamera`<br>`/photographer create MyCamera <x> <y> <z>` |
@@ -142,6 +140,8 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
     * [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
 
     * [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
+  
+    * [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
 
 * Development Version
 

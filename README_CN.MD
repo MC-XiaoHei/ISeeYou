@@ -1,6 +1,6 @@
 # ISeeYou
 
-<img src="https://img2.imgtp.com/2024/05/08/3Fj2Vdil.png" alt="Logo" width="100" height="100">
+<img src="https://picdm.sunbangyan.cn/2024/02/20/b7ea08f832b52a6dcbc215947d849425.jpeg" alt="Logo" width="100" height="100">
 
 _也可以叫ICU_
 
@@ -39,6 +39,15 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌暂不可用 |
 
 > 如果您希望我们增加对更多反作弊插件的支持，请创建[Issue](https://github.com/MC-XiaoHei/ISeeYou/issues)进行反馈！
+
+## 兼容的Minecraft版本
+
+以下是需要运行特定版本的 [Leaves](leavesmc.org) 的 **ISeeYou** 版本的列表：
+
+| Leaves版本 | 兼容版本 | 最新兼容版本 | 运行最新版本所需的最低Java版本 |
+|------------|---------------------|------------------------------|-----------------------------------------------------------|
+| **1.20.4** | v1.0.0-v1.2.1       | v1.2.1                       | 17                                                        |
+| **1.20.6** | v1.2.2              | v1.2.2                       | 21                                                        |
 
 ## 使用说明
 
@@ -138,6 +147,8 @@ recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径�
   * [GitHub 发布页](https://github.com/MC-XiaoHei/ISeeYou/releases)
 
   * [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
+
+  * [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
 
 * 开发版本
 
