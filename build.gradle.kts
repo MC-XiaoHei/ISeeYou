@@ -32,7 +32,7 @@ dependencies {
     compileOnly(files("libs/Matrix_7.7.32A.jar"))
     compileOnly(files("libs/VulcanAPI.jar"))
     implementation("com.github.MWHunter:GrimAPI:9f5aaef74b")
-    compileOnly("com.github.Elikill58:Negativity:v2-SNAPSHOT")
+    compileOnly("com.github.Elikill58:Negativity:2.7.1")
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
     compileOnly("org.leavesmc.leaves:leaves-api:1.20.6-R0.1-SNAPSHOT")
