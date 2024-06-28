@@ -9,7 +9,7 @@ plugins {
 group = "cn.xor7"
 version = "1.2.2"
 
-val commandAPIVer = "9.4.2"
+val commandAPIVer = "9.5.1"
 
 repositories {
     mavenLocal()
@@ -29,7 +29,7 @@ repositories {
 dependencies {
     //anticheat dependencies
     compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
-    compileOnly(files("libs/Matrix_7.7.32A.jar"))
+    compileOnly(files("libs/Matrix_7.9.6A.jar"))
     compileOnly(files("libs/VulcanAPI.jar"))
     implementation("com.github.MWHunter:GrimAPI:9f5aaef74b")
     compileOnly("com.github.Elikill58:Negativity:2.7.1")
