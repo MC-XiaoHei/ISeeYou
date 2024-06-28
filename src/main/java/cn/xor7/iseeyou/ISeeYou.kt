@@ -33,7 +33,6 @@ import java.util.concurrent.TimeoutException
 import kotlin.io.path.isDirectory
 import kotlin.math.pow
 
-
 var toml: TomlEx<ConfigData>? = null
 var photographers = mutableMapOf<String, Photographer>()
 var highSpeedPausedPhotographers = mutableSetOf<Photographer>()
@@ -56,43 +55,41 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         registerCommand()
         setupConfig()
 
-        logger.info("██╗███████╗███████╗███████╗██╗   ██╗ ██████╗ ██╗   ██╗")
-        logger.info("██║██╔════╝██╔════╝██╔════╝╚██╗ ██╔╝██╔═══██╗██║   ██║")
-        logger.info("██║███████╗█████╗  █████╗   ╚████╔╝ ██║   ██║██║   ██║")
-        logger.info("██║╚════██║██╔══╝  ██╔══╝    ╚██╔╝  ██║   ██║██║   ██║")
-        logger.info("██║███████║███████╗███████╗   ██║   ╚██████╔╝╚██████╔╝")
-        logger.info("╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝    ╚═════╝  ╚═════╝")
+        logInfo("██╗███████╗███████╗███████╗██╗   ██╗ ██████╗ ██╗   ██╗")
+        logInfo("██║██╔════╝██╔════╝██╔════╝╚██╗ ██╔╝██╔═══██╗██║   ██║")
+        logInfo("██║███████╗█████╗  █████╗   ╚████╔╝ ██║   ██║██║   ██║")
+        logInfo("██║╚════██║██╔══╝  ██╔══╝    ╚██╔╝  ██║   ██║██║   ██║")
+        logInfo("██║███████║███████╗███████╗   ██║   ╚██████╔╝╚██████╔╝")
+        logInfo("╚═╝╚══════╝╚══════╝╚══════╝   ╚═╝    ╚═════╝  ╚═════╝")
 
         if (toml != null) {
             if (toml!!.data.deleteTmpFileOnLoad) {
                 try {
-                    Files.walk(Paths.get(toml!!.data.recordPath), Int.MAX_VALUE, FileVisitOption.FOLLOW_LINKS)
-                        .use { paths ->
-                            paths.filter { it.isDirectory() && it.fileName.toString().endsWith(".tmp") }
-                                .forEach { deleteTmpFolder(it) }
-                        }
+                    Files.walk(Paths.get(toml!!.data.recordPath), Int.MAX_VALUE, FileVisitOption.FOLLOW_LINKS).use { paths ->
+                        paths.filter { it.isDirectory() && it.fileName.toString().endsWith(".tmp") }
+                            .forEach { deleteTmpFolder(it) }
+                    }
                 } catch (_: IOException) {
                 }
             }
 
-            EventListener.pauseRecordingOnHighSpeedThresholdPerTickSquared =
-                (toml!!.data.pauseRecordingOnHighSpeed.threshold / 20).pow(2.0)
+            EventListener.pauseRecordingOnHighSpeedThresholdPerTickSquared = (toml!!.data.pauseRecordingOnHighSpeed.threshold / 20).pow(2.0)
 
             if (toml!!.data.clearOutdatedRecordFile.enabled) {
                 cleanOutdatedRecordings()
                 var interval = toml!!.data.clearOutdatedRecordFile.interval
                 if (interval !in 1..24) {
                     interval = 24
-                    logger.warning("§c[Warning] §rFailed to load the interval parameter, reset to the default value of 24.")
+                    logWarning("Failed to load the interval parameter, reset to the default value of 24.")
                 }
                 object : BukkitRunnable() {
                     override fun run() = cleanOutdatedRecordings()
-                }.runTaskTimer(this, 0, 20 * 60 * 60 * (interval.toLong()))
+                }.runTaskTimer(this, 0, 20 * 60 * 60 * interval.toLong())
             }
 
             Bukkit.getPluginManager().registerEvents(EventListener, this)
         } else {
-            logger.warning("§c[Error] §rFailed to initialize configuration. Plugin will not enable.")
+            logError("Failed to initialize configuration. Plugin will not enable.")
             Bukkit.getPluginManager().disablePlugin(this)
         }
 
@@ -104,39 +101,29 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
 
         Bukkit.getPluginManager().registerEvents(AntiCheatListener, this)
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Themis") ||
-            toml!!.data.recordSuspiciousPlayer.enableThemisIntegration
-        ) {
+        if (Bukkit.getPluginManager().isPluginEnabled("Themis") || toml!!.data.recordSuspiciousPlayer.enableThemisIntegration) {
             Bukkit.getPluginManager().registerEvents(ThemisListener(), this)
-            logger.info("§rRegister the Themis Listener...")
+            logInfo("Register the Themis Listener...")
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Matrix") ||
-            toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration
-        ) {
+        if (Bukkit.getPluginManager().isPluginEnabled("Matrix") || toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration) {
             Bukkit.getPluginManager().registerEvents(MatrixListener(), this)
-            logger.info("§rRegister the Matrix Listener...")
+            logInfo("Register the Matrix Listener...")
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Vulcan") ||
-            toml!!.data.recordSuspiciousPlayer.enableVulcanIntegration
-        ){
+        if (Bukkit.getPluginManager().isPluginEnabled("Vulcan") || toml!!.data.recordSuspiciousPlayer.enableVulcanIntegration){
             Bukkit.getPluginManager().registerEvents(VulcanListener(), this)
-            logger.info("§rRegister the Vulcan Listener...")
+            logInfo("Register the Vulcan Listener...")
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Negativity") ||
-            toml!!.data.recordSuspiciousPlayer.enableNegativityIntegration
-        ) {
+        if (Bukkit.getPluginManager().isPluginEnabled("Negativity") || toml!!.data.recordSuspiciousPlayer.enableNegativityIntegration) {
             Bukkit.getPluginManager().registerEvents(NegativityListener(), this)
-            logger.info("§rRegister the Negativity Listener...")
+            logInfo("Register the Negativity Listener...")
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("GrimAC") ||
-            toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration
-        ) {
+        if (Bukkit.getPluginManager().isPluginEnabled("GrimAC") || toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration) {
             Bukkit.getPluginManager().registerEvents(GrimACListener(), this)
-            logger.info("§rRegister the GrimAC Listener...")
+            logInfo("Register the GrimAC Listener...")
         }
 
         if (toml!!.data.check_for_updates){
@@ -144,23 +131,18 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
             updateChecker.getVersion { latestVersion: String ->
                 val currentVersion = description.version
                 val comparisonResult = CompareVersions.compareVersions(currentVersion, latestVersion)
-                val temp = latestVersion.removePrefix("V")
                 val logMessage = when {
                     comparisonResult < 0 -> {
-                        "§a[New Version] §rA new version of your plugin is available: §b$latestVersion§r\n" +
-                                "§e[Download] §rYou can download the latest plugin from the following platforms:\n" +
-                                "§9[MineBBS] §rhttps://www.minebbs.com/resources/iseeyou.7276/updates\n" +
-                                "§c[Hangar] §rhttps://hangar.papermc.io/CerealAxis/ISeeYou/versions\n" +
-                                "§6[Github] §rhttps://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1"
+                        "[New Version] A new version of your plugin is available: $latestVersion\n" +
+                                "[Download] You can download the latest plugin from the following platforms:\n" +
+                                "[MineBBS] https://www.minebbs.com/resources/iseeyou.7276/updates\n" +
+                                "[Hangar] https://hangar.papermc.io/CerealAxis/ISeeYou/versions\n" +
+                                "[Github] https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1"
                     }
-                    comparisonResult == 0 -> {
-                        "§a[Latest Version] §rYour plugin is the latest version!"
-                    }
-                    else -> {
-                        "§e[Version Info] §rYour plugin version is ahead of the latest version §b$latestVersion§r"
-                    }
+                    comparisonResult == 0 -> "[Latest Version] Your plugin is the latest version!"
+                    else -> "[Version Info] Your plugin version is ahead of the latest version $latestVersion"
                 }
-                logger.info(logMessage)
+                logInfo(logMessage)
             }
         }
     }
@@ -173,22 +155,22 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                         val location = player.location
                         val name = args["name"] as String
                         if (name.length !in 4..16) {
-                            player.sendMessage("§4摄像机名称长度必须在4-16之间！")
+                            player.sendMessage("摄像机名称长度必须在4-16之间！")
                             return@playerExecutor
                         }
                         createPhotographer(name, location)
-                        player.sendMessage("§a成功创建摄像机：$name")
+                        player.sendMessage("成功创建摄像机：$name")
                     }
                     locationArgument("location") {
                         anyExecutor { sender, args ->
                             val location = args["location"] as Location
                             val name = args["name"] as String
                             if (name.length !in 4..16) {
-                                sender.sendMessage("§4摄像机名称长度必须在4-16之间！")
+                                sender.sendMessage("摄像机名称长度必须在4-16之间！")
                                 return@anyExecutor
                             }
                             createPhotographer(name, location)
-                            sender.sendMessage("§a成功创建摄像机：$name")
+                            sender.sendMessage("成功创建摄像机：$name")
                         }
                     }
                 }
@@ -199,27 +181,27 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                     anyExecutor { sender, args ->
                         val name = args["name"] as String
                         val uuid = commandPhotographersNameUUIDMap[name] ?: run {
-                            sender.sendMessage("§4不存在该摄像机！")
+                            sender.sendMessage("不存在该摄像机！")
                             return@anyExecutor
                         }
                         photographers[uuid]?.stopRecording(toml!!.data.asyncSave)
-                        sender.sendMessage("§a成功移除摄像机：$name")
+                        sender.sendMessage("成功移除摄像机：$name")
                     }
                 }
             }
             literalArgument("list") {
                 anyExecutor { sender, _ ->
                     val photographerNames = commandPhotographersNameUUIDMap.keys.joinToString(", ")
-                    sender.sendMessage("§a摄像机列表：$photographerNames")
+                    sender.sendMessage("摄像机列表：$photographerNames")
                 }
             }
         }
         commandTree("instantreplay") {
             playerExecutor { player, _ ->
                 if (InstantReplayManager.replay(player)) {
-                    player.sendMessage("§a成功创建即时回放")
+                    player.sendMessage("成功创建即时回放")
                 } else {
-                    player.sendMessage("§4操作过快，即时回放创建失败！")
+                    player.sendMessage("操作过快，即时回放创建失败！")
                 }
             }
             playerArgument("player") {
@@ -260,37 +242,23 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         toml!!.save()
     }
 
-    override fun onDisable() {
-        CommandAPI.onDisable()
-        for (photographer in photographers.values) {
-            photographer.stopRecording(toml!!.data.asyncSave)
-        }
-        photographers.clear()
-        highSpeedPausedPhotographers.clear()
-        suspiciousPhotographers.clear()
-        instance = null
-    }
-
     private fun deleteTmpFolder(folderPath: Path) {
         try {
-            Files.walkFileTree(
-                folderPath,
-                EnumSet.noneOf(FileVisitOption::class.java),
-                Int.MAX_VALUE,
-                object : SimpleFileVisitor<Path>() {
-                    @Throws(IOException::class)
-                    override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
-                        Files.delete(file)
-                        return FileVisitResult.CONTINUE
-                    }
+            Files.walkFileTree(folderPath, EnumSet.noneOf(FileVisitOption::class.java), Int.MAX_VALUE, object : SimpleFileVisitor<Path>() {
+                @Throws(IOException::class)
+                override fun visitFile(file: Path, attrs: BasicFileAttributes): FileVisitResult {
+                    Files.delete(file)
+                    return FileVisitResult.CONTINUE
+                }
 
-                    @Throws(IOException::class)
-                    override fun postVisitDirectory(dir: Path, exc: IOException?): FileVisitResult {
-                        Files.delete(dir)
-                        return FileVisitResult.CONTINUE
-                    }
-                })
+                @Throws(IOException::class)
+                override fun postVisitDirectory(dir: Path, exc: IOException?): FileVisitResult {
+                    Files.delete(dir)
+                    return FileVisitResult.CONTINUE
+                }
+            })
         } catch (e: IOException) {
+            logSevere("Error occurred while deleting temporary folder: ${e.message}")
             e.printStackTrace()
         }
     }
@@ -306,7 +274,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                     null
                 }
 
-            logger.info("Start to delete outdated recordings in $recordingsDirA and $recordingsDirB")
+            logInfo("Start to delete outdated recordings in $recordingsDirA and $recordingsDirB")
             var deletedCount = 0
 
             deletedCount += deleteFilesInDirectory(recordingsDirA)
@@ -314,9 +282,9 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                 deletedCount += deleteFilesInDirectory(it)
             }
 
-            logger.info("Finished deleting outdated recordings, deleted $deletedCount files")
+            logInfo("Finished deleting outdated recordings, deleted $deletedCount files")
         } catch (e: IOException) {
-            logger.severe("Error occurred while cleaning outdated recordings: ${e.message}")
+            logSevere("Error occurred while cleaning outdated recordings: ${e.message}")
             e.printStackTrace()
         }
     }
@@ -332,7 +300,6 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         return count
     }
 
-
     private fun deleteRecordingFiles(folderPath: Path): Int {
         var deletedCount = 0
         var fileCount = 0
@@ -345,17 +312,16 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                         val fileName = file.fileName.toString()
                         val creationDateStr = fileName.substringBefore('@')
                         val creationDate = LocalDate.parse(creationDateStr)
-                        val daysSinceCreation =
-                            Duration.between(creationDate.atStartOfDay(), currentDate.atStartOfDay()).toDays()
+                        val daysSinceCreation = Duration.between(creationDate.atStartOfDay(), currentDate.atStartOfDay()).toDays()
                         if (daysSinceCreation > outdatedRecordRetentionDays) {
                             val executor = Executors.newSingleThreadExecutor()
                             val future = executor.submit(Callable {
                                 try {
                                     Files.delete(file)
-                                    logger.info("Deleted recording file: $fileName")
+                                    logInfo("Deleted recording file: $fileName")
                                     true
                                 } catch (e: IOException) {
-                                    logger.severe("Error occurred while deleting recording file: $fileName, Error: ${e.message}")
+                                    logSevere("Error occurred while deleting recording file: $fileName, Error: ${e.message}")
                                     e.printStackTrace()
                                     false
                                 }
@@ -366,7 +332,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                                     deletedCount++
                                 }
                             } catch (e: TimeoutException) {
-                                logger.warning("Timeout deleting file: $fileName. Skipping...")
+                                logWarning("Timeout deleting file: $fileName. Skipping...")
                                 future.cancel(true)
                             } finally {
                                 executor.shutdown()
@@ -375,13 +341,39 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                     }
             }
             if (fileCount == 0 || deletedCount == 0) {
-                logger.info("No outdated recording files found to delete.")
+                logInfo("No outdated recording files found to delete.")
             }
         } catch (e: IOException) {
-            logger.severe("Error occurred while processing recording files in folder: $folderPath, Error: ${e.message}")
+            logSevere("Error occurred while processing recording files in folder: $folderPath, Error: ${e.message}")
             e.printStackTrace()
         }
         return deletedCount
     }
 
+    override fun onDisable() {
+        CommandAPI.onDisable()
+        for (photographer in photographers.values) {
+            photographer.stopRecording(toml!!.data.asyncSave)
+        }
+        photographers.clear()
+        highSpeedPausedPhotographers.clear()
+        suspiciousPhotographers.clear()
+        instance = null
+    }
+
+    private fun logInfo(message: String) {
+        logger.info("${ChatColor.GREEN}[INFO] ${ChatColor.RESET}$message")
+    }
+
+    private fun logWarning(message: String) {
+        logger.warning("${ChatColor.YELLOW}[WARNING] ${ChatColor.RESET}$message")
+    }
+
+    private fun logSevere(message: String) {
+        logger.severe("${ChatColor.RED}[SEVERE] ${ChatColor.RESET}$message")
+    }
+
+    private fun logError(message: String) {
+        logger.severe("${ChatColor.RED}[ERROR] ${ChatColor.RESET}$message")
+    }
 }
