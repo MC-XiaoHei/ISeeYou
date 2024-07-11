@@ -47,8 +47,8 @@ The list of what version of the ISeeYou you'll need to run on a specific version
 | Leaves version | Compatible versions | Latest compatible<br>version | Minimum Java<br>version required<br>to run latest version |
 |------------|---------------------|------------------------------|-----------------------------------------------------------|
 | **1.20.4** | v1.0.0-v1.2.1       | v1.2.1                       | 17                                                        |
-| **1.20.6** | v1.2.2              | v1.2.2                       | 21                                                        |
-| **1.21**   | v1.3.0 | v1.3.0 | 21                                                        |
+| **1.20.6** | v1.2.2-v1.3.0       | v1.3.0                       | 21                                                        |
+| **1.21**   | v1.3.0              | v1.3.0                       | 21                                                        |
 
 ## Instructions for use
 
