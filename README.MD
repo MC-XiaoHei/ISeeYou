@@ -31,12 +31,12 @@ ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) c
 ### Supported Anti-cheat Plugins
 
 | Name                                                                                                                                          | Status            |
-|-----------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
-| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅ Available       |
-| [Matrix](https://matrix.rip/)                                                                                                                 | ✅ Available       |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
+| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅ Available      |
+| [Matrix](https://matrix.rip/)                                                                                                                 | ✅ Available      |
 | [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | ⚠️ In Public Beta |
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️ In Public Beta |
-| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌ Not Available   |
+| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌ Not Available  |
 
 > If you want us to add support for more anti-cheat plugins, please create an [Issue](https://github.com/MC-XiaoHei/ISeeYou/issues) for feedback!
 
@@ -44,18 +44,18 @@ ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) c
 
 The list of what version of the ISeeYou you'll need to run on a specific version of [Leaves](leavesmc.org) is as follows:
 
-| Leaves version | Compatible versions | Latest compatible<br>version | Minimum Java<br>version required<br>to run latest version |
-|------------|---------------------|------------------------------|-----------------------------------------------------------|
-| **1.20.4** | v1.0.0-v1.2.1       | v1.2.1                       | 17                                                        |
-| **1.20.6** | v1.2.2-v1.3.0       | v1.3.0                       | 21                                                        |
-| **1.21**   | v1.3.0              | v1.3.0                       | 21                                                        |
+| Leaves version | Compatible versions                                                                                                                     | Latest compatible<br>version                                        | Minimum Java<br>version required<br>to run latest version |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------- |
+| **1.20.4**     | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0)-[v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                                                        |
+| **1.20.6**     | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2)-[v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
+| **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0)                                                                     | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
 
 ## Instructions for use
 
 ### Dependencies
 
 | **Dependencies**                                                                                                                              | **Optional** |
-|:----------------------------------------------------------------------------------------------------------------------------------------------|:------------:|
+| :-------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
 | Server [**Leaves**](https://leavesmc.org/)                                                                                                    | **Required** |
 | [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | 💡 Optional  |
 | [Matrix AntiCheat](https://matrix.rip/)                                                                                                       | 💡 Optional  |
@@ -80,7 +80,7 @@ deleteTmpFileOnLoad = true # Delete temporary files on load.
 pauseInsteadOfStopRecordingOnPlayerQuit = false # Pause recording instead of stopping when player quits.
 recordPath = "replay/player/${name}@${uuid}" # Recording storage path template, supports ${name} and ${uuid} variables.
 asyncSave = false # Async save recording
-bStats = true 
+bStats = true
 
 [pauseRecordingOnHighSpeed]
 enabled = false  # Whether to enable pausing recording on high speed, which pauses recording when the player moves at high speeds.
@@ -125,7 +125,7 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
 > **Before using the `/instantreplay` command**, make sure that the corresponding feature is enabled in the plugin configuration file.
 
 | Command                                 | Description                                                                                                                                                | Example                                                                        |
-|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | `photographer create <name> [location]` | Create a camera                                                                                                                                            | `/photographer create MyCamera`<br>`/photographer create MyCamera <x> <y> <z>` |
 |                                         | - `<name>`: Camera name, limited to 5 to 16 characters                                                                                                     |                                                                                |
 |                                         | - `[location]` (optional): Camera location, format is x y z coordinates.<br>If not specified, it defaults to the current position of the executing player. |                                                                                |
@@ -136,17 +136,17 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
 
 ## Download
 
-* Stable Version
+- Stable Version
 
-    * [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
+  - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
 
-    * [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
-  
-    * [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
+  - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
 
-* Development Version
+  - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
 
-    * [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
+- Development Version
+
+  - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
 ### Building
 
@@ -188,4 +188,4 @@ Thank you for using the ISeeYou plugin! If you encounter any problems or have an
 
 ## Statistics
 
-[_![](https://bstats.org/signatures/bukkit/ISeeYou.svg)](https://bstats.org/plugin/bukkit/ISeeYou/21845)
+[\_![](https://bstats.org/signatures/bukkit/ISeeYou.svg)](https://bstats.org/plugin/bukkit/ISeeYou/21845)
