@@ -11,10 +11,9 @@ _Also known as ICU_
 
 [中文](README_CN.MD) | [English](README.MD)
 
-## Warning
-
-This plugin can only run on servers using the [Leaves](https://leavesmc.org/) core, it does not support other cores!
-
+> [!WARNING]
+> This plugin can only run on servers using the [Leaves](https://leavesmc.org/) core, it does not support other cores!
+>
 > The developer only guarantees that the **latest stable version** of the ISeeYou plugin can run normally on the **latest version** of the Leaves core, and does not maintain compatibility with older versions.
 
 ## Introduction
@@ -38,17 +37,18 @@ ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) c
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️ In Public Beta |
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌ Not Available  |
 
-> If you want us to add support for more anti-cheat plugins, please create an [Issue](https://github.com/MC-XiaoHei/ISeeYou/issues) for feedback!
+> [!TIP]
+> If you want us to add support for more anti-cheat plugins, please create an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) for feedback!
 
 ## Compatible Minecraft versions
 
 The list of what version of the ISeeYou you'll need to run on a specific version of [Leaves](leavesmc.org) is as follows:
 
-| Leaves version | Compatible versions                                                                                                                     | Latest compatible<br>version                                        | Minimum Java<br>version required<br>to run latest version |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------- |
-| **1.20.4**     | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0)-[v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                                                        |
-| **1.20.6**     | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2)-[v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
-| **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0)                                                                     | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
+| Leaves version | Compatible versions                                                                                                                       | Latest compatible<br>version                                        | Minimum Java<br>version required<br>to run latest version |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------- |
+| **1.20.4**     | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                                                        |
+| **1.20.6**     | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
+| **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0)                                                                       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
 
 ## Instructions for use
 
@@ -63,6 +63,7 @@ The list of what version of the ISeeYou you'll need to run on a specific version
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | 💡 Optional  |
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | 💡 Optional  |
 
+> [!IMPORTANT]
 > Before installing anti-cheat plugins, please make sure that their required plugins are installed to avoid compatibility issues.
 
 ### Tutorial
@@ -114,6 +115,7 @@ createMinutes = 1  # Specifies how often a camera is created (minutes).
 recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for instant replay recordings, supports ${name} and ${uuid} variables.
 ```
 
+> [!WARNING]
 > Enabling instant replay, recording suspicious players, and other features may increase server performance consumption.
 
 ## Commands
@@ -137,55 +139,49 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
 ## Download
 
 - Stable Version
-
   - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
-
   - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
-
   - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
-
 - Development Version
-
   - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
-### Building
+### Build from scratch
 
-1. **Clone the project source code**
+#### 1. Clone the project source code
 
-   Use the following command to clone the project to your local environment:
+Use the following command to clone the project to your local environment:
 
-   ```shell
-   git clone https://github.com/MC-XiaoHei/ISeeYou.git
-   ```
+```shell
+git clone https://github.com/MC-XiaoHei/ISeeYou.git
+```
 
-2. **Compile and package**
+#### 2. Compile and package
 
-   Navigate to the project root directory and execute the following command to build the jar package:
+Navigate to the project root directory and execute the following command to build the jar package:
 
-   ```shell
-   ./gradlew shadowJar
-   ```
+```shell
+./gradlew shadowJar
+```
 
-3. **Get the Jar**
-
-   After compilation is complete, you will find the output file named `ISeeYou.jar` in the `build/libs` directory.
+After compilation is complete, you will find the output file named `ISeeYou.jar` in the `build/libs` directory.
 
 ## Author Information
 
 - Core Dev: [MC-XiaoHei](https://github.com/MC-XiaoHei), wrote most of the code
 - Core Dev: [CerealAxis](https://github.com/CerealAxis), helped implement automatic cleaning of expired recordings, Matrix adaptation functionality, and wrote the README
 - Contributor: [Cranyozen](https://github.com/Cranyozen), helped complete the automatic build CI
+- Contributor: [Bluemangoo](https://github.com/Bluemangoo), fixed tons of typos in the README
 
 ## Precautions
 
-- This plugin can only run under the [Leaves](https://leavesmc.top/) server environment, and does not support other common Spigot and its downstream cores (such as Paper, Purpur, etc.).
+- This plugin can only run under the [Leaves](https://leavesmc.top/) (and its downstream) server environment, and does not support other Spigot and its downstream cores (such as Paper, Purpur, etc.).
 - Please read and configure the `config.toml` file carefully before using the plugin to ensure that the plugin can run normally.
 - Although there are currently no bug reports caused by reload, try not to use plugins like Plugman to hot reload this plugin, which may cause many unknown problems!
 
 ## Thanks for the support
 
-Thank you for using the ISeeYou plugin! If you encounter any problems or have any suggestions during use, please feel free to contact the author or submit an [Issue](https://github.com/MC-XiaoHei/ISeeYou/issues) to the GitHub repository.
+Thank you for using the ISeeYou plugin! If you encounter any problems or have any suggestions during use, please feel free to contact the author or submit an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) to the GitHub repository.
 
 ## Statistics
 
-[\_![](https://bstats.org/signatures/bukkit/ISeeYou.svg)](https://bstats.org/plugin/bukkit/ISeeYou/21845)
+[![](https://bstats.org/signatures/bukkit/ISeeYou.svg)](https://bstats.org/plugin/bukkit/ISeeYou/21845)
