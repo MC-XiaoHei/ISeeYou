@@ -101,27 +101,27 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
 
         Bukkit.getPluginManager().registerEvents(AntiCheatListener, this)
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Themis") || toml!!.data.recordSuspiciousPlayer.enableThemisIntegration) {
+        if (Bukkit.getPluginManager().isPluginEnabled("Themis") && toml!!.data.recordSuspiciousPlayer.enableThemisIntegration) {
             Bukkit.getPluginManager().registerEvents(ThemisListener(), this)
             logInfo("Register the Themis Listener...")
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Matrix") || toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration) {
+        if (Bukkit.getPluginManager().isPluginEnabled("Matrix") && toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration) {
             Bukkit.getPluginManager().registerEvents(MatrixListener(), this)
             logInfo("Register the Matrix Listener...")
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Vulcan") || toml!!.data.recordSuspiciousPlayer.enableVulcanIntegration){
+        if (Bukkit.getPluginManager().isPluginEnabled("Vulcan") && toml!!.data.recordSuspiciousPlayer.enableVulcanIntegration){
             Bukkit.getPluginManager().registerEvents(VulcanListener(), this)
             logInfo("Register the Vulcan Listener...")
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Negativity") || toml!!.data.recordSuspiciousPlayer.enableNegativityIntegration) {
+        if (Bukkit.getPluginManager().isPluginEnabled("Negativity") && toml!!.data.recordSuspiciousPlayer.enableNegativityIntegration) {
             Bukkit.getPluginManager().registerEvents(NegativityListener(), this)
             logInfo("Register the Negativity Listener...")
         }
 
-        if (Bukkit.getPluginManager().isPluginEnabled("GrimAC") || toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration) {
+        if (Bukkit.getPluginManager().isPluginEnabled("GrimAC") && toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration) {
             Bukkit.getPluginManager().registerEvents(GrimACListener(), this)
             logInfo("Register the GrimAC Listener...")
         }
@@ -137,7 +137,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
                                 "[Download] You can download the latest plugin from the following platforms:\n" +
                                 "[MineBBS] https://www.minebbs.com/resources/iseeyou.7276/updates\n" +
                                 "[Hangar] https://hangar.papermc.io/CerealAxis/ISeeYou/versions\n" +
-                                "[Github] https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1"
+                                "[Github] https://github.com/MC-XiaoHei/ISeeYou/releases/"
                     }
                     comparisonResult == 0 -> "[Latest Version] Your plugin is the latest version!"
                     else -> "[Version Info] Your plugin version is ahead of the latest version $latestVersion"
