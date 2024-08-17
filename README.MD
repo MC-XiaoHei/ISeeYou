@@ -14,48 +14,56 @@ _Also known as ICU_
 > [!WARNING]
 > This plugin can only run on servers using the [Leaves](https://leavesmc.org/) core, it does not support other cores!
 >
-> The developer only guarantees that the **latest stable version** of the ISeeYou plugin can run normally on the **latest version** of the Leaves core, and does not maintain compatibility with older versions.
+> The developer only guarantees that the **latest stable version** of the ISeeYou plugin can run normally on the *
+*latest version** of the Leaves core, and does not maintain compatibility with older versions.
 
 ## Introduction
 
-ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) core to record every move of the player in `.mcpr` format.
+ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) core to record every move of the player
+in `.mcpr` format.
 
 ### Features
 
 - **Automatic recording**: No manual operation is required, the plugin will automatically record all players by default.
-- **Flexible configuration**: You can set a whitelist and blacklist, as well as the recording path, etc., through the configuration file.
-- **Anti-cheat support**: Adapted to various anti-cheat plugins, it automatically records when suspicious players are found.
-- **Instant Replay**: With a command, you can trace back a period of time of gameplay footage and save it in `.mcpr` format to the server's disk.
+- **Flexible configuration**: You can set a whitelist and blacklist, as well as the recording path, etc., through the
+  configuration file.
+- **Anti-cheat support**: Adapted to various anti-cheat plugins, it automatically records when suspicious players are
+  found.
+- **Instant Replay**: With a command, you can trace back a period of time of gameplay footage and save it in `.mcpr`
+  format to the server's disk.
 
 ### Supported Anti-cheat Plugins
 
 | Name                                                                                                                                          | Status            |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅ Available      |
-| [Matrix](https://matrix.rip/)                                                                                                                 | ✅ Available      |
+|-----------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
+| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅ Available       |
+| [Matrix](https://matrix.rip/)                                                                                                                 | ✅ Available       |
 | [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | ⚠️ In Public Beta |
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️ In Public Beta |
-| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌ Not Available  |
+| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌ Not Available   |
 
 > [!TIP]
-> If you want us to add support for more anti-cheat plugins, please create an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) for feedback!
+> If you want us to add support for more anti-cheat plugins, please create
+> an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) for feedback!
 
 ## Compatible Minecraft versions
 
-The list of what version of the ISeeYou you'll need to run on a specific version of [Leaves](leavesmc.org) is as follows:
+The list of what version of the ISeeYou you'll need to run on a specific version of [Leaves](leavesmc.org) is as
+follows:
 
 | Leaves version | Compatible versions                                                                                                                       | Latest compatible<br>version                                        | Minimum Java<br>version required<br>to run latest version |
-| -------------- |-------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------| --------------------------------------------------------- |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------------|
 | **1.20.4**     | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                                                        |
 | **1.20.6**     | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
 | **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | 21                                                        |
+| **1.21.1**     | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                                                        |
 
 ## Instructions for use
 
 ### Dependencies
 
 | **Dependencies**                                                                                                                              | **Optional** |
-| :-------------------------------------------------------------------------------------------------------------------------------------------- | :----------: |
+|:----------------------------------------------------------------------------------------------------------------------------------------------|:------------:|
 | Server [**Leaves**](https://leavesmc.org/)                                                                                                    | **Required** |
 | [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | 💡 Optional  |
 | [Matrix AntiCheat](https://matrix.rip/)                                                                                                       | 💡 Optional  |
@@ -64,13 +72,15 @@ The list of what version of the ISeeYou you'll need to run on a specific version
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | 💡 Optional  |
 
 > [!IMPORTANT]
-> Before installing anti-cheat plugins, please make sure that their required plugins are installed to avoid compatibility issues.
+> Before installing anti-cheat plugins, please make sure that their required plugins are installed to avoid
+> compatibility issues.
 
 ### Tutorial
 
 1. **Install the plugin**: Place the plugin file in the plugin directory of the Leaves server and restart the server.
 
-2. **Configure settings**: Edit the `plugins/ISeeYou/config.toml` file and adjust the recording parameters and anti-cheat settings as needed.
+2. **Configure settings**: Edit the `plugins/ISeeYou/config.toml` file and adjust the recording parameters and
+   anti-cheat settings as needed.
 
 ## Config
 
@@ -120,14 +130,16 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
 
 ## Commands
 
-> **`/photographer create <name>` and `/instantreplay` commands** can only be executed by players in the game, not in the server console.
+> **`/photographer create <name>` and `/instantreplay` commands** can only be executed by players in the game, not in
+> the server console.
 
 > **`/photographer create <name> [location]` command** can be executed in the console.
 
-> **Before using the `/instantreplay` command**, make sure that the corresponding feature is enabled in the plugin configuration file.
+> **Before using the `/instantreplay` command**, make sure that the corresponding feature is enabled in the plugin
+> configuration file.
 
 | Command                                 | Description                                                                                                                                                | Example                                                                        |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | `photographer create <name> [location]` | Create a camera                                                                                                                                            | `/photographer create MyCamera`<br>`/photographer create MyCamera <x> <y> <z>` |
 |                                         | - `<name>`: Camera name, limited to 5 to 16 characters                                                                                                     |                                                                                |
 |                                         | - `[location]` (optional): Camera location, format is x y z coordinates.<br>If not specified, it defaults to the current position of the executing player. |                                                                                |
@@ -139,11 +151,11 @@ recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for insta
 ## Download
 
 - Stable Version
-  - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
-  - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
-  - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
+    - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
+    - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
+    - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
 - Development Version
-  - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
+    - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
 ### Build from scratch
 
@@ -168,19 +180,24 @@ After compilation is complete, you will find the output file named `ISeeYou.jar`
 ## Author Information
 
 - Core Dev: [MC-XiaoHei](https://github.com/MC-XiaoHei), wrote most of the code
-- Core Dev: [CerealAxis](https://github.com/CerealAxis), helped implement automatic cleaning of expired recordings, Matrix adaptation functionality, and wrote the README
+- Core Dev: [CerealAxis](https://github.com/CerealAxis), helped implement automatic cleaning of expired recordings,
+  Matrix adaptation functionality, and wrote the README
 - Contributor: [Cranyozen](https://github.com/Cranyozen), helped complete the automatic build CI
 - Contributor: [Bluemangoo](https://github.com/Bluemangoo), fixed tons of typos in the README
 
 ## Precautions
 
-- This plugin can only run under the [Leaves](https://leavesmc.top/) (and its downstream) server environment, and does not support other Spigot and its downstream cores (such as Paper, Purpur, etc.).
-- Please read and configure the `config.toml` file carefully before using the plugin to ensure that the plugin can run normally.
-- Although there are currently no bug reports caused by reload, try not to use plugins like Plugman to hot reload this plugin, which may cause many unknown problems!
+- This plugin can only run under the [Leaves](https://leavesmc.top/) (and its downstream) server environment, and does
+  not support other Spigot and its downstream cores (such as Paper, Purpur, etc.).
+- Please read and configure the `config.toml` file carefully before using the plugin to ensure that the plugin can run
+  normally.
+- Although there are currently no bug reports caused by reload, try not to use plugins like Plugman to hot reload this
+  plugin, which may cause many unknown problems!
 
 ## Thanks for the support
 
-Thank you for using the ISeeYou plugin! If you encounter any problems or have any suggestions during use, please feel free to contact the author or submit an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) to the GitHub repository.
+Thank you for using the ISeeYou plugin! If you encounter any problems or have any suggestions during use, please feel
+free to contact the author or submit an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) to the GitHub repository.
 
 ## Statistics
 

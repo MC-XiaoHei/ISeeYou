@@ -29,12 +29,12 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 
 ### 反作弊适配列表
 
-| 名称                                                                                                                                          | 可用状况    |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅ 可用     |
-| [Matrix](https://matrix.rip/)                                                                                                                 | ✅ 可用     |
-| [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | ⚠️ 公测中   |
-| [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️ 公测中   |
+| 名称                                                                                                                                            | 可用状况   |
+|-----------------------------------------------------------------------------------------------------------------------------------------------|--------|
+| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅ 可用   |
+| [Matrix](https://matrix.rip/)                                                                                                                 | ✅ 可用   |
+| [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | ⚠️ 公测中 |
+| [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️ 公测中 |
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌ 暂不可用 |
 
 > [!TIP] 提示
@@ -44,24 +44,25 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 
 以下是需要运行特定版本的 [Leaves](leavesmc.org) 的 **ISeeYou** 版本的列表：
 
-| Leaves 版本 | 兼容版本                                                                                                                                  | 最新兼容版本                                                        | 运行最新版本所需的最低 Java 版本 |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | -------------------------------- |
-| **1.20.4**  | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                               |
-| **1.20.6**  | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                               |
-| **1.21**    | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0)                                                                       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                               |
+| Leaves 版本  | 兼容版本                                                                                                                                      | 最新兼容版本                                                              | 运行最新版本所需的最低 Java 版本 |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|---------------------|
+| **1.20.4** | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                  |
+| **1.20.6** | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                  |
+| **1.21**   | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | 21                  |
+| **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                  |
 
 ## 使用说明
 
 ### 依赖项
 
-| **依赖项**                                                                                                                                    | **可选性** |
-| :-------------------------------------------------------------------------------------------------------------------------------------------- | :--------: |
-| 服务端 [**Leaves**](https://leavesmc.org/)                                                                                                    |  **必需**  |
-| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) |  💡 可选   |
-| [Matrix AntiCheat](https://matrix.rip/)                                                                                                       |  💡 可选   |
-| [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          |  💡 可选   |
-| [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                |  💡 可选   |
-| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    |  💡 可选   |
+| **依赖项**                                                                                                                                       | **可选性** |
+|:----------------------------------------------------------------------------------------------------------------------------------------------|:-------:|
+| 服务端 [**Leaves**](https://leavesmc.org/)                                                                                                       | **必需**  |
+| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) |  💡 可选  |
+| [Matrix AntiCheat](https://matrix.rip/)                                                                                                       |  💡 可选  |
+| [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          |  💡 可选  |
+| [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                |  💡 可选  |
+| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    |  💡 可选  |
 
 > [!IMPORTANT] 注意
 > 在安装反作弊插件之前，也请确认它们所需的前置插件是否已经安装，以避免兼容性问题。
@@ -133,21 +134,21 @@ recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径�
 
 ### 详细说明
 
-| 指令                                    | 功能描述                                                                                                                                                                       | 示例                                                                           |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| 指令                                      | 功能描述                                                                                                           | 示例                                                                             |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
 | `photographer create <name> [location]` | 创建摄像机<br>`<name>`：摄像机名称，长度限制在 5 到 16 个字符之间<br>`[location]`（可选）：摄像机位置，格式为 x y z 坐标值。<br>若不指定位置，则默认设置为执行命令玩家当前位置 | `/photographer create MyCamera`<br>`/photographer create MyCamera <x> <y> <z>` |
-| `photographer remove <name>`            | 移除摄像<br>`<name>`：要移除的摄像机名称机                                                                                                                                     | `/photographer remove MyCamera`                                                |
-| `photographer list`                     | 显示所有摄像机列表                                                                                                                                                             | `/photographer list`                                                           |
-| `instantreplay`                         | 创建针对执行命令玩家的即时回放记录                                                                                                                                             | `/instantreplay`                                                               |
+| `photographer remove <name>`            | 移除摄像<br>`<name>`：要移除的摄像机名称机                                                                                    | `/photographer remove MyCamera`                                                |
+| `photographer list`                     | 显示所有摄像机列表                                                                                                      | `/photographer list`                                                           |
+| `instantreplay`                         | 创建针对执行命令玩家的即时回放记录                                                                                              | `/instantreplay`                                                               |
 
 ## 下载
 
 - 稳定版本
-  - [GitHub 发布页](https://github.com/MC-XiaoHei/ISeeYou/releases)
-  - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
-  - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
+    - [GitHub 发布页](https://github.com/MC-XiaoHei/ISeeYou/releases)
+    - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
+    - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
 - 开发版本
-  - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
+    - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
 ### 从头构建
 
@@ -184,7 +185,7 @@ git clone https://github.com/MC-XiaoHei/ISeeYou.git
 
 ## 感谢支持
 
-感谢您使用 ISeeYou 插件！如果您在使用过程中遇到任何问题或有任何建议，请随时提交 [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) 到 GitHub 仓库。
+感谢您使用 ISeeYou 插件！如果您在使用过程中遇到任何问题或有任何建议，请随时提交 [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) 到GitHub 仓库。
 
 ## 统计
 
