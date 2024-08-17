@@ -45,10 +45,10 @@ ISeeYou can use the Replay API provided by the [Leaves](https://leavesmc.org/) c
 The list of what version of the ISeeYou you'll need to run on a specific version of [Leaves](leavesmc.org) is as follows:
 
 | Leaves version | Compatible versions                                                                                                                       | Latest compatible<br>version                                        | Minimum Java<br>version required<br>to run latest version |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- | --------------------------------------------------------- |
+| -------------- |-------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------| --------------------------------------------------------- |
 | **1.20.4**     | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                                                        |
 | **1.20.6**     | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
-| **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0)                                                                       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                                                        |
+| **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | 21                                                        |
 
 ## Instructions for use
 
