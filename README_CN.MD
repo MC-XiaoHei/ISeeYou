@@ -12,9 +12,9 @@ _也可以叫 ICU_
 [中文](README_CN.MD) | [English](README.MD)
 
 > [!WARNING] 注意
-> 本插件只能在使用 [Leaves](https://leavesmc.org/) 核心的服务器中运行，不支持其他核心！
+> 本插件只能在使用 [Leaves](https://leavesmc.org/) 或 [Leaf](https://github.com/Winds-Studio/Leaf) 核心的服务器中运行，不支持其他核心！
 >
-> 开发者仅保证**最新正式版** ISeeYou 插件在**最新版** Leaves 核心的服务器中可正常运行，对老版本兼容性不做维护。
+> 开发者仅保证**最新正式版** ISeeYou 插件在**最新版** Leaves 或 Leaf 核心的服务器中可正常运行，对老版本兼容性不做维护。
 
 ## 简介
 
@@ -51,13 +51,19 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 | **1.21**   | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | 21                  |
 | **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                  |
 
+以下是需要运行特定版本的 [Leaf](https://github.com/Winds-Studio/Leaf) 的**ISeeYou** 版本的列表：
+
+| Leaf 版本    | 兼容版本                                                                | 最新兼容版本                                                              | 运行最新版本所需的最低 Java 版本 |
+|------------|---------------------------------------------------------------------|---------------------------------------------------------------------|---------------------|
+| **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                  |
+
 ## 使用说明
 
 ### 依赖项
 
 | **依赖项**                                                                                                                                       | **可选性** |
 |:----------------------------------------------------------------------------------------------------------------------------------------------|:-------:|
-| 服务端 [**Leaves**](https://leavesmc.org/)                                                                                                       | **必需**  |
+| 服务端 [**Leaves**](https://leavesmc.org/) 或 [**Leaf**](https://github.com/Winds-Studio/Leaf)                                                    | **必需**  |
 | [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) |  💡 可选  |
 | [Matrix AntiCheat](https://matrix.rip/)                                                                                                       |  💡 可选  |
 | [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          |  💡 可选  |
@@ -69,7 +75,7 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 
 ### 使用教程
 
-1. **安装插件**：将插件文件放置在 Leaves 服务器的插件目录下，并重新启动服务器。
+1. **安装插件**：将插件文件放置在 Leaves 或 Leaf 服务器的插件目录下，并重新启动服务器。
 
 2. **配置设置**：编辑 `plugins/ISeeYou/config.toml` 文件，根据需求调整录像参数和反作弊设置。
 
@@ -179,7 +185,7 @@ git clone https://github.com/MC-XiaoHei/ISeeYou.git
 
 ## 注意事项
 
-- 本插件的运行只能在 [Leaves](https://leavesmc.top/)（及其下游）服务端环境下使用，不支持其他的 Spigot 及其下游核心（例如 Paper、Purpur 等）。
+- 本插件的运行只能在 [Leaves](https://leavesmc.top/) 或 [Leaf](https://github.com/Winds-Studio/Leaf)（及其下游）服务端环境下使用，不支持其他的 Spigot 及其下游核心（例如 Paper、Purpur 等）。
 - 请在使用插件前仔细阅读并配置好 `config.toml` 文件，以确保插件能够正常运行。
 - 尽管目前没有因为 reload 导致的 bug 报告，但尽量不要使用 `Plugman` 等插件热重载本插件,这可能会导致许多未知的问题！
 
