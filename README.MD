@@ -12,10 +12,10 @@ _Also known as ICU_
 [中文](README_CN.MD) | [English](README.MD)
 
 > [!WARNING]
-> This plugin can only run on servers using the [Leaves](https://leavesmc.org/) core, it does not support other cores!
+> This plugin can only run on servers using the [Leaves](https://leavesmc.org/) or [Leaf](https://github.com/Winds-Studio/Leaf) core, it does not support other cores!
 >
 > The developer only guarantees that the **latest stable version** of the ISeeYou plugin can run normally on the *
-*latest version** of the Leaves core, and does not maintain compatibility with older versions.
+*latest version** of the Leaves or Leaf core, and does not maintain compatibility with older versions.
 
 ## Introduction
 
@@ -58,13 +58,19 @@ follows:
 | **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | 21                                                        |
 | **1.21.1**     | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                                                        |
 
+And the list of what version of the ISeeYou you'll need to run on a specific version of [Leaf](https://github.com/Winds-Studio/Leaf) is as follows:
+
+| Leaf version | Compatible versions                                                    | Latest compatible<br>version                                        | Minimum Java<br>version required<br>to run latest version |
+|--------------|------------------------------------------------------------------------|---------------------------------------------------------------------|-----------------------------------------------------------|
+| **1.21.1**   | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)    | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                                                        |
+
 ## Instructions for use
 
 ### Dependencies
 
 | **Dependencies**                                                                                                                              | **Optional** |
 |:----------------------------------------------------------------------------------------------------------------------------------------------|:------------:|
-| Server [**Leaves**](https://leavesmc.org/)                                                                                                    | **Required** |
+| Server [**Leaves**](https://leavesmc.org/) or [**Leaf**](https://github.com/Winds-Studio/Leaf)                                                | **Required** |
 | [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | 💡 Optional  |
 | [Matrix AntiCheat](https://matrix.rip/)                                                                                                       | 💡 Optional  |
 | [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | 💡 Optional  |
@@ -77,7 +83,7 @@ follows:
 
 ### Tutorial
 
-1. **Install the plugin**: Place the plugin file in the plugin directory of the Leaves server and restart the server.
+1. **Install the plugin**: Place the plugin file in the plugin directory of the Leaves or Leaf server and restart the server.
 
 2. **Configure settings**: Edit the `plugins/ISeeYou/config.toml` file and adjust the recording parameters and
    anti-cheat settings as needed.
@@ -187,7 +193,7 @@ After compilation is complete, you will find the output file named `ISeeYou.jar`
 
 ## Precautions
 
-- This plugin can only run under the [Leaves](https://leavesmc.top/) (and its downstream) server environment, and does
+- This plugin can only run under the [Leaves](https://leavesmc.top/) or [Leaf](https://github.com/Winds-Studio/Leaf) (and its downstream) server environment, and does
   not support other Spigot and its downstream cores (such as Paper, Purpur, etc.).
 - Please read and configure the `config.toml` file carefully before using the plugin to ensure that the plugin can run
   normally.
