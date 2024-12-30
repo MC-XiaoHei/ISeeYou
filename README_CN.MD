@@ -18,7 +18,7 @@ _也可以叫 ICU_
 
 ## 简介
 
-ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API，以 `.mcpr` 格式录制玩家的一举一动。
+ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.com/Winds-Studio/Leaf) 核心提供的 Replay API，以 `.mcpr` 格式录制玩家的一举一动。
 
 ### 功能特点
 
@@ -42,20 +42,22 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 核心提供的 Replay API�
 
 ## 兼容的 Minecraft 版本
 
-以下是需要运行特定版本的 [Leaves](leavesmc.org) 的 **ISeeYou** 版本的列表：
+以下是 **ISeeYou** 插件对应的 [Leaves](leavesmc.org) 版本列表：
 
-| Leaves 版本  | 兼容版本                                                                                                                                      | 最新兼容版本                                                              | 运行最新版本所需的最低 Java 版本 |
+| Leaves 版本  | 兼容版本                                                                                                                                      | 最新兼容版本                                                              | 最低 Java 版本 |
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|---------------------|
 | **1.20.4** | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                  |
 | **1.20.6** | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                  |
 | **1.21**   | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | 21                  |
 | **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                  |
+| **1.21.3**     | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3)                                                                      | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) | 21                   |
 
-以下是需要运行特定版本的 [Leaf](https://github.com/Winds-Studio/Leaf) 的**ISeeYou** 版本的列表：
+以下是 **ISeeYou** 插件对应的 [Leaf](https://github.com/Winds-Studio/Leaf) 版本列表：
 
-| Leaf 版本    | 兼容版本                                                                | 最新兼容版本                                                              | 运行最新版本所需的最低 Java 版本 |
+| Leaf 版本    | 兼容版本                                                                | 最新兼容版本                                                              | 最低 Java 版本 |
 |------------|---------------------------------------------------------------------|---------------------------------------------------------------------|---------------------|
 | **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                  |
+| **1.21.3**     | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3)                                                                      | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) | 21                   |
 
 ## 使用说明
 
