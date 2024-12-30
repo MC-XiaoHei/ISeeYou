@@ -9,7 +9,7 @@ plugins {
 group = "cn.xor7"
 version = "1.3.2"
 
-val commandAPIVer = "9.5.3"
+val commandAPIVer = "9.7.0"
 
 repositories {
     mavenLocal()
@@ -29,13 +29,13 @@ repositories {
 dependencies {
     //anticheat dependencies
     compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
-    compileOnly(files("libs/Matrix_7.9.6A.jar"))
+    compileOnly(files("libs/Matrix_7.12.4.jar"))
     compileOnly(files("libs/VulcanAPI.jar"))
     implementation("com.github.MWHunter:GrimAPI:9f5aaef74b")
     compileOnly("com.github.Elikill58:Negativity:2.7.1")
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
-    compileOnly("org.leavesmc.leaves:leaves-api:1.21-R0.1-SNAPSHOT")
+    compileOnly("org.leavesmc.leaves:leaves-api:1.21.3-R0.1-SNAPSHOT")
     implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:${commandAPIVer}")
     implementation("dev.jorel:commandapi-bukkit-kotlin:${commandAPIVer}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")
