@@ -11,59 +11,64 @@ _Also known as ICU_
 
 [中文](README_CN.MD) | [English](README.MD)
 
-> [!WARNING]
-> This plugin can only run on servers using the [Leaves](https://leavesmc.org/) or [Leaf](https://github.com/Winds-Studio/Leaf) core. It does not support other cores!
+> [!WARNING] Attention
+> This plugin can only run on servers using the [Leaves](https://leavesmc.org/)
+> or [Leaf](https://github.com/Winds-Studio/Leaf) cores. It is not compatible with other server cores!
 >
-> The developer only guarantees that the **latest stable version** of the ISeeYou plugin can run normally on the **latest version** of the Leaves or Leaf core and does not maintain compatibility with older versions.
+> The developers only guarantee that the **latest stable version** of the ISeeYou plugin will work properly on the *
+*latest version** of the Leaves or Leaf core server. Compatibility with older versions is not maintained.
 
-## Introduction
+ISeeYou utilizes the Replay API provided by the [Leaves](https://leavesmc.org/)
+and [Leaf](https://github.com/Winds-Studio/Leaf) cores to record player actions in `.mcpr` format.
 
-ISeeYou uses the Replay API provided by the [Leaves](https://leavesmc.org/) core to record every move of the player in `.mcpr` format.
+## Features
 
-### Features
+- **Automatic Recording**: No manual operation required. By default, the plugin automatically records all players.
+- **Flexible Configuration**: You can configure whitelists, blacklists, and recording paths through configuration files.
+- **Anti-Cheat Support**: Compatible with multiple anti-cheat plugins. It automatically starts recording when a
+  suspicious player is detected.
+- **Instant Replay**: You can use commands to review recent gameplay and save it in `.mcpr` format to the server's hard
+  drive.
 
-- **Automatic recording**: No manual operation is required; the plugin will automatically record all players by default.
-- **Flexible configuration**: You can set a whitelist and blacklist, as well as the recording path, through the configuration file.
-- **Anti-cheat support**: Adapted to various anti-cheat plugins, it automatically records when suspicious players are found.
-- **Instant Replay**: With a command, you can trace back a period of gameplay footage and save it in `.mcpr` format to the server's disk.
+## Anti-Cheat Compatibility
 
-### Supported Anti-cheat Plugins
+| Name                                                                                                                                          | Availability |
+|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------|
+| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅ Available  |
+| [Matrix](https://matrix.rip/)                                                                                                                 | ✅ Available  |
+| [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | ⚠️ Beta      |
+| [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️ Beta      |
+| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ⚠️ Beta      |
+| [LightAntiCheat](https://github.com/tiredvekster/LightAntiCheat)                                                                              | ⚠️ Beta      |
 
-| Name                                                                                                                                          | Status            |
-|-----------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
-| [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | ✅ Available       |
-| [Matrix](https://matrix.rip/)                                                                                                                 | ✅ Available       |
-| [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | ⚠️ In Public Beta |
-| [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️ In Public Beta |
-| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌ Not Available   |
+> [!TIP] Tip
+> If you would like us to add support for more anti-cheat plugins, please create
+> an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) and let us know!
 
-> [!TIP]
-> If you want us to add support for more anti-cheat plugins, please create an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) for feedback!
+## Recommended Versions
 
-## Compatible Minecraft versions
+### [Leaves](leavesmc.org)
 
-The list of what version of ISeeYou you'll need to run on a specific version of [Leaves](https://leavesmc.org) is as follows:
+| Leaves Version | Compatible Versions                                                                                                                       |
+|----------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **1.20.4**     | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) |
+| **1.20.6**     | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) |
+| **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) |
+| **1.21.1**     | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
+| **1.21.3**     | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.4](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.4) |
 
-| Leaves version | Compatible versions                                                                                                                      | Latest compatible version                                           | Minimum Java version|
-|----------------|------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|----------------------|
-| **1.20.4**     | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                   |
-| **1.20.6**     | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                   |
-| **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | 21                   |
-| **1.21.1**     | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                      | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                   |
-| **1.21.3**     | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3)                                                                      | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) | 21                   |
+### [Leaf](https://github.com/Winds-Studio/Leaf)
 
-And the list of what version of ISeeYou you'll need to run on a specific version of [Leaf](https://github.com/Winds-Studio/Leaf) is as follows:
+| Leaf Version | Compatible Versions                                                                                                                       |
+|--------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **1.21.1**   | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
+| **1.21.3**   | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.4](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.4) |
 
-| Leaf version | Compatible versions | Latest compatible version                                           | Minimum Java version|
-|--------------|---------------------|---------------------------------------------------------------------|----------------------|
-| **1.21.1**   | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                   |
-| **1.21.3**   | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) | 21                   |
-
-## Instructions for use
+## Usage
 
 ### Dependencies
 
-| **Dependencies**                                                                                                                              | **Optional** |
+| **Dependency**                                                                                                                                | **Optional** |
 |:----------------------------------------------------------------------------------------------------------------------------------------------|:------------:|
 | Server [**Leaves**](https://leavesmc.org/) or [**Leaf**](https://github.com/Winds-Studio/Leaf)                                                | **Required** |
 | [Themis Anti Cheat](https://www.spigotmc.org/resources/themis-anti-cheat-1-17-1-20-bedrock-support-paper-compatibility-free-optimized.90766/) | 💡 Optional  |
@@ -71,124 +76,134 @@ And the list of what version of ISeeYou you'll need to run on a specific version
 | [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | 💡 Optional  |
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | 💡 Optional  |
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | 💡 Optional  |
+| [LightAntiCheat](https://github.com/tiredvekster/LightAntiCheat)                                                                              | 💡 Optional  |
 
-> [!IMPORTANT]
-> Before installing anti-cheat plugins, please make sure that their required plugins are installed to avoid compatibility issues.
+> [!IMPORTANT] Important
+> Before installing an anti-cheat plugin, please ensure that its required dependencies are also installed to avoid
+> compatibility issues.
 
-### Tutorial
+### How to install
 
-1. **Install the plugin**: Place the plugin file in the plugin directory of the Leaves or Leaf server and restart the server.
+1. **Install the Plugin**: Place the plugin file in the plugins directory of the Leaves or Leaf server, and restart the
+   server.
 
-2. **Configure settings**: Edit the `plugins/ISeeYou/config.toml` file and adjust the recording parameters and anti-cheat settings as needed.
+2. **Configure Settings**: Edit the `plugins/ISeeYou/config.toml` file to adjust recording parameters and anti-cheat
+   settings.
 
 ## Config
 
 ```toml
-# Configuration:
-deleteTmpFileOnLoad = true # Delete temporary files on load.
-pauseInsteadOfStopRecordingOnPlayerQuit = false # Pause recording instead of stopping when player quits.
-recordPath = "replay/player/${name}@${uuid}" # Recording storage path template, supports ${name} and ${uuid} variables.
-asyncSave = false # Async save recording
-bStats = true
+# Configuration file comments:
+deleteTmpFileOnLoad = true # Delete temporary files on load
+pauseInsteadOfStopRecordingOnPlayerQuit = false # Pause recording on player quit instead of stopping it
+# Recording save path template. Use ${name} and ${uuid} variables to replace with player name and UUID.
+recordPath = "replay/player/${name}@${uuid}"
+asyncSave = false # Whether to enable asynchronous saving
+bStats = true # Whether to enable bStats statistics
 
+# [pauseRecordingOnHighSpeed] Pause recording when the player is moving at high speeds
 [pauseRecordingOnHighSpeed]
-enabled = false  # Whether to enable pausing recording on high speed, which pauses recording when the player moves at high speeds.
-threshold = 20.0  # Speed threshold to trigger pausing recording on high speed.
+enabled = false  # Whether to pause recording during high-speed movement
+threshold = 20.0  # Speed threshold (in meters/second)
 
+# [filter] Player recording filter settings
 [filter]
-checkBy = "name"  # Basis for blacklist/whitelist check, can be "name" or "uuid", default is "name", indicating player name.
-recordMode = "blacklist"  # Recording mode, either blacklist or whitelist.
-blacklist = []  # Blacklist, empty means no players are blocked.
-whitelist = []  # Whitelist, empty means no players are recorded.
+checkBy = "name"  # Filter by player name ("name") or UUID ("uuid")
+recordMode = "blacklist"  # Record mode: either blacklist or whitelist ("whitelist")
+blacklist = []  # List of players not to be recorded
+whitelist = []  # List of players to be recorded
 
+# [clearOutdatedRecordFile] Clear outdated recording files
 [clearOutdatedRecordFile]
-enabled = false  # Whether to enable cleaning function.
-interval = 24  # Cleaning interval (hours).
-days = 7  # Number of days to retain outdated recording files.
+enabled = false  # Whether to enable automatic clearing of outdated files
+interval = 24  # Interval in hours to clear outdated files
+days = 7  # Number of days to retain outdated files
 
+# [recordSuspiciousPlayer] Automatically record suspicious players
 [recordSuspiciousPlayer]
-enableThemisIntegration = false  # Whether to enable recording of suspicious players monitored by Themis reports.
-enableMatrixIntegration = false  # Whether to enable recording of suspicious players monitored by Matrix reports.
-enableVulcanIntegration = false  # Whether to enable recording of suspicious players monitored by Vulcan reports.
-enableNegativityIntegration = false  # Whether to enable recording of suspicious players monitored by Negativity reports.
-enableGrimACIntegration = false  # Whether to enable recording of suspicious players monitored by GrimAC reports.
-recordMinutes = 5  # Recording time for suspicious players (minutes).
-recordPath = "replay/suspicious/${name}@${uuid}"  # Suspicious player recording file path template, supports ${name} and ${uuid} variables.
+enableThemisIntegration = false  # Enable recording of suspicious players reported by Themis
+enableMatrixIntegration = false  # Enable recording of suspicious players reported by Matrix
+enableVulcanIntegration
+= false  # Enable recording of suspicious players reported by Vulcan
+enableNegativityIntegration = false  # Enable recording of suspicious players reported by Negativity
+enableGrimACIntegration = false  # Enable recording of suspicious players reported by GrimAC
+enableLightAntiCheatIntegration = false  # Enable recording of suspicious players reported by LightAntiCheat
+recordMinutes = 5  # Duration to record suspicious players (in minutes)
+recordPath = "replay/suspicious/${name}@${uuid}"  # Path template for suspicious player recordings
 
 # [instantReplay] Instant replay settings
 [instantReplay]
-enabled = false  # Whether to enable instant replay functionality.
-replayMinutes = 5  # Specifies how many minutes of gameplay can be traced back (minutes).
-createMinutes = 1  # Specifies how often a camera is created (minutes).
-recordPath = "replay/instant/${name}@${uuid}"  # Storage path template for instant replay recordings, supports ${name} and ${uuid} variables.
+enabled = false  # Whether to enable instant replay
+replayMinutes = 5  # Duration of the replay (in minutes)
+createMinutes = 1  # Interval to create a camera for replay (in minutes)
+# Instant replay creates a camera every `createMinutes` and removes it after `replayMinutes`.
+recordPath = "replay/instant/${name}@${uuid}"  # Path template for instant replay recordings
 ```
 
-> [!WARNING]
-> Enabling instant replay, recording suspicious players, and other features may increase server performance consumption.
+> [!WARNING] Attention
+> Enabling features like instant replay or recording suspicious players may increase server performance load.
 
 ## Commands
 
-> **`/photographer create <name>` and `/instantreplay` commands** can only be executed by players in the game, not in the server console.
+> **`photographer create <name>` and `/instantreplay` commands** can only be executed by players in the game, not
+> through the server console.
 
-> **`/photographer create <name> [location]` command** can be executed in the console.
+> **`photographer create <name> [location]` command** can be executed from the console.
 
-> **Before using the `/instantreplay` command**, make sure that the corresponding feature is enabled in the plugin configuration file.
+> **Before using the `/instantreplay` command**, ensure that the feature is enabled in the plugin's configuration file.
 
-| Command                                 | Description                                                                                                                                                | Example                                                                        |
-|-----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
-| `photographer create <name> [location]` | Create a camera                                                                                                                                            | `/photographer create MyCamera`<br>`/photographer create MyCamera <x> <y> <z>` |
-|                                         | - `<name>`: Camera name, limited to 5 to 16 characters                                                                                                     |                                                                                |
-|                                         | - `[location]` (optional): Camera location, format is x y z coordinates.<br>If not specified, it defaults to the current position of the executing player. |                                                                                |
-| `photographer remove <name>`            | Remove a camera                                                                                                                                            | `/photographer remove MyCamera`                                                |
-|                                         | - `<name>`: The name of the camera to remove                                                                                                               |                                                                                |
-| `photographer list`                     | Display all cameras in the list                                                                                                                            | `/photographer list`                                                           |
-| `instantreplay`                         | Create an instant replay recording for the executing player                                                                                                | `/instantreplay`                                                               |
+| Command                                 | Description                                                                                                                                                                      | Example                                                                        |
+|-----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------|
+| `photographer create <name> [location]` | Creates a camera<br>`<name>`: Camera name (5–16 characters)<br>`[location]` (optional): Camera position in x y z format. If not provided, the player's current location is used. | `/photographer create MyCamera`<br>`/photographer create MyCamera <x> <y> <z>` |
+| `photographer remove <name>`            | Removes a camera<br>`<name>`: The name of the camera to be removed                                                                                                               | `/photographer remove MyCamera`                                                |
+| `photographer list`                     | Displays the list of all cameras                                                                                                                                                 | `/photographer list`                                                           |
+| `instantreplay`                         | Creates an instant replay for the player executing the command                                                                                                                   | `/instantreplay`                                                               |
 
 ## Download
 
-- **Stable Version**
+- **Stable Versions**
   - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
   - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
   - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
-- **Development Version**
+- **Development Versions**
   - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
-### Build from scratch
+### Building From Scratch
 
-#### 1. Clone the project source code
-
-Use the following command to clone the project to your local environment:
+#### 1. Clone the project repository
 
 ```shell
 git clone https://github.com/MC-XiaoHei/ISeeYou.git
 ```
 
-#### 2. Compile and package
-
-Navigate to the project root directory and execute the following command to build the jar package:
+#### 2. Compile and Build
 
 ```shell
 ./gradlew shadowJar
 ```
 
-After compilation is complete, you will find the output file named `ISeeYou.jar` in the `build/libs` directory.
+After the build is complete, you will find the `ISeeYou.jar` file in the `build/libs` directory.
 
 ## Author Information
 
-- Core Dev: [MC-XiaoHei](https://github.com/MC-XiaoHei), wrote most of the code
-- Core Dev: [CerealAxis](https://github.com/CerealAxis), helped implement automatic cleaning of expired recordings, Matrix adaptation functionality, and wrote the README
-- Contributor: [Cranyozen](https://github.com/Cranyozen), helped complete the automatic build CI
-- Contributor: [Bluemangoo](https://github.com/Bluemangoo), fixed tons of typos in the README
+- Lead Developer: [MC-XiaoHei](https://github.com/MC-XiaoHei), Founder of ISeeYou
+- Lead Developer: [CerealAxis](https://github.com/CerealAxis), Responsible for ongoing maintenance and updates
+- Contributor: [Cranyozen](https://github.com/Cranyozen), Created the automated build CI
+- Contributor: [Bluemangoo](https://github.com/Bluemangoo), Fixed multiple spelling errors in the README
 
-## Precautions
+## Notes
 
-- This plugin can only run under the [Leaves](https://leavesmc.top/) or [Leaf](https://github.com/Winds-Studio/Leaf) (and its downstream) server environment, and does not support other Spigot and its downstream cores (such as Paper, Purpur, etc.).
-- Please read and configure the `config.toml` file carefully before using the plugin to ensure that the plugin can run normally.
-- Although there are currently no bug reports caused by reload, try not to use plugins like Plugman to hot reload this plugin, which may cause many unknown problems!
+- This plugin can only run on servers using the [Leaves](https://leavesmc.top/)
+  or [Leaf](https://github.com/Winds-Studio/Leaf) cores (and their derivatives). It is not supported on other Spigot or
+  its derivatives (such as Paper, Purpur, etc.).
+- Please carefully read and configure the `config.toml` file before using the plugin to ensure it operates correctly.
+- Although there have been no reports of bugs caused by reloads, it is recommended not to use plugins like `Plugman` to
+  hot-reload this plugin, as this may cause unknown issues!
 
-## Thanks for the support
+## Contact Us
 
-Thank you for using the ISeeYou plugin! If you encounter any problems or have any suggestions during use, please feel free to contact the author or submit an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) to the GitHub repository.
+Thank you for using the ISeeYou plugin! If you encounter any issues or have suggestions during use, feel free to submit
+an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) on the GitHub repository.
 
 ## Statistics
 

@@ -16,18 +16,16 @@ _也可以叫 ICU_
 >
 > 开发者仅保证**最新正式版** ISeeYou 插件在**最新版** Leaves 或 Leaf 核心的服务器中可正常运行，对老版本兼容性不做维护。
 
-## 简介
-
 ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.com/Winds-Studio/Leaf) 核心提供的 Replay API，以 `.mcpr` 格式录制玩家的一举一动。
 
-### 功能特点
+## 功能特点
 
 - **自动录制**：无需手动操作，默认情况下插件会自动记录所有玩家。
 - **灵活配置**：可以通过配置文件设置黑白名单，以及录制路径等。
 - **反作弊支持**：适配多款反作弊插件，在发现可疑玩家时自动进行录制。
-- **即时回放**：通过指令，即可追溯过去一段时间的游戏画面以 `.mcpr` 格式保存到服务器硬盘上。
+- **即时回放**：通过指令可追溯过去一段时间的游戏画面以 `.mcpr` 格式保存到服务器硬盘上。
 
-### 反作弊适配列表
+## 反作弊适配
 
 | 名称                                                                                                                                            | 可用状况   |
 |-----------------------------------------------------------------------------------------------------------------------------------------------|--------|
@@ -35,29 +33,30 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.c
 | [Matrix](https://matrix.rip/)                                                                                                                 | ✅ 可用   |
 | [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          | ⚠️ 公测中 |
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                | ⚠️ 公测中 |
-| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ❌ 暂不可用 |
+| [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ⚠️ 公测中 |
+| [LightAntiCheat](https://github.com/tiredvekster/LightAntiCheat)                                                                              | ⚠️ 公测中 |
 
 > [!TIP] 提示
 > 如果您希望我们增加对更多反作弊插件的支持，请创建 [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) 进行反馈！
 
-## 兼容的 Minecraft 版本
+## 推荐版本
 
-以下是 **ISeeYou** 插件对应的 [Leaves](leavesmc.org) 版本列表：
+### [Leaves](leavesmc.org)
 
-| Leaves 版本  | 兼容版本                                                                                                                                      | 最新兼容版本                                                              | 最低 Java 版本 |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|---------------------|
-| **1.20.4** | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) | 17                  |
-| **1.20.6** | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) | 21                  |
-| **1.21**   | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) | 21                  |
-| **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                  |
-| **1.21.3**     | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3)                                                                      | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) | 21                   |
+| Leaves 版本  | 兼容版本                                                                                                                                      |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| **1.20.4** | [v1.0.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.1.0) - [v1.2.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.1) |
+| **1.20.6** | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) |
+| **1.21**   | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) |
+| **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
+| **1.21.3** | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.4](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.4) |
 
-以下是 **ISeeYou** 插件对应的 [Leaf](https://github.com/Winds-Studio/Leaf) 版本列表：
+### [Leaf](https://github.com/Winds-Studio/Leaf)
 
-| Leaf 版本    | 兼容版本                                                                | 最新兼容版本                                                              | 最低 Java 版本 |
-|------------|---------------------------------------------------------------------|---------------------------------------------------------------------|---------------------|
-| **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2) | 21                  |
-| **1.21.3**     | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3)                                                                      | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) | 21                   |
+| Leaf 版本    | 兼容版本                                                                                                                                      |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------|                   
+| **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
+| **1.21.3** | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.4](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.4) |
 
 ## 使用说明
 
@@ -71,6 +70,7 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.c
 | [Vulcan Anti-Cheat](https://www.spigotmc.org/resources/vulcan-anti-cheat-advanced-cheat-detection-1-7-1-20-4.83626/)                          |  💡 可选  |
 | [AC - Negativity](https://www.spigotmc.org/resources/ac-negativity-spigot-1-8-1-20-bungeecord-velocity.48399/)                                |  💡 可选  |
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    |  💡 可选  |
+| [LightAntiCheat](https://github.com/tiredvekster/LightAntiCheat)                                                                              |  💡 可选  |
 
 > [!IMPORTANT] 注意
 > 在安装反作弊插件之前，也请确认它们所需的前置插件是否已经安装，以避免兼容性问题。
@@ -117,6 +117,7 @@ enableMatrixIntegration = false  # 是否启用监视 Matrix 报告的可疑玩�
 enableVulcanIntegration = false  # 是否启用监视 Vulcan 报告的可疑玩家录制功能
 enableNegativityIntegration = false  # 是否启用监视 Negativity 报告的可疑玩家录制功能
 enableGrimACIntegration = false  # 是否启用监视 GrimAC 报告的可疑玩家录制功能
+enableLightAntiCheatIntegration = false  # 是否启用监视 LightAntiCheat 报告的可疑玩家录制功能
 recordMinutes = 5  # 对可疑玩家自动录制时长（单位：分钟）
 recordPath = "replay/suspicious/${name}@${uuid}"  # 可疑玩家录像文件路径模板，支持 ${name} 和 ${uuid} 变量。
 
@@ -149,13 +150,13 @@ recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径�
 | `photographer list`                     | 显示所有摄像机列表                                                                                                      | `/photographer list`                                                           |
 | `instantreplay`                         | 创建针对执行命令玩家的即时回放记录                                                                                              | `/instantreplay`                                                               |
 
-## 下载
+## 插件下载
 
-- 稳定版本
+- **稳定版本**
     - [GitHub 发布页](https://github.com/MC-XiaoHei/ISeeYou/releases)
     - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
     - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
-- 开发版本
+- **开发版本**
     - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
 ### 从头构建
@@ -180,8 +181,8 @@ git clone https://github.com/MC-XiaoHei/ISeeYou.git
 
 ## 作者信息
 
-- 主要开发者：[MC-XiaoHei](https://github.com/MC-XiaoHei)，编写了大部分的代码
-- 主要开发者：[CerealAxis](https://github.com/CerealAxis)，制作了自动清理过期录像功能、Matrix 适配功能，并且编写了 README
+- 主要开发者：[MC-XiaoHei](https://github.com/MC-XiaoHei)，ISeeYou 的创始人
+- 主要开发者：[CerealAxis](https://github.com/CerealAxis)，负责日常维护和更新插件
 - 贡献者：[Cranyozen](https://github.com/Cranyozen)，制作了自动构建 CI
 - 贡献者：[Bluemangoo](https://github.com/Bluemangoo)，修正了 README 中的大量拼写错误
 
