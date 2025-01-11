@@ -11,7 +11,7 @@ _Also known as ICU_
 
 [中文](README_CN.MD) | [English](README.MD)
 
-> [!WARNING] Attention
+> [!WARNING]
 > This plugin can only run on servers using the [Leaves](https://leavesmc.org/)
 > or [Leaf](https://github.com/Winds-Studio/Leaf) cores. It is not compatible with other server cores!
 >
@@ -41,7 +41,7 @@ and [Leaf](https://github.com/Winds-Studio/Leaf) cores to record player actions 
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ⚠️ Beta      |
 | [LightAntiCheat](https://github.com/tiredvekster/LightAntiCheat)                                                                              | ⚠️ Beta      |
 
-> [!TIP] Tip
+> [!TIP]
 > If you would like us to add support for more anti-cheat plugins, please create
 > an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) and let us know!
 
@@ -78,7 +78,7 @@ and [Leaf](https://github.com/Winds-Studio/Leaf) cores to record player actions 
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | 💡 Optional  |
 | [LightAntiCheat](https://github.com/tiredvekster/LightAntiCheat)                                                                              | 💡 Optional  |
 
-> [!IMPORTANT] Important
+> [!IMPORTANT]
 > Before installing an anti-cheat plugin, please ensure that its required dependencies are also installed to avoid
 > compatibility issues.
 
@@ -140,7 +140,7 @@ createMinutes = 1  # Interval to create a camera for replay (in minutes)
 recordPath = "replay/instant/${name}@${uuid}"  # Path template for instant replay recordings
 ```
 
-> [!WARNING] Attention
+> [!WARNING]
 > Enabling features like instant replay or recording suspicious players may increase server performance load.
 
 ## Commands

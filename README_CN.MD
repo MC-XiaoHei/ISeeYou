@@ -11,7 +11,7 @@ _也可以叫 ICU_
 
 [中文](README_CN.MD) | [English](README.MD)
 
-> [!WARNING] 注意
+> [!WARNING]
 > 本插件只能在使用 [Leaves](https://leavesmc.org/) 或 [Leaf](https://github.com/Winds-Studio/Leaf) 核心的服务器中运行，不支持其他核心！
 >
 > 开发者仅保证**最新正式版** ISeeYou 插件在**最新版** Leaves 或 Leaf 核心的服务器中可正常运行，对老版本兼容性不做维护。
@@ -36,7 +36,7 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.c
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    | ⚠️ 公测中 |
 | [LightAntiCheat](https://github.com/tiredvekster/LightAntiCheat)                                                                              | ⚠️ 公测中 |
 
-> [!TIP] 提示
+> [!TIP]
 > 如果您希望我们增加对更多反作弊插件的支持，请创建 [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) 进行反馈！
 
 ## 推荐版本
@@ -72,7 +72,7 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.c
 | [Grim Anticheat](https://www.spigotmc.org/resources/grim-anticheat.99923/)                                                                    |  💡 可选  |
 | [LightAntiCheat](https://github.com/tiredvekster/LightAntiCheat)                                                                              |  💡 可选  |
 
-> [!IMPORTANT] 注意
+> [!IMPORTANT]
 > 在安装反作弊插件之前，也请确认它们所需的前置插件是否已经安装，以避免兼容性问题。
 
 ### 使用教程
@@ -130,7 +130,7 @@ createMinutes = 1  # 指定每隔多长时间创建一个摄像机（单位：�
 recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径模板，支持 ${name} 和 ${uuid} 变量。
 ```
 
-> [!WARNING] 注意
+> [!WARNING]
 > 开启即时回放、录制可疑玩家等功能可能会增加服务器性能消耗。
 
 ## 指令
@@ -163,15 +163,11 @@ recordPath = "replay/instant/${name}@${uuid}"  # 存储即时回放录像路径�
 
 #### 1. 克隆项目源码
 
-使用以下命令将项目克隆到本地环境：
-
 ```shell
 git clone https://github.com/MC-XiaoHei/ISeeYou.git
 ```
 
 #### 2. 编译打包
-
-进入项目根目录，执行如下命令以构建 jar 包：
 
 ```shell
 ./gradlew shadowJar
