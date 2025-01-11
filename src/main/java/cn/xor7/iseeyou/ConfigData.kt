@@ -69,6 +69,7 @@ data class RecordSuspiciousPlayerConfig(
     var enableVulcanIntegration: Boolean = false,
     var enableNegativityIntegration: Boolean = false,
     var enableGrimACIntegration: Boolean = false,
+    var enableLightAntiCheatIntegration: Boolean = false,
     var recordMinutes: Long = 5,
     var recordPath: String = "replay/suspicious/\${name}@\${uuid}",
 )

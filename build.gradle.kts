@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "cn.xor7"
-version = "1.3.3"
+version = "1.3.4"
 
 val commandAPIVer = "9.7.0"
 
@@ -31,6 +31,7 @@ dependencies {
     compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
     compileOnly(files("libs/Matrix_7.12.4.jar"))
     compileOnly(files("libs/VulcanAPI.jar"))
+    compileOnly(files("libs/LightAntiCheat.jar"))
     implementation("com.github.MWHunter:GrimAPI:9f5aaef74b")
     compileOnly("com.github.Elikill58:Negativity:2.7.1")
     //other dependencies

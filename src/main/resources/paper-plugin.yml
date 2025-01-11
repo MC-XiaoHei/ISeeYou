@@ -1,7 +1,7 @@
 name: ISeeYou
 version: ${version}
 main: cn.xor7.iseeyou.ISeeYou
-api-version: '1.20'
+api-version: '1.20', '1.21'
 dependencies:
   server:
     Themis:
@@ -17,5 +17,8 @@ dependencies:
       load: BEFORE
       required: false
     GrimAC:
+      load: BEFORE
+      required: false
+    LightAntiCheat:
       load: BEFORE
       required: false
