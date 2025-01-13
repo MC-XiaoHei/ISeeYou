@@ -1,4 +1,4 @@
-package cn.xor7.iseeyou.updatechecker
+package cn.xor7.iseeyou.utils.updatechecker
 
 import java.util.logging.Logger
 import kotlin.math.max

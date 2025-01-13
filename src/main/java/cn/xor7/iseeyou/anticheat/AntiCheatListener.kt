@@ -1,6 +1,5 @@
 package cn.xor7.iseeyou.anticheat
 
-import cn.xor7.iseeyou.EventListener
 import cn.xor7.iseeyou.instance
 import cn.xor7.iseeyou.toml
 import org.bukkit.Bukkit

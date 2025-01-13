@@ -22,3 +22,6 @@ dependencies:
     LightAntiCheat:
       load: BEFORE
       required: false
+    Spartan:
+      load: BEFORE
+      required: false

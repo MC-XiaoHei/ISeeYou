@@ -32,6 +32,7 @@ dependencies {
     compileOnly(files("libs/Matrix_7.12.4.jar"))
     compileOnly(files("libs/VulcanAPI.jar"))
     compileOnly(files("libs/LightAntiCheat.jar"))
+    compileOnly(files("libs/SpartanAPI.jar"))
     implementation("com.github.MWHunter:GrimAPI:9f5aaef74b")
     compileOnly("com.github.Elikill58:Negativity:2.7.1")
     //other dependencies

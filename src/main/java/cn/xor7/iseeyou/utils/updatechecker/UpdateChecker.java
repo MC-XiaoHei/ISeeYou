@@ -1,4 +1,4 @@
-package cn.xor7.iseeyou.updatechecker;
+package cn.xor7.iseeyou.utils.updatechecker;
 
 import com.google.gson.Gson;
 import org.bukkit.Bukkit;

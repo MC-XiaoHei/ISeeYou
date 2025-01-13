@@ -1,5 +1,9 @@
-package cn.xor7.iseeyou
+package cn.xor7.iseeyou.anticheat
 
+import cn.xor7.iseeyou.utils.InstantReplayManager
+import cn.xor7.iseeyou.highSpeedPausedPhotographers
+import cn.xor7.iseeyou.photographers
+import cn.xor7.iseeyou.toml
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority

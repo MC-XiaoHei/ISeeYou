@@ -1,11 +1,15 @@
 package cn.xor7.iseeyou
 
 import cn.xor7.iseeyou.anticheat.AntiCheatListener
+import cn.xor7.iseeyou.anticheat.EventListener
 import cn.xor7.iseeyou.anticheat.listeners.*
 import cn.xor7.iseeyou.anticheat.suspiciousPhotographers
-import cn.xor7.iseeyou.metrics.Metrics
-import cn.xor7.iseeyou.updatechecker.CompareVersions
-import cn.xor7.iseeyou.updatechecker.UpdateChecker
+import cn.xor7.iseeyou.utils.ConfigData
+import cn.xor7.iseeyou.utils.InstantReplayManager
+import cn.xor7.iseeyou.utils.TomlEx
+import cn.xor7.iseeyou.utils.metrics.Metrics
+import cn.xor7.iseeyou.utils.updatechecker.CompareVersions
+import cn.xor7.iseeyou.utils.updatechecker.UpdateChecker
 import dev.jorel.commandapi.CommandAPI
 import dev.jorel.commandapi.CommandAPIBukkitConfig
 import dev.jorel.commandapi.arguments.ArgumentSuggestions
@@ -149,6 +153,13 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
             Bukkit.getPluginManager().registerEvents(LightAntiCheatListener(), this)
             logInfo("注册 LightAntiCheat 监听器...")
         }
+
+        if (Bukkit.getPluginManager()
+                .isPluginEnabled("Spartan") && toml!!.data.recordSuspiciousPlayer.enableSpartanIntegration
+        ) {
+            Bukkit.getPluginManager().registerEvents(SpartanListener(), this)
+            logInfo("注册 Spartan 监听器...")
+        }
     }
 
     private fun checkForUpdates() {
@@ -158,14 +169,14 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
             val comparisonResult = CompareVersions.compareVersions(currentVersion, latestVersion)
             val logMessage = when {
                 comparisonResult < 0 -> {
-                    "[版本检测] 有新版本可用: $latestVersion\n" +
-                            "[MineBBS] https://www.minebbs.com/resources/iseeyou.7276/updates\n" +
-                            "[Hangar] https://hangar.papermc.io/CerealAxis/ISeeYou/versions\n" +
-                            "[Github] https://github.com/MC-XiaoHei/ISeeYou/releases/"
+                    "有新版本可用: $latestVersion\n" +
+                            "MineBBS：https://www.minebbs.com/resources/iseeyou.7276/updates\n" +
+                            "Hangar：https://hangar.papermc.io/CerealAxis/ISeeYou/versions\n" +
+                            "Github：https://github.com/MC-XiaoHei/ISeeYou/releases/"
                 }
 
-                comparisonResult == 0 -> "[版本检测] 您的插件已经是最新版本！"
-                else -> "[版本检测] 您可能在使用测试版插件，最新正式版版本为 $latestVersion ！"
+                comparisonResult == 0 -> "您的插件已经是最新版本！"
+                else -> "您可能在使用测试版插件，最新正式版版本为 $latestVersion ！"
             }
             logInfo(logMessage)
         }
