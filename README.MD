@@ -123,8 +123,7 @@ days = 7  # Number of days to retain outdated files
 [recordSuspiciousPlayer]
 enableThemisIntegration = false  # Enable recording of suspicious players reported by Themis
 enableMatrixIntegration = false  # Enable recording of suspicious players reported by Matrix
-enableVulcanIntegration
-= false  # Enable recording of suspicious players reported by Vulcan
+enableVulcanIntegration = false  # Enable recording of suspicious players reported by Vulcan
 enableNegativityIntegration = false  # Enable recording of suspicious players reported by Negativity
 enableGrimACIntegration = false  # Enable recording of suspicious players reported by GrimAC
 enableLightAntiCheatIntegration = false  # Enable recording of suspicious players reported by LightAntiCheat
