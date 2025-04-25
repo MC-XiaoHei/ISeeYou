@@ -9,7 +9,7 @@ plugins {
 group = "cn.xor7"
 version = "1.3.5"
 
-val commandAPIVer = "9.7.0"
+val commandAPIVer = "10.0.0"
 
 repositories {
     mavenLocal()
@@ -21,6 +21,7 @@ repositories {
     maven("https://repo.leavesmc.org/snapshots")
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://repo.codemc.org/repository/maven-public/")
+    maven("https://repo.grim.ac/snapshots")
     flatDir {
         dirs("libs")
     }
@@ -33,11 +34,11 @@ dependencies {
     compileOnly(files("libs/VulcanAPI.jar"))
     compileOnly(files("libs/LightAntiCheat.jar"))
     compileOnly(files("libs/SpartanAPI.jar"))
-    implementation("com.github.MWHunter:GrimAPI:9f5aaef74b")
+    implementation("ac.grim.grimac:GrimAPI:1.0.0-8ad0b94")
     compileOnly("com.github.Elikill58:Negativity:2.7.1")
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
-    compileOnly("org.leavesmc.leaves:leaves-api:1.21.3-R0.1-SNAPSHOT")
+    compileOnly("org.leavesmc.leaves:leaves-api:1.21.4-R0.1-SNAPSHOT")
     implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:${commandAPIVer}")
     implementation("dev.jorel:commandapi-bukkit-kotlin:${commandAPIVer}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")

@@ -1,6 +1,6 @@
 package cn.xor7.iseeyou.anticheat.listeners
 
-import ac.grim.grimac.api.events.FlagEvent
+import ac.grim.grimac.api.event.events.FlagEvent
 import cn.xor7.iseeyou.anticheat.AntiCheatListener
 import org.bukkit.Bukkit
 import org.bukkit.event.EventHandler
