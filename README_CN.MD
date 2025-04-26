@@ -49,8 +49,8 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.c
 | **1.20.6** | [v1.2.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.2.2) - [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) |
 | **1.21**   | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) |
 | **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
-| **1.21.3** | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.4](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.4) |
-| **1.21.4** | [v1.3.5](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.5)                                                                       |
+| **1.21.3** | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.5](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.5) |
+| **1.21.4** | [v1.3.6](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.6)                                                                       |
 
 ### [Leaf](https://github.com/Winds-Studio/Leaf)
 
