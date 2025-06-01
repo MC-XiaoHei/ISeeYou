@@ -120,47 +120,31 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
     }
 
     private fun registerThirdPartyListeners() {
-        if (Bukkit.getPluginManager().isPluginEnabled("Themis") && toml!!.data.recordSuspiciousPlayer.enableThemisIntegration) {
-            Bukkit.getPluginManager().registerEvents(ThemisListener(), this)
-            logInfo("注册 Themis 监听器...")
-        }
+        val pluginManager = Bukkit.getPluginManager()
+        val integrations = listOf(
+            Triple("Themis", toml!!.data.recordSuspiciousPlayer.enableThemisIntegration) { ThemisListener() },
+            Triple("Matrix", toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration) { MatrixListener() },
+            Triple("Vulcan", toml!!.data.recordSuspiciousPlayer.enableVulcanIntegration) { VulcanListener() },
+            Triple(
+                "Negativity",
+                toml!!.data.recordSuspiciousPlayer.enableNegativityIntegration
+            ) { NegativityListener() },
+            Triple("GrimAC", toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration) { GrimACListener() },
+            Triple(
+                "LightAntiCheat",
+                toml!!.data.recordSuspiciousPlayer.enableLightAntiCheatIntegration
+            ) { LightAntiCheatListener() },
+            Triple("Spartan", toml!!.data.recordSuspiciousPlayer.enableSpartanIntegration) { SpartanListener() }
+        )
 
-        if (Bukkit.getPluginManager().isPluginEnabled("Matrix") && toml!!.data.recordSuspiciousPlayer.enableMatrixIntegration) {
-            Bukkit.getPluginManager().registerEvents(MatrixListener(), this)
-            logInfo("注册 Matrix 监听器...")
-        }
-
-        if (Bukkit.getPluginManager()
-                .isPluginEnabled("Vulcan") && toml!!.data.recordSuspiciousPlayer.enableVulcanIntegration
-        ) {
-            Bukkit.getPluginManager().registerEvents(VulcanListener(), this)
-            logInfo("注册 Vulcan 监听器...")
-        }
-
-        if (Bukkit.getPluginManager().isPluginEnabled("Negativity") && toml!!.data.recordSuspiciousPlayer.enableNegativityIntegration) {
-            Bukkit.getPluginManager().registerEvents(NegativityListener(), this)
-            logInfo("注册 Negativity 监听器...")
-        }
-
-        if (Bukkit.getPluginManager().isPluginEnabled("GrimAC") && toml!!.data.recordSuspiciousPlayer.enableGrimACIntegration) {
-            Bukkit.getPluginManager().registerEvents(GrimACListener(), this)
-            logInfo("注册 GrimAC 监听器...")
-        }
-
-        if (Bukkit.getPluginManager()
-                .isPluginEnabled("LightAntiCheat") && toml!!.data.recordSuspiciousPlayer.enableLightAntiCheatIntegration
-        ) {
-            Bukkit.getPluginManager().registerEvents(LightAntiCheatListener(), this)
-            logInfo("注册 LightAntiCheat 监听器...")
-        }
-
-        if (Bukkit.getPluginManager()
-                .isPluginEnabled("Spartan") && toml!!.data.recordSuspiciousPlayer.enableSpartanIntegration
-        ) {
-            Bukkit.getPluginManager().registerEvents(SpartanListener(), this)
-            logInfo("注册 Spartan 监听器...")
+        integrations.forEach { (pluginName, isEnabled, listenerSupplier) ->
+            if (pluginManager.isPluginEnabled(pluginName) && isEnabled) {
+                pluginManager.registerEvents(listenerSupplier(), this)
+                logInfo("注册 $pluginName 监听器...")
+            }
         }
     }
+
 
     private fun checkForUpdates() {
         val updateChecker = UpdateChecker(this, "ISeeYou")

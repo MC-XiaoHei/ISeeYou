@@ -9,7 +9,7 @@ plugins {
 group = "cn.xor7"
 version = "1.3.6"
 
-val commandAPIVer = "10.0.0"
+val commandAPIVer = "10.0.1"
 
 repositories {
     mavenLocal()
@@ -30,7 +30,7 @@ repositories {
 dependencies {
     //anticheat dependencies
     compileOnly(files("libs/ThemisAPI_0.15.3.jar"))
-    compileOnly(files("libs/Matrix_7.12.4.jar"))
+    compileOnly(files("libs/Matrix_7.15.7.jar"))
     compileOnly(files("libs/VulcanAPI.jar"))
     compileOnly(files("libs/LightAntiCheat.jar"))
     compileOnly(files("libs/SpartanAPI.jar"))
