@@ -46,12 +46,13 @@ object EventListener : Listener {
         if (toml!!.data.instantReplay.enabled) {
             InstantReplayManager.watch(player)
         }
-        var prefix = toml!!.data.recorderNamePrefix + player.name
-        if (prefix.length > 10) {
-            prefix = prefix.substring(0, 10)
-        }
+        var prefix = player.name
         if (prefix.startsWith(".")) { // fix Floodgate
             prefix = prefix.replace(".", "_")
+        }
+        prefix = toml!!.data.recorderNamePrefix + prefix
+        if (prefix.length > 10) {
+            prefix = prefix.substring(0, 10)
         }
         val photographer = Bukkit
             .getPhotographerManager()
@@ -110,7 +111,7 @@ object EventListener : Listener {
             InstantReplayManager.taskMap[player.uniqueId.toString()]?.cancel()
             InstantReplayManager.taskMap.remove(player.uniqueId.toString())
             InstantReplayManager.player2photographerUUIDMap[player.uniqueId.toString()]?.forEach { uuid ->
-                InstantReplayManager.photographerMap[uuid]?.stopRecording(false,false)
+                InstantReplayManager.photographerMap[uuid]?.stopRecording(false, false)
             }
         }
         val photographer: Photographer = photographers[player.uniqueId.toString()] ?: return
