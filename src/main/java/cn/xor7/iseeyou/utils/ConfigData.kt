@@ -13,6 +13,7 @@ data class ConfigData(
     var instantReplay: InstantReplayConfig = InstantReplayConfig(),
     var asyncSave: Boolean = false,
     var bStats: Boolean = true,
+    var recorderNamePrefix: String = "",
     var check_for_updates: Boolean = true,
 ) {
     fun isConfigValid(): String? {

@@ -50,7 +50,7 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.c
 | **1.21**   | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) |
 | **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
 | **1.21.3** | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.5](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.5) |
-| **1.21.4** | [v1.3.6](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.6)                                                                       |
+| **1.21.4** | [v1.3.6](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.6) - [v1.3.7](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.7) |
 
 ### [Leaf](https://github.com/Winds-Studio/Leaf)
 
@@ -92,6 +92,7 @@ pauseInsteadOfStopRecordingOnPlayerQuit = false # 玩家退出时暂停录制而
 recordPath = "replay/player/${name}@${uuid}"
 asyncSave = false # 是否启用异步保存
 bStats = true # 是否启用 bStats 统计
+recorderNamePrefix = "" # 摄像机名称前缀
 
 # [pauseRecordingOnHighSpeed] 高速移动时暂停录制设置
 [pauseRecordingOnHighSpeed]

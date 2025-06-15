@@ -56,7 +56,7 @@ and [Leaf](https://github.com/Winds-Studio/Leaf) cores to record player actions 
 | **1.21**       | [v1.3.0](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.0) - [v1.3.1](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.1) |
 | **1.21.1**     | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
 | **1.21.3**     | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.5](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.5) |
-| **1.21.4**     | [v1.3.6](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.6)                                                                       |
+| **1.21.4**     | [v1.3.6](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.6) - [v1.3.7](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.7) |
 
 ### [Leaf](https://github.com/Winds-Studio/Leaf)
 
@@ -101,6 +101,7 @@ pauseInsteadOfStopRecordingOnPlayerQuit = false # Pause recording on player quit
 recordPath = "replay/player/${name}@${uuid}"
 asyncSave = false # Whether to enable asynchronous saving
 bStats = true # Whether to enable bStats statistics
+recorderNamePrefix = "" # Recorder name prefix
 
 # [pauseRecordingOnHighSpeed] Pause recording when the player is moving at high speeds
 [pauseRecordingOnHighSpeed]

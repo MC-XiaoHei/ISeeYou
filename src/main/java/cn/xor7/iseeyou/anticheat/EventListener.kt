@@ -46,7 +46,7 @@ object EventListener : Listener {
         if (toml!!.data.instantReplay.enabled) {
             InstantReplayManager.watch(player)
         }
-        var prefix = player.name
+        var prefix = player.name + toml!!.data.recorderNamePrefix
         if (prefix.length > 10) {
             prefix = prefix.substring(0, 10)
         }
