@@ -16,7 +16,8 @@ _也可以叫 ICU_
 >
 > 开发者仅保证**最新正式版** ISeeYou 插件在**最新版** Leaves 或 Leaf 核心的服务器中可正常运行，对老版本兼容性不做维护。
 
-ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.com/Winds-Studio/Leaf) 核心提供的 Replay API，以 `.mcpr` 格式录制玩家的一举一动。
+ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.com/Winds-Studio/Leaf) 核心提供的 Replay API，以
+`.mcpr` 格式录制玩家的一举一动。
 
 ## 功能特点
 
@@ -51,6 +52,7 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.c
 | **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
 | **1.21.3** | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.5](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.5) |
 | **1.21.4** | [v1.3.6](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.6) - [v1.3.7](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.7) |
+| **1.21.8** | [v1.3.8](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.8)                                                                       |
 
 ### [Leaf](https://github.com/Winds-Studio/Leaf)
 
@@ -58,6 +60,7 @@ ISeeYou 可以利用 [Leaves](https://leavesmc.org/) 和 [Leaf](https://github.c
 |------------|-------------------------------------------------------------------------------------------------------------------------------------------|                   
 | **1.21.1** | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
 | **1.21.3** | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.4](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.4) |
+| **1.21.8** | [v1.3.8](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.8)                                                                       |
 
 ## 使用说明
 
@@ -186,13 +189,16 @@ git clone https://github.com/MC-XiaoHei/ISeeYou.git
 
 ## 注意事项
 
-- 本插件的运行只能在 [Leaves](https://leavesmc.top/) 或 [Leaf](https://github.com/Winds-Studio/Leaf)（及其下游）服务端环境下使用，不支持其他的 Spigot 及其下游核心（例如 Paper、Purpur 等）。
+- 本插件的运行只能在 [Leaves](https://leavesmc.top/) 或 [Leaf](https://github.com/Winds-Studio/Leaf)
+  （及其下游）服务端环境下使用，不支持其他的 Spigot 及其下游核心（例如 Paper、Purpur 等）。
 - 请在使用插件前仔细阅读并配置好 `config.toml` 文件，以确保插件能够正常运行。
 - 尽管目前没有因为 reload 导致的 bug 报告，但尽量不要使用 `Plugman` 等插件热重载本插件,这可能会导致许多未知的问题！
 
 ## 感谢支持
 
-感谢您使用 ISeeYou 插件！如果您在使用过程中遇到任何问题或有任何建议，请随时提交 [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) 到GitHub 仓库。
+感谢您使用 ISeeYou
+插件！如果您在使用过程中遇到任何问题或有任何建议，请随时提交 [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) 到GitHub
+仓库。
 
 ## 统计
 

@@ -57,6 +57,7 @@ and [Leaf](https://github.com/Winds-Studio/Leaf) cores to record player actions 
 | **1.21.1**     | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
 | **1.21.3**     | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.5](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.5) |
 | **1.21.4**     | [v1.3.6](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.6) - [v1.3.7](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.7) |
+| **1.21.8**     | [v1.3.8](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.8)                                                                       |
 
 ### [Leaf](https://github.com/Winds-Studio/Leaf)
 
@@ -64,6 +65,8 @@ and [Leaf](https://github.com/Winds-Studio/Leaf) cores to record player actions 
 |--------------|-------------------------------------------------------------------------------------------------------------------------------------------|
 | **1.21.1**   | [v1.3.2](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.2)                                                                       |
 | **1.21.3**   | [v1.3.3](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.3) - [v1.3.4](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.4) |
+| **1.21.8**   | [v1.3.8](https://github.com/MC-XiaoHei/ISeeYou/releases/tag/v1.3.8)                                                                       |
+
 
 ## Usage
 
@@ -163,11 +166,11 @@ recordPath = "replay/instant/${name}@${uuid}"  # Path template for instant repla
 ## Download
 
 - **Stable Versions**
-  - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
-  - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
-  - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
+    - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
+    - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/)
+    - [Hangar](https://hangar.papermc.io/CerealAxis/ISeeYou)
 - **Development Versions**
-  - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
+    - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
 ### Building From Scratch
 
