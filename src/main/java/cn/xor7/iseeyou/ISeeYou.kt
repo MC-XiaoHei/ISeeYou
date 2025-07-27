@@ -372,7 +372,10 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
     override fun onDisable() {
         CommandAPI.onDisable()
         for (photographer in photographers.values) {
-            photographer.stopRecording(toml!!.data.asyncSave)
+            try {
+                photographer.stopRecording(toml!!.data.asyncSave)
+            } catch (_: Exception) {
+            }
         }
         photographers.clear()
         highSpeedPausedPhotographers.clear()
