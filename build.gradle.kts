@@ -38,7 +38,7 @@ dependencies {
     compileOnly("com.github.Elikill58:Negativity:2.7.1")
     //other dependencies
     implementation("com.moandjiezana.toml:toml4j:0.7.2")
-    compileOnly("org.leavesmc.leaves:leaves-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("org.leavesmc.leaves:leaves-api:1.21.8-R0.1-SNAPSHOT")
     implementation("dev.jorel:commandapi-bukkit-shade-mojang-mapped:${commandAPIVer}")
     implementation("dev.jorel:commandapi-bukkit-kotlin:${commandAPIVer}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.0")

@@ -11,7 +11,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
-import org.leavesmc.leaves.entity.Photographer
+import org.leavesmc.leaves.entity.photographer.Photographer
 import java.io.File
 import java.io.IOException
 import java.time.LocalDateTime

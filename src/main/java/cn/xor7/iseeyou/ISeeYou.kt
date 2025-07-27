@@ -21,7 +21,7 @@ import org.bukkit.command.CommandExecutor
 import org.bukkit.configuration.InvalidConfigurationException
 import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
-import org.leavesmc.leaves.entity.Photographer
+import org.leavesmc.leaves.entity.photographer.Photographer
 import java.io.File
 import java.io.IOException
 import java.nio.file.*
@@ -103,7 +103,7 @@ class ISeeYou : JavaPlugin(), CommandExecutor {
         // bStats 集成
         if (toml!!.data.bStats) {
             val pluginId = 21845
-            val metrics: Metrics = Metrics(this, pluginId)
+            val metrics = Metrics(this, pluginId)
             metrics.addCustomChart(Metrics.SimplePie("chart_id") { "My value" })
         }
 
