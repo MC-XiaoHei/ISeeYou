@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "cn.xor7"
-version = "1.3.8"
+version = "1.3.9"
 
 val commandAPIVer = "10.1.2"
 
