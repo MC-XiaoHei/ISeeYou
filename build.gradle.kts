@@ -56,7 +56,6 @@ val runServerPlugins = runPaper.downloadPluginsSpec {
 repositories {
     mavenCentral()
     maven("https://jitpack.io/")
-    maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://maven.aliyun.com/repository/public")
     maven("https://repo.leavesmc.org/releases")
     maven("https://repo.leavesmc.org/snapshots")
