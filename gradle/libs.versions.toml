@@ -1,0 +1,30 @@
+[versions]
+leavesApi = "1.21.8-R0.1-SNAPSHOT"
+leavesweightUserdev = "2.0.0-SNAPSHOT"
+shadow = "9.0.0-rc1"
+runPaper = "2.3.1"
+resourceFactory = "1.0.0"
+commandApi = "10.1.2"
+configurate = "4.2.0"
+expiringmap = "0.5.11"
+# anti-cheat-apis
+grim = "1.0.0-8ad0b94"
+negativity = "2.7.1"
+
+[libraries]
+leavesApi = { group = "org.leavesmc.leaves", name = "leaves-api", version.ref = "leavesApi" }
+leavesDevBundle = { group = "org.leavesmc.leaves", name = "dev-bundle", version.ref = "leavesApi" }
+configurateHocon = { group = "org.spongepowered", name = "configurate-hocon", version.ref = "configurate" }
+configurateKotlin = { group = "org.spongepowered", name = "configurate-extra-kotlin", version.ref = "configurate" }
+commandApiCore = { group = "dev.jorel", name = "commandapi-bukkit-core", version.ref = "commandApi" }
+commandApiKotlin = { group = "dev.jorel", name = "commandapi-bukkit-kotlin", version.ref = "commandApi" }
+expiringMap = { group = "net.jodah", name = "expiringmap", version.ref = "expiringmap" }
+# anti-cheat-apis
+negativityApi = { group = "com.github.Elikill58", name = "Negativity", version.ref = "negativity" }
+grimApi = { group = "ac.grim.grimac", name = "GrimAPI", version.ref = "grim" }
+
+[plugins]
+leavesweightUserdev = { id = "org.leavesmc.leavesweight.userdev", version.ref = "leavesweightUserdev" }
+shadowJar = { id = "com.gradleup.shadow", version.ref = "shadow" }
+runPaper = { id = "xyz.jpenilla.run-paper", version.ref = "runPaper" }
+resourceFactory = { id = "org.leavesmc.resource-factory", version.ref = "resourceFactory" }
