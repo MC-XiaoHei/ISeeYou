@@ -4,7 +4,7 @@ import cn.xor7.xiaohei.icu.plugin
 import cn.xor7.xiaohei.icu.utils.createPhotographer
 import cn.xor7.xiaohei.icu.utils.createRecordFile
 import cn.xor7.xiaohei.icu.utils.module
-import cn.xor7.xiaohei.icu.utils.remove
+import cn.xor7.xiaohei.icu.utils.removePhotographer
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -48,7 +48,7 @@ class InstantReplayListener : Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     fun onPlayerQuit(event: PlayerQuitEvent) {
         val player = event.player
-        instantReplayPhotographers[player.uniqueId]?.forEach { it.remove(false) }
+        instantReplayPhotographers[player.uniqueId]?.forEach { it.removePhotographer(false) }
         instantReplayPhotographers.remove(player.uniqueId)
     }
 
@@ -59,7 +59,7 @@ class InstantReplayListener : Listener {
         val photographer = photographers.first()
         val minutes = photographers.size
         photographers.remove(photographer)
-        photographer.remove()
+        photographer.removePhotographer()
         return minutes * module.instantReplay.interval
     }
 
@@ -76,7 +76,7 @@ class InstantReplayListener : Listener {
         Bukkit.getGlobalRegionScheduler().runDelayed(
             plugin,
             {
-                photographer.remove(false)
+                photographer.removePhotographer(false)
                 instantReplayPhotographers[player.uniqueId]?.remove(photographer)
             },
             module.instantReplay.lengthTicks,

@@ -5,6 +5,7 @@ import cn.xor7.xiaohei.icu.utils.createPhotographer
 import cn.xor7.xiaohei.icu.utils.createRecordFile
 import cn.xor7.xiaohei.icu.utils.getPhotographerName
 import cn.xor7.xiaohei.icu.utils.getRecordPhotographer
+import cn.xor7.xiaohei.icu.utils.removePhotographer
 import cn.xor7.xiaohei.icu.utils.setFollow
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -56,7 +57,7 @@ class SimpleRecordListener : Listener {
         val photographer = player.getRecordPhotographer() ?: return
 
         highSpeedPausedPhotographers.remove(photographer)
-        photographer.remove()
+        photographer.removePhotographer()
     }
 
     private fun createSimplePhotographer(player: Player): Photographer =

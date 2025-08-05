@@ -5,6 +5,7 @@ import cn.xor7.xiaohei.icu.utils.allPhotographers
 import cn.xor7.xiaohei.icu.utils.createPhotographer
 import cn.xor7.xiaohei.icu.utils.getPhotographer
 import cn.xor7.xiaohei.icu.utils.perms
+import cn.xor7.xiaohei.icu.utils.removePhotographer
 import cn.xor7.xiaohei.icu.utils.sendError
 import cn.xor7.xiaohei.icu.utils.sendInfo
 import cn.xor7.xiaohei.icu.utils.sendSuccess
@@ -69,7 +70,7 @@ fun registerPhotographerCommand() = commandTree("photographer") {
                     return@anyExecutor
                 }
 
-                photographer.remove()
+                photographer.removePhotographer()
                 sender.sendSuccess("Photographer '${photographer.name}' removed")
             }
         }
@@ -82,7 +83,7 @@ fun registerPhotographerCommand() = commandTree("photographer") {
             }.groupBy(
                 keySelector = { photographer -> photographer.world.name },
                 valueTransform = { photographer -> photographer.name },
-            ).forEach { worldName, photographers ->
+            ).forEach { (worldName, photographers) ->
                 if (photographers.isEmpty()) return@forEach
 
                 val photographerList = photographers.joinToString("\n - ")

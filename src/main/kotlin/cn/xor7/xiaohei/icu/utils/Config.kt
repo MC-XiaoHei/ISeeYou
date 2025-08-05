@@ -25,7 +25,7 @@ fun initConfig() {
 
 fun loadConfig() = try {
     module = loader.load().get<ConfigModule>() ?: throw IllegalStateException("ConfigModule is null")
-    plugin.registerOrUpdateListeners()
+    registerOrUpdateListeners()
 } catch (e: Exception) {
     plugin.logger.severe("Failed to load configuration: ${e.message}")
     plugin.logger.severe(e.stackTraceToString())

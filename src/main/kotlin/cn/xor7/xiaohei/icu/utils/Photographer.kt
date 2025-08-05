@@ -27,7 +27,7 @@ fun createPhotographer(
     it?.let { photographers.add(it.uniqueId) }
 }
 
-fun Photographer.remove(save: Boolean = true) {
+fun Photographer.removePhotographer(save: Boolean = true) {
     try {
         this.stopRecording(true, save)
     } catch (e: Exception) {
@@ -37,9 +37,9 @@ fun Photographer.remove(save: Boolean = true) {
     player2PhotographerMap.entries.removeIf { it.value.uniqueId == this.uniqueId }
 }
 
-fun removeAllPhotographers() = photographers.forEach {
+fun removeAllPhotographers() = photographers.toSet().forEach {
     val photographer = getPhotographer(it)
-    photographer?.remove(false)
+    photographer?.removePhotographer(false)
 }
 
 fun Photographer.setFollow(player: Player) {

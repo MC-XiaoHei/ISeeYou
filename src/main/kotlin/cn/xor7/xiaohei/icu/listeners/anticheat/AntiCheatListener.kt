@@ -5,6 +5,7 @@ import cn.xor7.xiaohei.icu.utils.createPhotographer
 import cn.xor7.xiaohei.icu.utils.createRecordFile
 import cn.xor7.xiaohei.icu.utils.getPhotographerName
 import cn.xor7.xiaohei.icu.utils.module
+import cn.xor7.xiaohei.icu.utils.removePhotographer
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -29,7 +30,7 @@ class AntiCheatListener : Listener {
                 val recordSuspiciousMills = module.recordSuspicious.lengthMillis
                 suspiciousPhotographers.entries.removeIf {
                     if (current - it.value.lastTagged > recordSuspiciousMills) {
-                        it.value.photographer.remove()
+                        it.value.photographer.removePhotographer()
                         return@removeIf true
                     } else false
                 }
@@ -60,9 +61,7 @@ class AntiCheatListener : Listener {
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.MONITOR)
     fun onPlayerQuit(e: PlayerQuitEvent) {
-        suspiciousPhotographers.remove(e.player.uniqueId)?.let {
-            it.photographer.remove()
-        }
+        suspiciousPhotographers.remove(e.player.uniqueId)?.photographer?.removePhotographer()
     }
 
     private fun createAntiCheatPhotographer(player: Player): Photographer =
