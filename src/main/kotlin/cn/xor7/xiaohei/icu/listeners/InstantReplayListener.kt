@@ -73,12 +73,13 @@ class InstantReplayListener : Listener {
             .computeIfAbsent(player.uniqueId) { LinkedHashSet() }
             .add(photographer)
 
-        Bukkit.getGlobalRegionScheduler().runDelayed(
+        photographer.scheduler.runDelayed(
             plugin,
             {
                 photographer.removePhotographer(false)
                 instantReplayPhotographers[player.uniqueId]?.remove(photographer)
             },
+            {},
             module.instantReplay.lengthTicks,
         )
     }
