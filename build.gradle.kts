@@ -70,7 +70,6 @@ dependencies {
         implementation(kotlin("stdlib-jdk8"))
         implementation(libs.configurateHocon)
         implementation(libs.configurateKotlin)
-        implementation(libs.expiringMap)
         compileOnly(libs.commandApiCore)
         compileOnly(libs.commandApiKotlin)
     }

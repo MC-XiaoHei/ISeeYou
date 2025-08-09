@@ -6,7 +6,6 @@ runPaper = "2.3.1"
 resourceFactory = "1.0.0"
 commandApi = "10.1.2"
 configurate = "4.2.0"
-expiringmap = "0.5.11"
 # anti-cheat-apis
 grim = "1.0.0-8ad0b94"
 negativity = "2.7.1"
@@ -18,7 +17,6 @@ configurateHocon = { group = "org.spongepowered", name = "configurate-hocon", ve
 configurateKotlin = { group = "org.spongepowered", name = "configurate-extra-kotlin", version.ref = "configurate" }
 commandApiCore = { group = "dev.jorel", name = "commandapi-bukkit-core", version.ref = "commandApi" }
 commandApiKotlin = { group = "dev.jorel", name = "commandapi-bukkit-kotlin", version.ref = "commandApi" }
-expiringMap = { group = "net.jodah", name = "expiringmap", version.ref = "expiringmap" }
 # anti-cheat-apis
 negativityApi = { group = "com.github.Elikill58", name = "Negativity", version.ref = "negativity" }
 grimApi = { group = "ac.grim.grimac", name = "GrimAPI", version.ref = "grim" }
