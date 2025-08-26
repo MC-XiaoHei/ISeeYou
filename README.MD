@@ -39,10 +39,13 @@ ISeeYou is a simple and lightweight plugin to record player in `.mcpr` format. [
 > If you would like us to add support for more anti-cheat plugins, please create
 > an [issue](https://github.com/MC-XiaoHei/ISeeYou/issues) and let us know!
 
+## Dependencies
+
+* [CommandAPI](https://docs.commandapi.dev/) 10.1.2 or higher
 
 ### How to install
 
-1. **Install the Plugin**: Place the plugin file in the plugins directory of the server, and restart the server.
+1. **Install the Plugin**: Place the plugin file(and dependencies) in the plugins directory of the server, and restart the server.
 
 2. **Configure Settings**: Edit the `plugins/ISeeYou/icu.conf` file to adjust settings.
 
@@ -50,11 +53,8 @@ ISeeYou is a simple and lightweight plugin to record player in `.mcpr` format. [
 
 - **Stable Versions**
     - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
-    - [MineBBS](https://www.minebbs.com/resources/iseeyou.7276/) (outdated)
 - **Development Versions**
     - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)\
-
-//TODD
 
 ## Building From Source
 
