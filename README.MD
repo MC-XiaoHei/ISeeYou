@@ -9,12 +9,14 @@ ISeeYou is a simple and lightweight plugin to record player in `.mcpr` format. [
 > [!WARNING]
 > This plugin only works on servers that support the Leaves Plugin and have the `photographer` feature enabled.
 > 
-> Currently, only [Leaves](https://github.com/LeavesMC/Leaves) and [Leaf](https://github.com/Winds-Studio/Leaf) provide that.
+> Currently, only [Leaves](https://github.com/LeavesMC/Leaves) provide that.
 >
-> The developers only guarantee that the **latest stable version** of the ISeeYou plugin will work properly on the **latest version** of the Leaves or Leaf core server.
+> The developers only guarantee that the **latest stable version** of the ISeeYou plugin will work properly on the **latest version** of the Leaves core server.
 > 
 > Compatibility with older versions is not guaranteed.
 
+> [!TIP]
+> If you want to use this plugin on  and [Leaf](https://github.com/Winds-Studio/Leaf), you can try to use jar in [#58](https://github.com/MC-XiaoHei/ISeeYou/pull/58)
 
 ## Features
 
