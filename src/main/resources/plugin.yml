@@ -1,0 +1,21 @@
+name: ISeeYou
+main: cn.xor7.xiaohei.icu.ISeeYouPlugin
+version: '2.0.0'
+api-version: '1.21'
+description: record players in .mcpr format
+author: MC_XiaoHei
+website: 'https://github.com/MC-XiaoHei/ISeeYou'
+depend: [CommandAPI]
+softdepend:
+  - GrimAC
+  - LightAntiCheat
+  - Matrix
+  - Negativity
+  - Spartan
+  - Themis
+  - Vulcan
+
+
+# folia-supported: false
+# features.required: [photographer]
+# mixin: {}
