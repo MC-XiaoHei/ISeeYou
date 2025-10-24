@@ -56,7 +56,7 @@ ISeeYou is a simple and lightweight plugin to record player in `.mcpr` format. [
 - **Stable Versions**
     - [GitHub Releases](https://github.com/MC-XiaoHei/ISeeYou/releases)
 - **Development Versions**
-    - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)\
+    - [GitHub Actions CI](https://github.com/MC-XiaoHei/ISeeYou/actions/workflows/dev-build.yml?query=is%3Asuccess)
 
 ## Building From Source
 
