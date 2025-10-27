@@ -24,17 +24,17 @@ fun registerPhotographerCommand() = commandTree("photographer") {
                     anyExecutor { sender, args ->
                         val isPlayer = sender is Player
                         val name: String by args
-                        val locationArg: Location? by args
-                        val worldArg: World? by args
-                        val location = locationArg ?: run {
+                        val location: Location? by args
+                        val world: World? by args
+                        val targetLocation = location ?: run {
                             if (!isPlayer) {
                                 sender.sendError("Must specify a location when use this command in console")
                                 return@anyExecutor
                             }
                             return@run sender.location
                         }
-                        worldArg?.let {
-                            location.world = it
+                        world?.let {
+                            location?.world = it
                         }
 
                         if (name.length !in 4..16) {
@@ -52,7 +52,7 @@ fun registerPhotographerCommand() = commandTree("photographer") {
                             return@anyExecutor
                         }
 
-                        val photographer = createPhotographer(name, location) ?: run {
+                        val photographer = createPhotographer(name, targetLocation) ?: run {
                             sender.sendError("Failed to create photographer with name '$name'")
                             return@anyExecutor
                         }
