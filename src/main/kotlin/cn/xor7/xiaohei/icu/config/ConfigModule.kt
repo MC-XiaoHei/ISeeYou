@@ -39,8 +39,8 @@ data class HighSpeedPauseConfig(
 @ConfigSerializable
 data class ClearOutdatedRecordConfig(
     val enable: Boolean = false,
-    val interval: Int = 24,
-    val days: Int = 7,
+    val interval: Long = 24,
+    val days: Long = 7,
 ) {
     init {
         if (interval < 1) throw IllegalArgumentException("Clear outdated record interval must be at least 1 hour")

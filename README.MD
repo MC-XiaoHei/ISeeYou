@@ -26,7 +26,7 @@ ISeeYou is a simple and lightweight plugin to record player in `.mcpr` format. [
   suspicious player is detected.
 - **Instant Replay**: You can use commands to save recent seconds gameplay.
 
-## Anti-Cheat Compatibility //TODD
+## Anti-Cheat Compatibility
 
 | Name                                                                                                                                          | Availability |
 |-----------------------------------------------------------------------------------------------------------------------------------------------|--------------|

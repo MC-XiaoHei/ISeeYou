@@ -135,6 +135,7 @@ java {
 }
 
 kotlin {
+    compilerOptions.optIn.add("kotlin.io.path.ExperimentalPathApi")
     jvmToolchain(targetJavaVersion)
 }
 
