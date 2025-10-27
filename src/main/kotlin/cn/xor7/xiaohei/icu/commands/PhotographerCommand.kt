@@ -12,6 +12,7 @@ import cn.xor7.xiaohei.icu.utils.sendSuccess
 import dev.jorel.commandapi.arguments.ArgumentSuggestions
 import dev.jorel.commandapi.kotlindsl.*
 import org.bukkit.Location
+import org.bukkit.World
 import org.bukkit.entity.Player
 
 fun registerPhotographerCommand() = commandTree("photographer") {
@@ -19,38 +20,44 @@ fun registerPhotographerCommand() = commandTree("photographer") {
         withPermission(perms.photographer.create)
         stringArgument("name") {
             locationArgument("location", optional = true) {
-                anyExecutor { sender, args ->
-                    val isPlayer = sender is Player
-                    val name: String by args
-                    val locationArg: Location? by args
-                    val location = locationArg ?: run {
-                        if (!isPlayer) {
-                            sender.sendError("Must specify a location when use this command in console")
+                worldArgument("world", optional = true) {
+                    anyExecutor { sender, args ->
+                        val isPlayer = sender is Player
+                        val name: String by args
+                        val locationArg: Location? by args
+                        val worldArg: World? by args
+                        val location = locationArg ?: run {
+                            if (!isPlayer) {
+                                sender.sendError("Must specify a location when use this command in console")
+                                return@anyExecutor
+                            }
+                            return@run sender.location
+                        }
+                        worldArg?.let {
+                            location.world = it
+                        }
+
+                        if (name.length !in 4..16) {
+                            sender.sendError("Name must be between 4 and 16 characters")
                             return@anyExecutor
                         }
-                        return@run sender.location
-                    }
 
-                    if (name.length !in 4..16) {
-                        sender.sendError("Name must be between 4 and 16 characters")
-                        return@anyExecutor
-                    }
+                        if (!ALLOWED_CHARACTERS.matches(name)) {
+                            sender.sendError("Photographer name contains invalid chars. only supports number, letter and underscore")
+                            return@anyExecutor
+                        }
 
-                    if (!ALLOWED_CHARACTERS.matches(name)) {
-                        sender.sendError("Photographer name contains invalid chars. only supports number, letter and underscore")
-                        return@anyExecutor
-                    }
+                        getPhotographer(name)?.run {
+                            sender.sendError("Photographer with name '$name' already exists")
+                            return@anyExecutor
+                        }
 
-                    getPhotographer(name)?.run {
-                        sender.sendError("Photographer with name '$name' already exists")
-                        return@anyExecutor
+                        val photographer = createPhotographer(name, location) ?: run {
+                            sender.sendError("Failed to create photographer with name '$name'")
+                            return@anyExecutor
+                        }
+                        sender.sendSuccess("Photographer '${photographer.name}' created at ${photographer.world.name} (${photographer.location.blockX}, ${photographer.location.blockY}, ${photographer.location.blockZ})")
                     }
-
-                    val photographer = createPhotographer(name, location) ?: run {
-                        sender.sendError("Failed to create photographer with name '$name'")
-                        return@anyExecutor
-                    }
-                    sender.sendSuccess("Photographer '${photographer.name}' created at ${photographer.world.name} (${photographer.location.blockX}, ${photographer.location.blockY}, ${photographer.location.blockZ})")
                 }
             }
         }
