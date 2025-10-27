@@ -17,7 +17,7 @@ import kotlin.io.path.isDirectory
 
 fun tryRemoveTempFile() {
     if (!module.deleteTmpFileOnLoad) return
-    Files.walk(Paths.get(module.path), 5, FileVisitOption.FOLLOW_LINKS).use { paths ->
+    Files.walk(Paths.get("replay"), 5, FileVisitOption.FOLLOW_LINKS).use { paths ->
         paths.filter { it.isDirectory() }
             .filter { it.fileName.toString().endsWith(".tmp") }
             .forEach { it.deleteRecursively() }
@@ -34,7 +34,11 @@ fun tryDeleteOutdateFiles() {
     listOf(
         module.path,
         module.recordSuspicious.path,
-    ).map { Paths.get(it) }.forEach { deleteOutdateFilesIn(it) }
+        module.instantReplay.path,
+    )
+        .map { Paths.get(it).parent }
+        .filter { it != null }
+        .forEach { deleteOutdateFilesIn(it) }
 }
 
 private fun deleteOutdateFilesIn(directory: Path) {
