@@ -24,10 +24,14 @@ fun tryRemoveTempFile() {
     }
 }
 
-fun scheduleDeleteOutdateFiles(delayHours: Long = 0): ScheduledTask = Bukkit.getAsyncScheduler().runDelayed(plugin, {
-    tryDeleteOutdateFiles()
-    scheduleDeleteOutdateFiles(module.clearOutdatedRecord.interval)
-}, delayHours, TimeUnit.HOURS)
+fun scheduleDeleteOutdateFiles(delayHours: Long = 0): ScheduledTask = Bukkit.getAsyncScheduler().runDelayed(
+    plugin,
+    {
+        tryDeleteOutdateFiles()
+        scheduleDeleteOutdateFiles(module.clearOutdatedRecord.interval)
+    },
+    delayHours, TimeUnit.HOURS,
+)
 
 fun tryDeleteOutdateFiles() {
     if (!module.clearOutdatedRecord.enable) return
@@ -54,6 +58,7 @@ private fun deleteFilesOlderThan(directory: Path, cutoffTime: Instant) {
     try {
         Files.walk(directory).use { paths ->
             paths.filter { Files.isRegularFile(it) }
+                .filter { it.fileName.toString().endsWith(".mcpr") }
                 .filter { file ->
                     val attrs = Files.readAttributes(file, BasicFileAttributes::class.java)
                     attrs.lastModifiedTime().toInstant().isBefore(cutoffTime)
@@ -61,6 +66,13 @@ private fun deleteFilesOlderThan(directory: Path, cutoffTime: Instant) {
                 .forEach { file ->
                     try {
                         Files.delete(file)
+                        val parent = file.parent ?: return@forEach
+                        if (
+                            Files.isDirectory(parent) &&
+                            Files.newDirectoryStream(parent).use { !it.iterator().hasNext() }
+                        ) {
+                            Files.delete(parent)
+                        }
                     } catch (e: IOException) {
                         plugin.logger.warning("Failed to delete file: $file. Error: ${e.message}")
                     }
