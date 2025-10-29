@@ -1,7 +1,11 @@
 @file:Suppress("SpellCheckingInspection")
 
+import org.leavesmc.LeavesPluginJson.Load.AFTER
 import org.leavesmc.LeavesPluginJson.Load.BEFORE
+import org.leavesmc.LeavesPluginJson.Load.OMIT
 import org.leavesmc.leavesPluginJson
+import xyz.jpenilla.resourcefactory.paper.PaperPluginYaml
+import xyz.jpenilla.resourcefactory.paper.paperPluginYaml
 import xyz.jpenilla.runtask.service.DownloadsAPIService
 import xyz.jpenilla.runtask.service.DownloadsAPIService.Companion.registerIfAbsent
 
@@ -17,6 +21,7 @@ group = "cn.xor7.xiaohei"
 version = "2.0.0"
 
 val pluginJson = leavesPluginJson {
+    name = "ISeeYou"
     main = "cn.xor7.xiaohei.icu.ISeeYouPlugin"
     authors.add("MC_XiaoHei")
     description = "record players in .mcpr format"
@@ -45,6 +50,40 @@ val pluginJson = leavesPluginJson {
         )
     }
     features.required.add("photographer")
+}
+
+val pluginYaml = paperPluginYaml {
+    name = pluginJson.name
+    main = pluginJson.main
+    authors.addAll(pluginJson.authors)
+    description = pluginJson.description
+    website = pluginJson.website
+    foliaSupported = pluginJson.foliaSupported
+    apiVersion = pluginJson.apiVersion
+    pluginJson.dependencies.server.forEach {
+        dependencies.server(
+            name = it.name,
+            load = when (it.load.get()) {
+                BEFORE -> PaperPluginYaml.Load.BEFORE
+                AFTER -> PaperPluginYaml.Load.AFTER
+                OMIT -> PaperPluginYaml.Load.OMIT
+            },
+            required = it.required.get(),
+            joinClasspath = it.joinClasspath.get(),
+        )
+    }
+    pluginJson.dependencies.bootstrap.forEach {
+        dependencies.bootstrap(
+            name = it.name,
+            load = when (it.load.get()) {
+                BEFORE -> PaperPluginYaml.Load.BEFORE
+                AFTER -> PaperPluginYaml.Load.AFTER
+                OMIT -> PaperPluginYaml.Load.OMIT
+            },
+            required = it.required.get(),
+            joinClasspath = it.joinClasspath.get(),
+        )
+    }
 }
 
 val runServerPlugins = runPaper.downloadPluginsSpec {
@@ -94,6 +133,7 @@ sourceSets {
     main {
         resourceFactory {
             factories(pluginJson.resourceFactory())
+            factories(pluginYaml.resourceFactory())
         }
     }
 }
