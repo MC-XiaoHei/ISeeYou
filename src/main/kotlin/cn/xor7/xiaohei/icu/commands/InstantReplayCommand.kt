@@ -7,13 +7,13 @@ import cn.xor7.xiaohei.icu.utils.sendError
 import cn.xor7.xiaohei.icu.utils.sendSuccess
 import dev.jorel.commandapi.kotlindsl.anyExecutor
 import dev.jorel.commandapi.kotlindsl.commandTree
+import dev.jorel.commandapi.kotlindsl.entitySelectorArgumentOnePlayer
 import dev.jorel.commandapi.kotlindsl.getValue
-import dev.jorel.commandapi.kotlindsl.playerArgument
 import org.bukkit.entity.Player
 
 fun registerInstantReplayCommand() = commandTree("instantreplay") {
     withPermission(perms.instantReplay.self)
-    playerArgument("player", optional = true) {
+    entitySelectorArgumentOnePlayer("player", optional = true) {
         anyExecutor { sender, args ->
             if (!module.instantReplay.enable) {
                 sender.sendError("Instant Replay is not enabled")
