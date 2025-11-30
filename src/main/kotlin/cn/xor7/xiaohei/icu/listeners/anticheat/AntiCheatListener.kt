@@ -39,7 +39,7 @@ class AntiCheatListener : Listener {
         )
     }
 
-    fun onAntiCheatAction(player: Player) {
+    fun onAntiCheatAction(player: Player) = Bukkit.getGlobalRegionScheduler().run(plugin) {
         val suspiciousPhotographer = suspiciousPhotographers[player.uniqueId]
         if (suspiciousPhotographer == null) {
             val photographer = createAntiCheatPhotographer(player)

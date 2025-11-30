@@ -1,10 +1,10 @@
 [versions]
-leavesApi = "1.21.8-R0.1-SNAPSHOT"
-leavesweightUserdev = "2.0.0-SNAPSHOT"
+leavesApi = "1.21.10-R0.1-SNAPSHOT"
+leavesweightUserdev = "2.1.0-SNAPSHOT"
 shadow = "9.0.0-rc1"
 runPaper = "2.3.1"
 resourceFactory = "1.0.0"
-commandApi = "10.1.2"
+commandApi = "11.0.0"
 configurate = "4.2.0"
 # anti-cheat-apis
 grim = "1.0.0-8ad0b94"
@@ -15,8 +15,8 @@ leavesApi = { group = "org.leavesmc.leaves", name = "leaves-api", version.ref = 
 leavesDevBundle = { group = "org.leavesmc.leaves", name = "dev-bundle", version.ref = "leavesApi" }
 configurateHocon = { group = "org.spongepowered", name = "configurate-hocon", version.ref = "configurate" }
 configurateKotlin = { group = "org.spongepowered", name = "configurate-extra-kotlin", version.ref = "configurate" }
-commandApiCore = { group = "dev.jorel", name = "commandapi-bukkit-core", version.ref = "commandApi" }
-commandApiKotlin = { group = "dev.jorel", name = "commandapi-bukkit-kotlin", version.ref = "commandApi" }
+commandApiCore = { group = "dev.jorel", name = "commandapi-paper-core", version.ref = "commandApi" }
+commandApiKotlin = { group = "dev.jorel", name = "commandapi-kotlin-paper", version.ref = "commandApi" }
 # anti-cheat-apis
 negativityApi = { group = "com.github.Elikill58", name = "Negativity", version.ref = "negativity" }
 grimApi = { group = "ac.grim.grimac", name = "GrimAPI", version.ref = "grim" }

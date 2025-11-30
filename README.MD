@@ -40,7 +40,7 @@ ISeeYou is a simple and lightweight plugin to record player in `.mcpr` format. [
 
 ## Dependencies
 
-* [CommandAPI](https://docs.commandapi.dev/) 10.1.2 or higher
+* [CommandAPI](https://docs.commandapi.dev/) 11.0.0 or higher
 
 ### How to install
 
