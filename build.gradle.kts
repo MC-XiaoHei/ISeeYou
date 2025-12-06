@@ -18,7 +18,7 @@ plugins {
 }
 
 group = "cn.xor7.xiaohei"
-version = "2.1.0-SNAPSHOT"
+version = "2.1.0"
 
 val pluginJson = leavesPluginJson {
     name = "ISeeYou"
