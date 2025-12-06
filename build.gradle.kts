@@ -26,7 +26,7 @@ val pluginJson = leavesPluginJson {
     authors.add("MC_XiaoHei")
     description = "record players in .mcpr format"
     website = "https://github.com/MC-XiaoHei/ISeeYou"
-    foliaSupported = false // Currently, there is no any known folia forks supports photographer API.
+    foliaSupported = true
     apiVersion = libs.versions.leavesApi.extractMCVersion()
     dependencies.server(
         name = "CommandAPI",
